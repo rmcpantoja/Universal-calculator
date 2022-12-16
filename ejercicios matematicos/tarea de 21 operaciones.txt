@@ -1,0 +1,24 @@
+Tarea matemática
+La tarea tiene: 21 diferentes operaciones en total. En esta tarea te he dado 3 tipos que son: 8 sumas,  y 7 restas. y 6 multiplicaciones.
+Resuelva las siguientes operaciones:
+26*1
+54*1
+50+26
+79+35
+69+51
+71+22
+51-23
+906-781
+138+104
+495-477
+38*2
+18-11
+40+29
+258+157
+511*74
+457-232
+522*66
+66-60
+169*25
+608-409
+59+13

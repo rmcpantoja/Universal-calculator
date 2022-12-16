@@ -23,8 +23,7 @@ Esta tarea ya está casi hecha. Se creó una función donde contiene una matriz 
 • correjir el error de si hay un error de sintaxis, o sea, si hay un error cuando hay menos o más parámetros de lo establecido pone el foco en la pantalla de resultado después del mensaje de error, y esto no debería pasar. Esto es porque se establece GuiCtrlSetData fuera de las condicionales de si hay menos o más parámetros.
 • Hacer la barra de menú como siempre, como todos los programas.
 • Agregar el soporte para hacer lo de las fórmulas de peso, masa, IMC que tengo esa UDF que hice con mis manos en mi otro pc. Espero rescatarlo la verdad.
-• Muy importante: solucionar el error del Subsistema de Linux para Windows donde supuestamente no hay internet.
-Esto es porque quiero actualizar el repositorio de GitHub y no puedo, y no solo eso sino trabajar con conexión a internet porque hay que hacer algo y por más que he intentado de muchas maneras no lo logré. We need help please...
+• Muy importante: solucionar el error del Subsistema de Linux para Windows donde supuestamente no hay internet. Hecho, desactivar el autogenerador de resolfConf.
 • si se agrega la barra de menú, se podría agregar un soporte que pueda permitir conversiones, por ejemplo de altura, peso, profundidad, etc.
 • Incluir también las progresiones geométricas. El problema es que los nombres de estas fórmulas tienen los mismos nombres que las progresiones aritméticas, excepto diferencia y razón que por suerte son diferentes. Para resolver esto, la idea que tengo es establecer un prefijo, algo como: Ap-A1:num num num. AP puede ser Aritmetic Progression, un guión y la fórmula, de resto los parámetros y demás.
 Fase 1: Establecer el prefijo "ap" en las funciones aritméticas. Hecho.
@@ -39,4 +38,5 @@ Establecer aceleradores de teclas para el teclado matemático en patalla. Hecho
 Corrección de las acciones para el teclado en pantalla, donde faltaba establecer más elementos en el switch. Hecho, incluso se corrijió el botón igual donde se tomaba en cuenta como parte de los elementos del switch y se ha tenido que mover fuera de los controles que formaban parte para que funcione.
 Emplear la libreria advanced math e investigar más sobre algunas fórmulas de ella.
 Esta es una tarea que requiere mucho por hacer si queremos aplicarla en la calculadora.
-Estoy pensando que en lugar de la lista de fórmulas, se agregue una vista de árbol donde estén categorizadas las fórmulas. Por ejemplo: fórmulas de potencia, raíces, progresiones, etc. Así podrán encontrar mejor las fórmulas en este sentido, en lugar de que la lista tenga todas las fórmulas de todos los tipos en una sola y cada vez que se agreguen más fórmulas sea todo un lío.
+Estoy pensando que en lugar de la lista de fórmulas, se agregue una vista de árbol donde estén categorizadas las fórmulas. Por ejemplo: fórmulas de potencia, raíces, progresiones, etc. Así podrán encontrar mejor las fórmulas en este sentido, en lugar de que la lista tenga todas las fórmulas de todos los tipos en una sola y cada vez que se agreguen más fórmulas sea un lío.
+Agregar sistema de actualizaciones.
