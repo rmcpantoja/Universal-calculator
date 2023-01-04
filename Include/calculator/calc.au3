@@ -1,5 +1,12 @@
+#include "..\mymath\elevar.au3"
+#include "..\mymath\fisica.au3"
 #include "gui.au3"
 #include <GuiButton.au3>
+#include <Math.au3>
+;#include "..\advmathudf-au3\Math.au3"
+#include "..\mymath\Progresiones.au3"
+#include "..\mymath\raiz.au3"
+#include "..\advmathudf-au3\Math\Roots.au3"
 #include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _calc
