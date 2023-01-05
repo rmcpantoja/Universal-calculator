@@ -1,4 +1,5 @@
 BackUp/
+include/BackUp/
 BackUp/*
 *.exe
 *.cmd
