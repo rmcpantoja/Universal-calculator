@@ -1,5 +1,6 @@
 #include "globals.au3"
 #include <GuiConstantsEx.au3>
+#include "..\translator.au3"
 global $bHideKeyboard
 #include-once
 ; #FUNCTION# ====================================================================================================================

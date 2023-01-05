@@ -8,6 +8,7 @@
 #include "..\mymath\Progresiones.au3"
 #include "..\mymath\raiz.au3"
 #include "..\advmathudf-au3\Math\Roots.au3"
+#include "..\translator.au3"
 #include-once
 
 ; #FUNCTION# ====================================================================================================================

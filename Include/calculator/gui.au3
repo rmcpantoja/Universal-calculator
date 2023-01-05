@@ -1,6 +1,7 @@
 #INCLUDE <GuiConstantsEx.au3>
 #include "params.au3"
 #include <StringConstants.au3>
+#include "..\translator.au3"
 #include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: CreateParams

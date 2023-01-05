@@ -1,5 +1,6 @@
 #include "globals.au3"
 #include "..\mymath\raiz.au3"
+#include "..\translator.au3"
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _GetReason
 ; Description ...:
