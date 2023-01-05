@@ -3,6 +3,7 @@
 #include "globals.au3"
 #include <GuiConstantsEx.au3>
 #include <ListViewConstants.au3>
+#include "include\translator.au3"
 Global $aFlista = _SearchParam(Null, Default, True)
 _ArrayColDelete($aFlista, 1, True)
 ; #FUNCTION# ====================================================================================================================
