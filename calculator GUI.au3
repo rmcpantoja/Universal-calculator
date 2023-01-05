@@ -11,7 +11,7 @@
 #AutoIt3Wrapper_Res_ProductName=Universal calculator
 #AutoIt3Wrapper_Res_ProductVersion=0.1.0.0
 #AutoIt3Wrapper_Res_CompanyName=MT Programs
-#AutoIt3Wrapper_Res_LegalCopyright=© 2018-2022 MT Programs, All rights reserved
+#AutoIt3Wrapper_Res_LegalCopyright=© 2018-2023 MT Programs, All rights reserved
 #AutoIt3Wrapper_Res_Language=12298
 ;#AutoIt3Wrapper_Run_Tidy=y
 ;#AutoIt3Wrapper_Run_Au3Stripper=y
