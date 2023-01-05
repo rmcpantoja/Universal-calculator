@@ -1,0 +1,5 @@
+BackUp/
+BackUp/*
+*.exe
+*.cmd
+_ScreenCapture_CaptureWnd.au3
