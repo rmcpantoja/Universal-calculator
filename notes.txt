@@ -17,7 +17,7 @@ Así que en esta sección agradezco a todos quienes me animan a continuar con el
 Ejemplos: scripts que ponen en ejecución algunas librerías relacionadas con el proyecto (matemáticas).
 ejercicios matemáticos: es un directorio agregado recientemente donde se agregan automatizaciones y ejercicios más avanzadas e increíbles con matemáticas.
 Examples2: son ejemplos prácticos para el archivo de ayuda de algunas librerías matemáticas escritas por mí.
-Include: dependencias o librerías que necesitará el programa para funcionar. Varias de ellas son librerías matemáticas, gestión de lectores de pantalla, traducción, teclado, etc.
+Include: dependencias o librerías que necesitará el programa para funcionar. Varias de ellas son librerías matemáticas, gestión de lectores de pantalla, traducción, teclado, GUI, etc.
 plantillas diseño: son borradores o plantillas de la interfaz gráfica del programa para trabajar con creadores de GUI (se usa sobre todo para correjir la interfaz visualmente hablando).
 Lo demás son el script principal, un script para capturar la ventana del programa, dos imágenes que vienen siendo el resultado de las capturas (las subiré para hacer la presentación una vez termine la primera versión).
 En la primera imagen se encuentra visible toda la interfaz del programa, mientras que en la segunda se encuentra la interfaz pero sin el diseño del teclado, demostrando que el teclado no sería tan útil si vamos a usar tanto el teclado numérico como los números del teclado, o simplemente tenemos mucha navegación por los controles departe de lectores de pantalla y queremos que la navegación sea más fácil.

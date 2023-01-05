@@ -1,3 +1,4 @@
+#include "globals.au3"
 #include <GuiConstantsEx.au3>
 global $bHideKeyboard
 #include-once

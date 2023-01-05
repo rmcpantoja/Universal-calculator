@@ -1,3 +1,4 @@
+#include "globals.au3"
 #include "..\mymath\elevar.au3"
 #include "..\mymath\fisica.au3"
 #include "gui.au3"
@@ -8,6 +9,7 @@
 #include "..\mymath\raiz.au3"
 #include "..\advmathudf-au3\Math\Roots.au3"
 #include-once
+
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _calc
 ; Description ...:
