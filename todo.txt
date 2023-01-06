@@ -42,4 +42,3 @@ Estoy pensando que en lugar de la lista de fórmulas, se agregue una vista de á
 Agregar sistema de actualizaciones.
 Agregar accesibilidad mejorada. Será necesario, desde luego.
 Agregar el sistema de traducción.
-Más limpieza de código en calc.au3. Necesita refactorización.

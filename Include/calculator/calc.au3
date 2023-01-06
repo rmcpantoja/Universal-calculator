@@ -149,7 +149,6 @@ Func _calc()
 						Case 9
 							$sTipoElevacion = "noveno"
 					EndSwitch
-					;GUICtrlSetData($idPantallaResultados, $aNumbers[1] & " elevado al " & $sTipoElevacion & " es igual a: " & $nResultado)
 				Case $aInteraccion[1] = "root"
 					If _CheckComandParams($aNumbers, 2) Then $nResultado = _Raiz2($aNumbers[1], $aNumbers[2])
 					Switch $aNumbers[1]
@@ -170,13 +169,10 @@ Func _calc()
 						Case 9
 							$sTipoRaiz = "novena"
 					EndSwitch
-					;GUICtrlSetData($idPantallaResultados, "La raíz " & $sTipoRaiz & " de " & $aNumbers[2] & ", es igual a: " & $nResultado)
 				Case $aInteraccion[1] = "sr"
 					If _CheckComandParams($aNumbers, 1) Then $nResultado = Sqrt($aNumbers[1])
-					;GUICtrlSetData($idPantallaResultados, "La raíz cuadrada de " & $aNumbers[1] & ", es igual a: " & $nResultado)
 				Case $aInteraccion[1] = "cr"
 					If _CheckComandParams($aNumbers, 1) Then $nResultado = cbrt($aNumbers[1])
-					;GUICtrlSetData($idPantallaResultados, "La raíz cúbica de " & $aNumbers[1] & ", es igual a: " & $nResultado)
 				Case $aInteraccion[1] = "time"
 					If _CheckComandParams($aNumbers, 2) Then $nResultado = _tiempo($aNumbers[1], $aNumbers[2])
 				Case $aInteraccion[1] = "vel"
