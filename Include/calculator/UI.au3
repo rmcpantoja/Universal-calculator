@@ -128,7 +128,7 @@ Func Main()
 			Case $idMostrarRazon
 				_GetReason()
 			Case $idAbout
-				MsgBox(48, "Acerca de universal calculator", "Una calculadora fácil, simple e interactiva donde puedes realizar operaciones, fórmulas, conversiones y más. Este programa ha sido desarrollado por Mateo Cedillo. Creación de la GUI por Valeria Parra.")
+				MsgBox(48, "Acerca de", "Una calculadora fácil, simple e interactiva donde puedes realizar operaciones, fórmulas, conversiones y más. Este programa ha sido desarrollado por Mateo Cedillo. Creación de la GUI por Valeria Parra.")
 			Case $GUI_EVENT_CLOSE, $idMenuExit
 				ExitLoop
 		EndSwitch
