@@ -40,3 +40,6 @@ Emplear la libreria advanced math e investigar más sobre algunas fórmulas de e
 Esta es una tarea que requiere mucho por hacer si queremos aplicarla en la calculadora.
 Estoy pensando que en lugar de la lista de fórmulas, se agregue una vista de árbol donde estén categorizadas las fórmulas. Por ejemplo: fórmulas de potencia, raíces, progresiones, etc. Así podrán encontrar mejor las fórmulas en este sentido, en lugar de que la lista tenga todas las fórmulas de todos los tipos en una sola y cada vez que se agreguen más fórmulas sea un lío.
 Agregar sistema de actualizaciones.
+Agregar accesibilidad mejorada. Será necesario, desde luego.
+Agregar el sistema de traducción.
+Más limpieza de código en calc.au3. Necesita refactorización.
