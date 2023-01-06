@@ -46,7 +46,7 @@ MsgBox(0, "éxito", "Se hizo una tabla de 12x12. ¡Compruébala y repásala!")
 ; Parameters ....: $iTable              - Crear la tabla del ¿Número?.
 ;                  $iLimit              - [opcional] Los elementos de la tabla. Por defecto es 12, por lo que creará una tabla de hasta número ($iTable) por 12.
 ; Return values .: La tabla de multiplicación generada
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -74,7 +74,7 @@ EndFunc
 ; Syntax ........: _execute_Table($aTable)
 ; Parameters ....: $aTable              - La variable (matriz) que contenga la tabla hecha.
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
