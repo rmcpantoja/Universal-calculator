@@ -31,7 +31,7 @@ Func _GetReason()
 			Case "root"
 				$aProceso = RaizObtenerRazon2($nResultado, $aNumbers[1])
 				$aProceso[0] = StringReplace($aProceso[0], "*", " para ")
-				MsgBox(0, "Razónn", "El motivo de por qué " & "La raíz " & $sTipoRaiz & " de " & $aNumbers[2] & ", es igual a " & $nResultado & ", se debe a que " & $aProceso[0] & " es igual a: " & $aProceso[1])
+				MsgBox(0, "Razónn", "El motivo de por qué la raíz " & $sTipoRaiz & " de " & $aNumbers[2] & ", es igual a " & $nResultado & ", se debe a que " & $aProceso[0] & " es igual a: " & $aProceso[1])
 				;Vamos a comentar esto, porque trae problemas. EN realidad, la razón para sr está deshabilitada porque está comentada, hasta que encontremos una solución para poder obtener correctamente las razones.
 				;case "sr"
 				;$aProceso = RaizObtenerRazon2(2, $aNumbers[1])

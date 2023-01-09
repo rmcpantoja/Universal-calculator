@@ -3,6 +3,7 @@
 #include "..\mymath\fisica.au3"
 #include "gui.au3"
 #include <GuiButton.au3>
+#include "keyboard.au3"
 #include <Math.au3>
 ;#include "..\advmathudf-au3\Math.au3"
 #include "..\mymath\Progresiones.au3"
