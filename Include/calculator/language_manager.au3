@@ -1,4 +1,7 @@
 ; language manager:
+#include "globals.au3"
+#include "..\Progress.au3"
+#include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: Selector
 ; Description ...: language selector
@@ -27,7 +30,7 @@ Func Selector()
 	$recolectalosidiomasporfavor = FileFindFirstFile(@ScriptDir & "\lng\*.lang")
 	If $recolectalosidiomasporfavor = -1 Then
 		MsgBox(16, "Fatal error", "We cannot find the language files. Please download the program again...")
-exit()
+exit
 	EndIf
 	Local $Recoleccion = "", $obteniendo = ""
 	While 1
@@ -36,13 +39,13 @@ exit()
 		$Recoleccion = FileFindNextFile($recolectalosidiomasporfavor)
 		If @error Then
 			;MsgBox(16, "Error", "We cannot find the language files or they are corrupted.")
-			If $enhableprogresses = "yes" Then CreateAudioProgress("100")
+			If $sEnhableprogresses = "yes" Then CreateAudioProgress("100")
 			ExitLoop
 		EndIf
 		$splitCode = StringLeft($Recoleccion, 2)
 		$obteniendo &= GetLanguageName($splitCode) & ", " & GetLanguageCode($splitCode) & "|"
 		$langcodes[$busqueda] = GetLanguageCode($splitCode)
-		If $enhableprogresses = "yes" Then CreateAudioProgress($beep)
+		If $sEnhableprogresses = "yes" Then CreateAudioProgress($beep)
 		Sleep(10)
 	WEnd
 	$langcount = StringSplit($obteniendo, "|")
@@ -59,7 +62,7 @@ exit()
 		If $seleccionado = "1" Then ExitLoop
 	WEnd
 	GUIDelete($langGUI)
-	Opt("GUIOnEventMode", $iOldMode)
+	Opt("GUIOnEventMode", $iOldOpt)
 EndFunc   ;==>Selector
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: seleccionar
@@ -96,7 +99,7 @@ Func save()
 		MsgBox(16, "Error", "no language selected.")
 	Else
 		$seleccionado = "1"
-		IniWrite($ConfigPath, "General settings", "language", StringStripWS($queidiomaes[2], $STR_STRIPLEADING))
-		$lng = IniRead($ConfigPath, "General settings", "language", "")
+		IniWrite($sConfigPath, "General settings", "language", StringStripWS($queidiomaes[2], $STR_STRIPLEADING))
+		$sLang = IniRead($sConfigPath, "General settings", "language", "")
 	EndIf
 EndFunc   ;==>save

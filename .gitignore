@@ -1,4 +1,6 @@
 BackUp/
+config/
+config/*
 include/BackUp/
 BackUp/*
 *.exe

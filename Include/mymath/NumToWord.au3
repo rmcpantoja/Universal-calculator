@@ -1,4 +1,4 @@
-
+;MsgBox(0, "", NumToWord(1900))
 Func NumFromWord($sWord)
 	Local $sDigits = "zero|one|two|three|four|five|six|seven|eight|nine"
 	Local $sTeens = "eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen"

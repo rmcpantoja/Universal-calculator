@@ -6,7 +6,7 @@
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_Comment=This is a mini calculator, but big at same time, because you can do advanced formulas and operations too!
 #AutoIt3Wrapper_Res_Description=Universal calculator
-#AutoIt3Wrapper_Res_Fileversion=0.1.0.22
+#AutoIt3Wrapper_Res_Fileversion=0.1.0.23
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_ProductName=Universal calculator
 #AutoIt3Wrapper_Res_ProductVersion=0.1.0.0
@@ -19,6 +19,7 @@
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ; include dependencies:
 #include "include\calculator\calc.au3"
+#include "include\calculator\configs.au3"
 #include <Constants.au3>
 #include <EditConstants.au3>
 #include "include\calculator\gui.au3"
@@ -28,6 +29,7 @@
 #include "include\calculator\UI.au3"
 #include <WindowsConstants.au3>
 ;Universal calculator (in development):
-
+; check for configs:
+_config_start($sConfigFolder, $sConfigPath)
 ; We call the main function of the program:
 Main()
