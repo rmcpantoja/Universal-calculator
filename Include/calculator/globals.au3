@@ -5,7 +5,7 @@ Global $aInteraccion[]
 Global $aNumbers[]
 Global $aNums[], $aFormulas[]
 global $nResultado
-Global $sInterOperacion = "", $sTipoElevacion = "", $sTipoRaiz = ""
+Global $sInterOperacion = "", $sProceso = "", $sTipoElevacion = "", $sTipoRaiz = ""
 ; program globals:
 Global $sProgramVer = "0.1"
 ; UI globals:

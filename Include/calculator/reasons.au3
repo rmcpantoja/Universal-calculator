@@ -1,4 +1,5 @@
 #include "globals.au3"
+#include "..\mymath\mult reason.au3"
 #include "..\mymath\raiz.au3"
 #include "..\translator.au3"
 ; #FUNCTION# ====================================================================================================================
@@ -21,6 +22,10 @@ Func _GetReason()
 		MsgBox(16, "Error", "Debes escribir un comando de función que realice una operación para obtener una razón.")
 	ElseIf $sInterOperacion = "" Then
 		MsgBox(16, "Error", "Debes primero conseguir el resultado de " & GUICtrlRead($idInteraccion) & ", para poder obtener la razón de este.")
+	ElseIf StringInStr($sInterOperacion, "*") then
+		$sProceso = _multi_get_reason($sInterOperacion)
+		$sProceso = StringReplace($sProceso, "*", " más ")
+		MsgBox(0, "Razón", "La razón de por qué " & $sInterOperacion & " es igual a " & $nResultado & ", es porque " & $sProceso &" es igual a " &execute($sProceso) &". Esta es una forma muy fácil de saber la razón de una multiplicación; sin embargo, para una mejor experiencia, puedes guiarte a través de tablas.")
 	Else
 		Switch $aInteraccion[1]
 			Case "raise"
