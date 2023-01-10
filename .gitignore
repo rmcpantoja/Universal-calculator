@@ -3,6 +3,7 @@ config/
 config/*
 include/BackUp/
 BackUp/*
+Include/mymath/BackUp/
 *.exe
 *.cmd
 _ScreenCapture_CaptureWnd.au3

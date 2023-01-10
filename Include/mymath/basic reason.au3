@@ -1,5 +1,6 @@
 #include <StringConstants.au3>
 ; obtener razón de una multiplicación
+
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _multi_get_reason
 ; Description ...:
@@ -32,3 +33,25 @@ Func _multi_get_reason($sMult)
 	; finally returns the reason:
 	Return $sResult
 EndFunc   ;==>_multi_get_reason
+
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _div_get_reason
+; Description ...:
+; Syntax ........: _div_get_reason($sDiv, $sDivResult)
+; Parameters ....: $sDiv                - a string value.
+;                  $sDivResult          - a string value.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func _div_get_reason($sDiv, $sDivResult)
+	Local $sDivisor
+	If Not IsString($sDiv) Then Return SetError(1, 0, "")
+	If Not StringInStr($sDiv, "/") Then Return SetError(2, 0, "")
+	$sDivisor = StringSplit($sDiv, "/")[2]
+	Return $sDivResult & "*" & $sDivisor
+EndFunc   ;==>_div_get_reason

@@ -24,8 +24,11 @@ Func _GetReason()
 		MsgBox(16, "Error", "Debes primero conseguir el resultado de " & GUICtrlRead($idInteraccion) & ", para poder obtener la razón de este.")
 	ElseIf StringInStr($sInterOperacion, "*") then
 		$sProceso = _multi_get_reason($sInterOperacion)
-		$sProceso = StringReplace($sProceso, "*", " más ")
+		$sProceso = StringReplace($sProceso, "+", " más ")
 		MsgBox(0, "Razón", "La razón de por qué " & $sInterOperacion & " es igual a " & $nResultado & ", es porque " & $sProceso &" es igual a " &execute($sProceso) &". Esta es una forma muy fácil de saber la razón de una multiplicación; sin embargo, para una mejor experiencia, puedes guiarte a través de tablas.")
+	ElseIf StringInStr($sInterOperacion, "/") then
+		$sProceso = _div_get_reason($sInterOperacion, $nResultado)
+		MsgBox(0, "Razón", "Una forma básica de saber por qué " & $sInterOperacion & " es igual a " & $nResultado & ", es porque " & $sProceso &" es igual a " &round(execute($sProceso)))
 	Else
 		Switch $aInteraccion[1]
 			Case "raise"
