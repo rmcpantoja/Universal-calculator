@@ -16,3 +16,22 @@ global $sConfigFolder = @ScriptDir &"\config"
 global $sConfigPath = $sConfigFolder &"\config.st"
 ; related to configs:
 global $sEnhableProgresses, $sEnhancedAccess, $sLang
+; global functions:
+; #FUNCTION# ====================================================================================================================
+; Name ..........: exitpersonaliced
+; Description ...: Custom exit function
+; Syntax ........: exitpersonaliced()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func exitpersonaliced()
+	_nvdaControllerClient_free()
+	Sleep(100)
+	Exit
+EndFunc   ;==>exitpersonaliced
