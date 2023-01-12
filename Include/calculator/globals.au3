@@ -17,7 +17,7 @@ Global $hGUI, $idInteraccion, $idClearScreen, $idFORMULAS, $idOpciones, $idRazon
 global $sConfigFolder = @ScriptDir &"\config"
 global $sConfigPath = $sConfigFolder &"\config.st"
 ; related to configs:
-global $sEnhableProgresses, $sEnhancedAccess, $sLang
+global $sEnableProgresses, $sEnhancedAccess, $sLang
 ; global functions:
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: exitpersonaliced

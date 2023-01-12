@@ -39,13 +39,13 @@ exit
 		$Recoleccion = FileFindNextFile($recolectalosidiomasporfavor)
 		If @error Then
 			;MsgBox(16, "Error", "We cannot find the language files or they are corrupted.")
-			If $sEnhableprogresses = "yes" Then CreateAudioProgress("100")
+			If $sEnableprogresses = "yes" Then CreateAudioProgress("100")
 			ExitLoop
 		EndIf
 		$splitCode = StringLeft($Recoleccion, 2)
 		$obteniendo &= GetLanguageName($splitCode) & ", " & GetLanguageCode($splitCode) & "|"
 		$langcodes[$busqueda] = GetLanguageCode($splitCode)
-		If $sEnhableprogresses = "yes" Then CreateAudioProgress($beep)
+		If $sEnableprogresses = "yes" Then CreateAudioProgress($beep)
 		Sleep(10)
 	WEnd
 	$langcount = StringSplit($obteniendo, "|")
