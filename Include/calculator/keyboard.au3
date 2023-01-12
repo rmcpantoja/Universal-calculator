@@ -61,7 +61,7 @@ Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
 		Next
 		$bHideKeyboard = True
 		GUICtrlSetState($idHideKeyControl, $GUI_checked)
-		speaking("Teclado oculto")
+		if $sEnhancedAccess = "Yes" then speaking("Teclado oculto")
 	Else
 		; here we do the opposite, we show it.
 		For $I = 0 To UBound($aNums)
@@ -69,7 +69,7 @@ Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
 		Next
 		$bHideKeyboard = False
 		GUICtrlSetState($idOcultarKey, $GUI_unchecked)
-		speaking("Teclado mostrado")
+		if $sEnhancedAccess = "Yes" then speaking("Teclado mostrado")
 	EndIf
 EndFunc   ;==>_HideKey
 ; #FUNCTION# ====================================================================================================================
@@ -87,11 +87,15 @@ EndFunc   ;==>_HideKey
 ; ===============================================================================================================================
 Func _ClearScreen($idScreenControl)
 	If GUICtrlRead($idScreenControl) = "" Then
-		Speaking("No hay nada que limpiar")
+		if $sEnhancedAccess = "Yes" then
+			Speaking("No hay nada que limpiar")
+		Else
+			MsgBox(16, "Error", "No hay nada que limpiar")
+		EndIf
 	Else
 		GUICtrlSetData($idScreenControl, "")
 		$sInterOperacion = ""
 		$nResultado = ""
-		speaking("Pantalla limpia")
+		if $sEnhancedAccess = "Yes" then speaking("Pantalla limpia")
 	EndIf
 EndFunc   ;==>_ClearScreen
