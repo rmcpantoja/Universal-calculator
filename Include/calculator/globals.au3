@@ -1,3 +1,4 @@
+#include "..\audio.au3"
 #include-once
 ; setting variables:
 ; calculator globals:
@@ -7,6 +8,7 @@ Global $aNums[], $aFormulas[], $aProceso[]
 global $nResultado
 Global $sInterOperacion = "", $sProceso = "", $sTipoElevacion = "", $sTipoRaiz = ""
 ; program globals:
+global $oCloseSND, $oOpenSND
 Global $sProgramVer = "0.1"
 ; UI globals:
 Global $bHideKeyboard = False
@@ -31,7 +33,9 @@ global $sEnhableProgresses, $sEnhancedAccess, $sLang
 ; Example .......: No
 ; ===============================================================================================================================
 Func exitpersonaliced()
+	$oCloseSND = $device.opensound(@ScriptDir & "\sounds/close.ogg", True)
 	_nvdaControllerClient_free()
-	Sleep(100)
+	$oCloseSND.play
+	Sleep(1000)
 	Exit
 EndFunc   ;==>exitpersonaliced
