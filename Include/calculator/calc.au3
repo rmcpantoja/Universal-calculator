@@ -31,7 +31,11 @@ Func _calc()
 		MsgBox(16, "Error", "Debes escribir una operación o seleccionar un comando.")
 	ElseIf _IsFocused($hGUI, $idFORMULAS) Then
 		; if we have focused the control in the list of commands, what to do:
-		$sInterOperacion = CreateParams($idFORMULAS)
+		if $sFormulaAutocompletion = "1" then
+			$sInterOperacion = CreateParams($idFORMULAS)
+		Else
+			$sInterOperacion = Autocomplete_and_put($idFORMULAS)
+		EndIf
 		If @error Then
 			Switch @error
 				Case 1
@@ -51,7 +55,7 @@ Func _calc()
 			; Adds the command in the field, if it is not focused it does so and clicks the same button automatically to get the result.
 			GUICtrlSetData($idInteraccion, $sInterOperacion)
 			If Not _IsFocused($hGUI, $idInteraccion) Then GUICtrlSetState($idInteraccion, $GUI_Focus)
-			_GUICtrlButton_Click($idIgual)
+			if $sFormulaAutocompletion = "1" then _GUICtrlButton_Click($idIgual)
 		EndIf
 	Else
 		; If the user has written an operation with the decimal comma, replace it with point.

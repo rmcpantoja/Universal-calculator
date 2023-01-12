@@ -2,6 +2,7 @@ BackUp/
 config/
 config/*
 include/BackUp/
+include/calculator/BackUp/
 BackUp/*
 Include/mymath/BackUp/
 *.exe

@@ -8,10 +8,10 @@ func _config_start($sConfigFolder, $sConfigPath)
 local $iAccesMSG
 if not FileExists($sConfigFolder) Then DirCreate($sConfigFolder)
 ; beep progress bars:
-$senableProgresses = IniRead($sConfigPath, "General settings", "Beep for progress bars", "")
-If $senableProgresses = "" Then
+$sEnableProgresses = IniRead($sConfigPath, "General settings", "Beep for progress bars", "")
+If $sEnableProgresses = "" Then
 	IniWrite($sConfigPath, "General settings", "Beep for progress bars", "No")
-	$senableProgresses = "No"
+	$sEnableProgresses = "No"
 EndIf
 ; check for language:
 $sLang = IniRead($sConfigPath, "General settings", "language", "")
@@ -28,4 +28,12 @@ if not $sEnhancedAccess = "Yes" or not $sEnhancedAccess = "No" then
 		$sEnhancedAccess = "No"
 	EndIf
 EndIf
+; Check formula autocompletion:
+$sFormulaAutocompletion = IniRead($sConfigPath, "Calculator", "formula autocompletion mode", "")
+if not $sFormulaAutocompletion = "1" or not $sFormulaAutocompletion = "2" then
+	; Let's set the first default mode. This first mode makes that, when selecting a formula from the list, a GUI appears to complete the parameters to interact with it and get the final result.
+	IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "1")
+	$sFormulaAutocompletion = "1"
+EndIf
+return 1
 EndFunc

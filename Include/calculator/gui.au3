@@ -1,4 +1,4 @@
-#INCLUDE <GuiConstantsEx.au3>
+#include <GuiConstantsEx.au3>
 #include "params.au3"
 #include <StringConstants.au3>
 #include "..\translator.au3"
@@ -70,3 +70,29 @@ Func CreateParams(ByRef $idListView)
 		WEnd
 	EndIf
 EndFunc   ;==>CreateParams
+; #FUNCTION# ====================================================================================================================
+; Name ..........: Autocomplete_and_put
+; Description ...:
+; Syntax ........: Autocomplete_and_put(Byref $idListView)
+; Parameters ....: $idListView          - [in/out] an integer value.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func Autocomplete_and_put(ByRef $idListView)
+	local $aArray
+	local $sCommand, $sExtract
+	$sExtract = GUICtrlRead(GUICtrlRead($idListView))
+	If Not $sExtract = 0 Then
+		$aArray = StringSplit($sExtract, "|")
+		If Not $aArray[0] = 3 Then Return SetError(1, 0, "")
+	Else
+		Return SetError(2, 0, "")
+	EndIf
+	$sCommand = $aArray[3]
+	Return $sCommand & ":"
+EndFunc   ;==>Autocomplete_and_put
