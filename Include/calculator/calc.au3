@@ -79,15 +79,7 @@ Func _calc()
 			; We make support for commands or formulas available:
 			Select
 				Case $aInteraccion[1] = "deg"
-					If _CheckComandParams($aNumbers, 1) Then
-						$nResultado = _Degree($aNumbers[1])
-					ElseIf @error = 1 Then
-						MsgBox(16, "Error", "Error al convertir los radianes a grados. Asegúrate de que escribiste bien el parámetro, el número de radianes: " & $sInterOperacion)
-					ElseIf @error = 2 Then
-						MsgBox(16, "Error", "Hay más de un parámetro aquí. Para esta conversión necesitas solamente el número de radianes a convertir. Por favor, dale una rebisada: " & $sInterOperacion)
-					ElseIf @error = 3 Then
-						MsgBox(16, "Error de sintaxis", "El parámetro " & @extended & ", " & $aNumbers[@extended] & ", no tiene números.")
-					EndIf
+					If _CheckComandParams($aNumbers, 1) Then $nResultado = _Degree($aNumbers[1])
 				Case $aInteraccion[1] = "max"
 					If _CheckComandParams($aNumbers, 2) Then $nResultado = _Max($aNumbers[1], $aNumbers[2])
 				Case $aInteraccion[1] = "min"
