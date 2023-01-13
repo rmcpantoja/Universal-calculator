@@ -6,6 +6,7 @@
 #include <ListViewConstants.au3>
 #include "params.au3"
 #include <StaticConstants.au3>
+#include "..\mymath\Task_creator.au3"
 #include "..\translator.au3"
 Global $aFlista = _SearchParam(Null, Default, True)
 _ArrayColDelete($aFlista, 1, True)
@@ -136,3 +137,5 @@ Func Main()
 		EndSwitch
 	WEnd
 EndFunc   ;==>Main
+Func Generate_task()
+EndFunc

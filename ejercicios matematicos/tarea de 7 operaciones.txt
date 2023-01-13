@@ -1,0 +1,10 @@
+Tarea matemática
+La tarea tiene: 7 diferentes operaciones en total. En esta tarea te he dado 3 tipos que son: 2 sumas,  y 4 restas. y 1 multiplicación.
+Resuelva las siguientes operaciones:
+3-2
+7-3
+1-1
+8+3
+8+7
+2-1
+2*2

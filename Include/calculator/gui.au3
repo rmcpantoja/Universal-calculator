@@ -96,5 +96,3 @@ Func Autocomplete_and_put(ByRef $idListView)
 	$sCommand = $aArray[3]
 	Return $sCommand & ":"
 EndFunc   ;==>Autocomplete_and_put
-Func Generate_task()
-EndFunc
