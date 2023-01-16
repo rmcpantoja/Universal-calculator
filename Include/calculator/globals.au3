@@ -1,4 +1,5 @@
 #include "..\audio.au3"
+#include "..\reader.au3"
 #include-once
 ; setting variables:
 ; calculator globals:

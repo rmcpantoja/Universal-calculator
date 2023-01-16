@@ -1,6 +1,8 @@
 ; language manager:
+#include <ComboConstants.au3>
 #include "globals.au3"
 #include "..\Progress.au3"
+#include "..\translator.au3"
 #include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: Selector
@@ -47,7 +49,7 @@ exit
 	WEnd
 	$langcount = StringSplit($sCodes, "|")
 	Global $Choose = GUICtrlCreateCombo("", 100, 50, 200, 30, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-	GUICtrlSetOnEvent(-1, "select")
+	GUICtrlSetOnEvent(-1, "LangSelect")
 	GUICtrlSetData($Choose, $sCodes)
 	Global $idBtn_OK = GUICtrlCreateButton("OK", 155, 50, 70, 30)
 	GUICtrlSetOnEvent(-1, "save")
@@ -73,7 +75,7 @@ EndFunc   ;==>Selector
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func select()
+Func LangSelect()
 	$sRead = GUICtrlRead($Choose)
 	if not $sRead = "" then global $queidiomaes = StringSplit($sRead, ",")
 EndFunc   ;==>select
