@@ -16,58 +16,54 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func Selector()
-	Local $widthCell, $msg, $iOldOpt
-	global $leer
-	Global $langGUI = GUICreate("Language Selection")
-	Global $seleccionado = "0"
-	$widthCell = 70
+	global $aLangCodes[]
+	Global $bSelected = False
+	Global $hLangGUI, $hLanguages
+	global $iOldOpt, $iBeep = 0, $iSearch = 0
+	global $sCurrentCode = "", $sRead = "", $sCollect = "", $sCodes = ""
+	$hLangGUI = GUICreate("Language Selection")
 	$iOldOpt = Opt("GUIOnEventMode", 1)
-	$beep = "0"
-	$busqueda = "0"
-	global $langcodes[]
 	GUICtrlCreateLabel("Select language:", -1, 0)
 	GUISetBkColor(0x00E0FFFF)
-	$recolectalosidiomasporfavor = FileFindFirstFile(@ScriptDir & "\lng\*.lang")
-	If $recolectalosidiomasporfavor = -1 Then
+	$hLanguages = FileFindFirstFile(@ScriptDir & "\lng\*.lang")
+	If $hLanguages = -1 Then
 		MsgBox(16, "Fatal error", "We cannot find the language files. Please download the program again...")
 exit
 	EndIf
-	Local $Recoleccion = "", $obteniendo = ""
 	While 1
-		$beep = $beep + 1
-		$busqueda = $busqueda + 1
-		$Recoleccion = FileFindNextFile($recolectalosidiomasporfavor)
+		$iBeep = $iBeep + 1
+		$iSearch = $iSearch + 1
+		$sCollect = FileFindNextFile($hLanguages)
 		If @error Then
 			;MsgBox(16, "Error", "We cannot find the language files or they are corrupted.")
 			If $sEnableprogresses = "yes" Then CreateAudioProgress("100")
 			ExitLoop
 		EndIf
-		$splitCode = StringLeft($Recoleccion, 2)
-		$obteniendo &= GetLanguageName($splitCode) & ", " & GetLanguageCode($splitCode) & "|"
-		$langcodes[$busqueda] = GetLanguageCode($splitCode)
-		If $sEnableprogresses = "yes" Then CreateAudioProgress($beep)
+		$sCurrentCode = StringLeft($sCollect, 2)
+		$sCodes &= GetLanguageName($sCurrentCode) & ", " & GetLanguageCode($sCurrentCode) & "|"
+		$aLangCodes[$iSearch] = GetLanguageCode($sCurrentCode)
+		If $sEnableprogresses = "yes" Then CreateAudioProgress($iBeep)
 		Sleep(10)
 	WEnd
-	$langcount = StringSplit($obteniendo, "|")
+	$langcount = StringSplit($sCodes, "|")
 	Global $Choose = GUICtrlCreateCombo("", 100, 50, 200, 30, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-	GUICtrlSetOnEvent(-1, "seleccionar")
-	GUICtrlSetData($Choose, $obteniendo)
+	GUICtrlSetOnEvent(-1, "select")
+	GUICtrlSetData($Choose, $sCodes)
 	Global $idBtn_OK = GUICtrlCreateButton("OK", 155, 50, 70, 30)
 	GUICtrlSetOnEvent(-1, "save")
 	Global $idBtn_Close = GUICtrlCreateButton("Close", 180, 50, 70, 30)
 	GUICtrlSetOnEvent(-1, "exitpersonaliced")
 	GUISetState(@SW_SHOW)
-	Global $LEER = ""
 	While 1
-		If $seleccionado = "1" Then ExitLoop
+		If $bSelected Then ExitLoop
 	WEnd
-	GUIDelete($langGUI)
+	GUIDelete($hLangGUI)
 	Opt("GUIOnEventMode", $iOldOpt)
 EndFunc   ;==>Selector
 ; #FUNCTION# ====================================================================================================================
-; Name ..........: seleccionar
+; Name ..........: select
 ; Description ...: It is a small but great function that helps to collect the language selected by the user through the GUI
-; Syntax ........: seleccionar()
+; Syntax ........: select()
 ; Parameters ....: None
 ; Return values .: None
 ; Author ........: Mateo Cedillo
@@ -77,10 +73,10 @@ EndFunc   ;==>Selector
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func seleccionar()
-	$LEER = GUICtrlRead($Choose)
-	if not $LEER = "" then global $queidiomaes = StringSplit($LEER, ",")
-EndFunc   ;==>seleccionar
+Func select()
+	$sRead = GUICtrlRead($Choose)
+	if not $sRead = "" then global $queidiomaes = StringSplit($sRead, ",")
+EndFunc   ;==>select
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: save
 ; Description ...: This function saves the language selected by the user when running for the first time
@@ -95,10 +91,10 @@ EndFunc   ;==>seleccionar
 ; Example .......: No
 ; ===============================================================================================================================
 Func save()
-	if $leer = "" then
+	if $sRead = "" then
 		MsgBox(16, "Error", "no language selected.")
 	Else
-		$seleccionado = "1"
+		$bSelected = True
 		IniWrite($sConfigPath, "General settings", "language", StringStripWS($queidiomaes[2], $STR_STRIPLEADING))
 		$sLang = IniRead($sConfigPath, "General settings", "language", "")
 	EndIf
