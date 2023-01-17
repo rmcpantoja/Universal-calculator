@@ -11,6 +11,7 @@
 #include <StaticConstants.au3>
 #include "..\mymath\Task_creator.au3"
 #include "..\translator.au3"
+#include-once
 Global $aFlista = _SearchParam(Null, Default, True)
 _ArrayColDelete($aFlista, 1, True)
 ; #FUNCTION# ====================================================================================================================
@@ -30,17 +31,17 @@ Func Main()
 	; Creating GUI and its controls:
 	;Note! No GUI acceleration is guaranteed for now, because I'm using the default and common message loop that everyone uses. In fact, I have already reported this in the NVDA code. Maybe a solution will be found: https://github.com/nvaccess/nvda/issues/13833
 	$hGUI = GUICreate("Universal calculator " & $sProgramVer, 400, 350, 290, 257)
-	$idAcciones = GUICtrlCreateMenu("&Calculadora")
-	$idOcultarKey = GUICtrlCreateMenuItem("Ocultar el teclado" & @TAB & "CTRL+shift+k", $idAcciones)
+	$idMenu = GUICtrlCreateMenu("&Calculadora")
+	$idHideKey = GUICtrlCreateMenuItem("Ocultar el teclado" & @TAB & "CTRL+shift+k", $idMenu)
 	GUICtrlSetState(-1, $GUI_Unchecked)
-	$idMenuExit = GUICtrlCreateMenuItem("Salir", $idAcciones)
-	$idPrincipiantes = GUICtrlCreateMenu("&Herramientas para principiantes")
-	$idTasks = GUICtrlCreateMenu("Generación de tareas automática", $idPrincipiantes)
+	$idMenuExit = GUICtrlCreateMenuItem("Salir", $idMenu)
+	$idBeginners = GUICtrlCreateMenu("&Herramientas para principiantes")
+	$idTasks = GUICtrlCreateMenu("Generación de tareas automática", $idBeginners)
 	$iTaskGUI = GUICtrlCreateMenuItem("Generar e interactuar con la interfaz", $idTasks)
 	$iTaskTxt = GUICtrlCreateMenuItem("Generar un archivo de texto", $idTasks)
-	$idEtiquetarInteraccion = GUICtrlCreateLabel("Escribir operación", 10, 10, 160, 90)
+	$idInterLabel = GUICtrlCreateLabel("Escribir operación", 10, 10, 160, 90)
 	GUICtrlSetColor(-1, 0x000000)
-	$idInteraccion = GUICtrlCreateInput("", 170, 0, 220, 110)
+	$idInter = GUICtrlCreateInput("", 170, 0, 220, 110)
 	GUICtrlSetColor(-1, 0x000000)
 	GUICtrlSetTip(-1, "Escribe aquí tu operación, luego presiona el botón de igual para obtener el resultado.")
 	; creating the array of the on-screen keyboard, this is going to be manipulated.
@@ -88,20 +89,20 @@ Func Main()
 	$aNums[17] = GUICtrlCreateButton(")", 200, 130, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
 	GUICtrlSetTip(-1, "Cierra paréntesis")
-	$idIgual = GUICtrlCreateButton("&=", 220, 280, 30, 30, BitOR($SS_CENTER, 0, 0))
+	$idEqual = GUICtrlCreateButton("&=", 220, 280, 30, 30, BitOR($SS_CENTER, 0, 0))
 	GUICtrlSetColor(-1, 0x000000)
 	GUICtrlSetTip(-1, "Obtiene el resultado de tu operación.")
 	$idClearScreen = GUICtrlCreateButton("C", 240, 130, 30, 30)
 	GUICtrlSetTip(-1, "Limpia la pantalla.")
-	$idEtiquetarLista = GUICtrlCreateLabel("&Comandos", 280, 170, 80, 30)
+	$idCommandsLb = GUICtrlCreateLabel("&Comandos", 280, 170, 80, 30)
 	GUICtrlSetColor(-1, 0x000000)
 	$idFORMULAS = GUICtrlCreateListView("Nombre|Descripción|Comando", 10, 110, 90, 149, $LVS_SORTASCENDING)
 	GUICtrlSetColor(-1, 0x000000)
 	GUICtrlSetTip(-1, "Aquí puedes realizar aún más fórmulas que esta calculadora tiene para ofrecerte.")
-	$idOpciones = GUICtrlCreateButton("&Opciones", 40, 260, 60, 70)
+	$idOptions = GUICtrlCreateButton("&Opciones", 40, 260, 60, 70)
 	GUICtrlSetColor(-1, 0x000000)
 	GUICtrlSetTip(-1, "Configura el programa a tu preferencia.")
-	$idMostrarRazon = GUICtrlCreateButton("&Razón", 280, 110, 40, 50, -1)
+	$idGetReason = GUICtrlCreateButton("&Razón", 280, 110, 40, 50, -1)
 	GUICtrlSetTip(-1, "Obtiene la razón de por qué esto da igual a lo otro.")
 	$idAbout = GUICtrlCreateButton("&Acerca de", 280, 210, 80, 50)
 	GUICtrlSetColor(-1, 0x000000)
@@ -111,7 +112,7 @@ Func Main()
 		GUICtrlCreateListViewItem($aInfoFormulas[$I] & "|" & $aFlista[$I], $idFORMULAS)
 	Next
 	; setting key accelerators:
-	Local $aAccelKeys[][2] = [["^+k", $idOcultarKey], ["^{bs}", $idClearScreen]]
+	Local $aAccelKeys[][2] = [["^+k", $idHideKey], ["^{bs}", $idClearScreen]]
 	GUISetAccelerators($aAccelKeys)
 	; show GUI:
 	GUISetState(@SW_SHOW)
@@ -123,15 +124,15 @@ Func Main()
 				For $I = 0 To UBound($aNums)
 					If $idMsg = $aNums[$I] Then _addSymbol($hGui, $aNums[$I])
 				Next
-			Case $idOcultarKey
-				_HideKey($aNums, $idOcultarKey, $bHideKeyboard)
+			Case $idHideKey
+				_HideKey($aNums, $idHideKey, $bHideKeyboard)
 			Case $idClearScreen
-				_ClearScreen($idInteraccion)
-			Case $idIgual
+				_ClearScreen($idInter)
+			Case $idEqual
 				_calc()
-			Case $idOpciones
+			Case $idOptions
 				MsgBox(0, "No disponible", "Pronto abrá, pero voy a hacer un to do o ideas: 1, enfocar la pantalla de resultados al realizar una operación o que te la hable el lector directamente. 2, idioma inglés. 3, mostrar automáticamente la razón en una operción en caso de que sean operaciones avanzadas como raíces, potencias etc.")
-			Case $idMostrarRazon
+			Case $idGetReason
 				_GetReason()
 			Case $idAbout
 				MsgBox(48, "Acerca de", "Una calculadora fácil, simple e interactiva donde puedes realizar operaciones, fórmulas, conversiones y más. Este programa ha sido desarrollado por Mateo Cedillo. Creación de la GUI por Valeria Parra.")

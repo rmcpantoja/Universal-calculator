@@ -3,17 +3,17 @@
 #include-once
 ; setting variables:
 ; calculator globals:
-Global $aInteraccion[]
+Global $aSplitCMD[]
 Global $aNumbers[]
-Global $aNums[], $aFormulas[], $aProceso[]
-global $nResultado
-Global $sInterOperacion = "", $sProceso = "", $sTipoElevacion = "", $sTipoRaiz = ""
+Global $aNums[], $aFormulas[], $aProcess[]
+global $nResult
+Global $sOperation = "", $sProcess = "", $sRaiseType = "", $sRootType = ""
 ; program globals:
 global $oCloseSND, $oOpenSND
 Global $sProgramVer = "0.1"
 ; UI globals:
 Global $bHideKeyboard = False
-Global $hGUI, $idInteraccion, $idClearScreen, $idFORMULAS, $idOpciones, $idRazon, $idEtiquetaInput, $idEtiquetarLista, $idAbout, $idIgual, $idMSG, $idOcultarKey
+Global $hGUI, $idInter, $idClearScreen, $idFORMULAS, $idOptions, $idGetReason, $idInterLabel, $idCommandsLb, $idAbout, $idEqual, $idMSG, $idHideKey
 ; related to config paths:
 global $sConfigFolder = @ScriptDir &"\config"
 global $sConfigPath = $sConfigFolder &"\config.st"

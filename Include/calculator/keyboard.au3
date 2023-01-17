@@ -2,7 +2,7 @@
 #include <GuiConstantsEx.au3>
 #include "..\reader.au3"
 #include "..\translator.au3"
-global $bHideKeyboard
+#include-once
 #include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IsFocused
@@ -68,7 +68,7 @@ Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
 			GUICtrlSetState($aNums[$I], $GUI_SHOW)
 		Next
 		$bHideKeyboard = False
-		GUICtrlSetState($idOcultarKey, $GUI_unchecked)
+		GUICtrlSetState($idHideKey, $GUI_unchecked)
 		if $sEnhancedAccess = "Yes" then speaking("Teclado mostrado")
 	EndIf
 EndFunc   ;==>_HideKey
@@ -95,7 +95,7 @@ Func _ClearScreen($idScreenControl)
 	Else
 		GUICtrlSetData($idScreenControl, "")
 		$sInterOperacion = ""
-		$nResultado = ""
+		$nResult = ""
 		if $sEnhancedAccess = "Yes" then speaking("Pantalla limpia")
 	EndIf
 EndFunc   ;==>_ClearScreen

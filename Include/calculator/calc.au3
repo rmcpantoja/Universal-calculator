@@ -26,15 +26,15 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _calc()
-	$sInterOperacion = GUICtrlRead($idInteraccion)
-	If $sInterOperacion = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
+	$sOperation = GUICtrlRead($idInter)
+	If $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, "Error", "Debes escribir una operación o seleccionar un comando.")
 	ElseIf _IsFocused($hGUI, $idFORMULAS) Then
 		; if we have focused the control in the list of commands, what to do:
 		if $sFormulaAutocompletion = "1" then
-			$sInterOperacion = CreateParams($idFORMULAS)
+			$sOperation = CreateParams($idFORMULAS)
 		Else
-			$sInterOperacion = Autocomplete_and_put($idFORMULAS)
+			$sOperation = Autocomplete_and_put($idFORMULAS)
 		EndIf
 		If @error Then
 			Switch @error
@@ -53,139 +53,139 @@ Func _calc()
 			EndSwitch
 		Else
 			; Adds the command in the field, if it is not focused it does so and clicks the same button automatically to get the result.
-			GUICtrlSetData($idInteraccion, $sInterOperacion)
-			If Not _IsFocused($hGUI, $idInteraccion) Then GUICtrlSetState($idInteraccion, $GUI_Focus)
-			if $sFormulaAutocompletion = "1" then _GUICtrlButton_Click($idIgual)
+			GUICtrlSetData($idInter, $sOperation)
+			If Not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
+			if $sFormulaAutocompletion = "1" then _GUICtrlButton_Click($idEqual)
 		EndIf
 	Else
 		; If the user has written an operation with the decimal comma, replace it with point.
-		If StringInStr($sInterOperacion, ",") Then $sInterOperacion = StringReplace($sInterOperacion, ",", ".")
+		If StringInStr($sOperation, ",") Then $sOperation = StringReplace($sOperation, ",", ".")
 		; Now we check if a command has been typed. The key sign for this is the ":" (colon) sign.
-		If Not StringInStr($sInterOperacion, ":") Then
-			$nResultado = Execute($sInterOperacion)
+		If Not StringInStr($sOperation, ":") Then
+			$nResult = Execute($sOperation)
 			If @error Then
 				MsgBox(16, "Error", "Ocurrió un error al realizar esta operación. Por favor, mira que la sintaxis esté correcta.")
 			Else
-				GUICtrlSetData($idInteraccion, $nResultado)
-				If Not _IsFocused($hGUI, $idInteraccion) Then GUICtrlSetState($idInteraccion, $GUI_Focus)
+				GUICtrlSetData($idInter, $nResult)
+				If Not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
 			EndIf
 		Else
-			$aInteraccion = StringSplit($sInterOperacion, ":")
-			$aNumbers = StringSplit($aInteraccion[2], " ")
+			$aSplitCMD = StringSplit($sOperation, ":")
+			$aNumbers = StringSplit($aSplitCMD[2], " ")
 			; convert strings to numbers, which is what it has to be in reality:
 			For $I = 1 To $aNumbers[0]
 				$aNumbers[$I] = Number($aNumbers[$I])
 			Next
 			; We make support for commands or formulas available:
 			Select
-				Case $aInteraccion[1] = "deg"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = _Degree($aNumbers[1])
-				Case $aInteraccion[1] = "max"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _Max($aNumbers[1], $aNumbers[2])
-				Case $aInteraccion[1] = "min"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _Min($aNumbers[1], $aNumbers[2])
-				Case $aInteraccion[1] = "rad"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = _Radian($aNumbers[1])
-				Case $aInteraccion[1] = "acc"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _aceleracion($aNumbers[1], $aNumbers[2])
-				Case $aInteraccion[1] = "acos"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = ACos($aNumbers[1])
-				Case $aInteraccion[1] = "asin"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = ASin($aNumbers[1])
-				Case $aInteraccion[1] = "atan"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = ATan($aNumbers[1])
-				Case $aInteraccion[1] = "cos"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = Cos($aNumbers[1])
-				Case $aInteraccion[1] = "dox"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _D_o_X($aNumbers[1], $aNumbers[2])
-				Case $aInteraccion[1] = "log"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = Log($aNumbers[1])
-				Case $aInteraccion[1] = "ro"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = Round($aNumbers[1])
-				Case $aInteraccion[1] = "sin"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = Sin($aNumbers[1])
-				Case $aInteraccion[1] = "tan"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = Tan($aNumbers[1])
-				Case $aInteraccion[1] = "ap-a1"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _a1($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "gp-a1"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _a12($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "ap-d"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _Diference($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "gp-r"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _r($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "ap-n"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _NumTerm($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "gp-n"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _NumTerm2($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "ap-an"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _AN($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "gp-an"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _AN2($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "ap-sn1"
-					If _CheckComandParams($aNumbers, 3) Then $nResultado = _Sn1($aNumbers[1], $aNumbers[2], $aNumbers[3])
-				Case $aInteraccion[1] = "gp-sn1"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _Sn3($aNumbers[1], $aNumbers[2])
-				Case $aInteraccion[1] = "raise"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _Elevado($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "deg"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = _Degree($aNumbers[1])
+				Case $aSplitCMD[1] = "max"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _Max($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "min"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _Min($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "rad"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = _Radian($aNumbers[1])
+				Case $aSplitCMD[1] = "acc"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _aceleracion($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "acos"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = ACos($aNumbers[1])
+				Case $aSplitCMD[1] = "asin"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = ASin($aNumbers[1])
+				Case $aSplitCMD[1] = "atan"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = ATan($aNumbers[1])
+				Case $aSplitCMD[1] = "cos"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = Cos($aNumbers[1])
+				Case $aSplitCMD[1] = "dox"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _D_o_X($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "log"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = Log($aNumbers[1])
+				Case $aSplitCMD[1] = "ro"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = Round($aNumbers[1])
+				Case $aSplitCMD[1] = "sin"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = Sin($aNumbers[1])
+				Case $aSplitCMD[1] = "tan"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = Tan($aNumbers[1])
+				Case $aSplitCMD[1] = "ap-a1"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _a1($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "gp-a1"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _a12($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "ap-d"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _Diference($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "gp-r"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _r($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "ap-n"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _NumTerm($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "gp-n"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _NumTerm2($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "ap-an"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _AN($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "gp-an"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _AN2($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "ap-sn1"
+					If _CheckComandParams($aNumbers, 3) Then $nResult = _Sn1($aNumbers[1], $aNumbers[2], $aNumbers[3])
+				Case $aSplitCMD[1] = "gp-sn1"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _Sn3($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "raise"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _Elevado($aNumbers[1], $aNumbers[2])
 					Switch $aNumbers[2]
 						Case 2
-							$sTipoElevacion = "cuadrado"
+							$sRaiseType = "cuadrado"
 						Case 3
-							$sTipoElevacion = "cubo"
+							$sRaiseType = "cubo"
 						Case 4
-							$sTipoElevacion = "cuarto"
+							$sRaiseType = "cuarto"
 						Case 5
-							$sTipoElevacion = "quinto"
+							$sRaiseType = "quinto"
 						Case 6
-							$sTipoElevacion = "sexto"
+							$sRaiseType = "sexto"
 						Case 7
-							$sTipoElevacion = "septimo"
+							$sRaiseType = "septimo"
 						Case 8
-							$sTipoElevacion = "octavo"
+							$sRaiseType = "octavo"
 						Case 9
-							$sTipoElevacion = "noveno"
+							$sRaiseType = "noveno"
 					EndSwitch
-				Case $aInteraccion[1] = "root"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _Raiz2($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "root"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _Raiz2($aNumbers[1], $aNumbers[2])
 					Switch $aNumbers[1]
 						Case 2
-							$sTipoRaiz = "cuadrada"
+							$sRootType = "cuadrada"
 						Case 3
-							$sTipoRaiz = "cúbica"
+							$sRootType = "cúbica"
 						Case 4
-							$sTipoRaiz = "cuarta"
+							$sRootType = "cuarta"
 						Case 5
-							$sTipoRaiz = "quinta"
+							$sRootType = "quinta"
 						Case 6
-							$sTipoRaiz = "sexta"
+							$sRootType = "sexta"
 						Case 7
-							$sTipoRaiz = "Séptima"
+							$sRootType = "Séptima"
 						Case 8
-							$sTipoRaiz = "octaba"
+							$sRootType = "octaba"
 						Case 9
-							$sTipoRaiz = "novena"
+							$sRootType = "novena"
 					EndSwitch
-				Case $aInteraccion[1] = "sr"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = Sqrt($aNumbers[1])
-				Case $aInteraccion[1] = "cr"
-					If _CheckComandParams($aNumbers, 1) Then $nResultado = cbrt($aNumbers[1])
-				Case $aInteraccion[1] = "time"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _tiempo($aNumbers[1], $aNumbers[2])
-				Case $aInteraccion[1] = "vel"
-					If _CheckComandParams($aNumbers, 2) Then $nResultado = _Velocidad($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "sr"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = Sqrt($aNumbers[1])
+				Case $aSplitCMD[1] = "cr"
+					If _CheckComandParams($aNumbers, 1) Then $nResult = cbrt($aNumbers[1])
+				Case $aSplitCMD[1] = "time"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _tiempo($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "vel"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _Velocidad($aNumbers[1], $aNumbers[2])
 				Case Else
-					MsgBox(16, "Error", "El comando " & $aInteraccion[1] & " no existe. Si crees que es una función que permita realizar una fórmula matemática, por favor dime para poder agregarla.")
+					MsgBox(16, "Error", "El comando " & $aSplitCMD[1] & " no existe. Si crees que es una función que permita realizar una fórmula matemática, por favor dime para poder agregarla.")
 			EndSelect
 			if not @error then
-				GUICtrlSetData($idInteraccion, $nResultado)
-				GUICtrlSetState($idInteraccion, $GUI_Focus)
+				GUICtrlSetData($idInter, $nResult)
+				GUICtrlSetState($idInter, $GUI_Focus)
 			Else
 				switch @error
 					case 1
-						MsgBox(16, "Error", "Ha ocurrido un error al realizar esta operación. Faltan uno o más números requeridos para ejecutarla. Por favor, revísalo y vuelve a ejecutar esta fórmula cuando hayas corregido los elementos. Estructura: " & $sInterOperacion)
+						MsgBox(16, "Error", "Ha ocurrido un error al realizar esta operación. Faltan uno o más números requeridos para ejecutarla. Por favor, revísalo y vuelve a ejecutar esta fórmula cuando hayas corregido los elementos. Estructura: " & $sOperation)
 					case 2
-						MsgBox(16, "Error", "Hay más de un parámetro aquí. Por favor, elimina los parámetros que sobran e inténtalo nuevamente. operación: " & $sInterOperacion)
+						MsgBox(16, "Error", "Hay más de un parámetro aquí. Por favor, elimina los parámetros que sobran e inténtalo nuevamente. operación: " & $sOperation)
 					case 3
 						MsgBox(16, "Error de sintaxis", "El parámetro " & @extended & ", " & $aNumbers[@extended] & ", no tiene números.")
 				EndSwitch
