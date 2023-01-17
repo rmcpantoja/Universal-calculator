@@ -1,10 +1,13 @@
 #include <array.au3>
 #include <ButtonConstants.au3>
+#include "calc.au3"
 #include "formulas.au3"
 #include "globals.au3"
 #include <GuiConstantsEx.au3>
+#include "keyboard.au3"
 #include <ListViewConstants.au3>
 #include "params.au3"
+#include "reasons.au3"
 #include <StaticConstants.au3>
 #include "..\mymath\Task_creator.au3"
 #include "..\translator.au3"

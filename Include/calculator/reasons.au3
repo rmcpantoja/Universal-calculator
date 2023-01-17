@@ -1,5 +1,6 @@
 #include "globals.au3"
 #include "..\mymath\basic reason.au3"
+#include "..\mymath\elevar.au3"
 #include "..\mymath\raiz.au3"
 #include "..\translator.au3"
 ; #FUNCTION# ====================================================================================================================

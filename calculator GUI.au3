@@ -18,16 +18,11 @@
 #Au3Stripper_Parameters=/so
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ; include dependencies:
-#include "include\calculator\calc.au3"
 #include "include\calculator\configs.au3"
 #include <Constants.au3>
 #include <EditConstants.au3>
 #include "include\calculator\globals.au3"
 $oOpenSND = $device.opensound(@ScriptDir & "\sounds/open.ogg", True)
-#include "include\calculator\gui.au3"
-#include "include\calculator\keyboard.au3"
-#include "include\calculator\params.au3"
-#include "include\calculator\reasons.au3"
 #include "include\calculator\UI.au3"
 #include <WindowsConstants.au3>
 ;Universal calculator (in development):
