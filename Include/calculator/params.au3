@@ -1,3 +1,4 @@
+#include "formulas.au3"
 #include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _CheckComandParams
@@ -43,7 +44,7 @@ EndFunc   ;==>_CheckComandParams
 ; ===============================================================================================================================
 Func _SearchParam($sFormula, $aFormTable = Default, $bReturnFormList = False)
 	If $aFormTable = Default Then
-		Local $aFormList[][] = [["deg", 1], ["max", 2], ["min", 2], ["rad", 2], ["acc", 2], ["acos", 1], ["asin", 1], ["atan", 1], ["cos", 1], ["dox", 2], ["log", 1], ["ro", 1], ["sin", 1], ["tan", 1], ["ap-a1", 3], ["gp-a1", 3], ["ap-d", 3], ["gp-r", 3], ["ap-n", 3], ["gp-n", 3], ["ap-an", 3], ["gp-an", 3], ["ap-sn1", 3], ["gp-sn1", 3], ["raise", 2], ["root", 2], ["sr", 1], ["cr", 1], ["time", 2], ["vel", 2]]
+		Local $aFormList[][] = _get_formule_table()
 	Else
 		If Not IsArray($aFormList) Then
 			SetError(1, 0, "")

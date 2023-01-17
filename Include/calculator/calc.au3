@@ -1,11 +1,12 @@
-#include "globals.au3"
 #include "..\mymath\elevar.au3"
 #include "..\mymath\fisica.au3"
+#include "globals.au3"
 #include "gui.au3"
 #include <GuiButton.au3>
 #include "keyboard.au3"
 #include <Math.au3>
 ;#include "..\advmathudf-au3\Math.au3"
+#include "..\mymath\perimeter.au3"
 #include "..\mymath\Progresiones.au3"
 #include "..\mymath\raiz.au3"
 #include "..\advmathudf-au3\Math\Roots.au3"
@@ -94,6 +95,8 @@ Func _calc()
 					If _CheckComandParams($aNumbers, 1) Then $nResult = ASin($aNumbers[1])
 				Case $aSplitCMD[1] = "atan"
 					If _CheckComandParams($aNumbers, 1) Then $nResult = ATan($aNumbers[1])
+				Case $aSplitCMD[1] = "pc"
+					If _CheckComandParams($aNumbers, 2) Then $nResult = _PerimeterCalculation($aNumbers[1], $aNumbers[2])
 				Case $aSplitCMD[1] = "cos"
 					If _CheckComandParams($aNumbers, 1) Then $nResult = Cos($aNumbers[1])
 				Case $aSplitCMD[1] = "dox"
