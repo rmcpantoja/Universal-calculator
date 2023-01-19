@@ -5,10 +5,10 @@
 #include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: CreateParams
-; Description ...:
+; Description ...: This function is the graphical interface support for working with the parameters of a formula.
 ; Syntax ........: CreateParams(Byref $idListView)
-; Parameters ....: $idListView          - [in/out] an integer value.
-; Return values .: None
+; Parameters ....: $idListView          - the ID of the listview control that contains the formulas. name|description|command.
+; Return values .: The final command result of this formula with all the parameters already set by user.
 ; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
@@ -72,11 +72,11 @@ Func CreateParams(ByRef $idListView)
 EndFunc   ;==>CreateParams
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: Autocomplete_and_put
-; Description ...:
+; Description ...: This function is about auto-complete the name of the formula with which you are going to work.
 ; Syntax ........: Autocomplete_and_put(Byref $idListView)
-; Parameters ....: $idListView          - [in/out] an integer value.
-; Return values .: None
-; Author ........: Your Name
+; Parameters ....: $idListView          - The control ID of the listview that contains the formula table. Name|Description|Command.
+; Return values .: A string containing the command to complete.
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:

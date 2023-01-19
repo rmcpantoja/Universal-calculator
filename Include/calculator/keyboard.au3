@@ -23,9 +23,9 @@ Func _IsFocused($hWnd, $iControlID)
 EndFunc   ;==>_IsFocused
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _addSymbol
-; Description ...:
+; Description ...: Adds a symbol (character either numbers or signs) to the interaction input box.
 ; Syntax ........: _addSymbol($idSymbolButton)
-; Parameters ....: $idSymbolButton      - an integer value.
+; Parameters ....: $idSymbolButton      - The input box to do in.
 ; Return values .: None
 ; Author ........: Mateo Cedillo
 ; Modified ......:
@@ -42,7 +42,7 @@ Func _addSymbol($hGui, $idSymbolButton)
 EndFunc   ;==>_addSymbol
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _HideKey
-; Description ...:
+; Description ...: function used within the GUI to show and hide the keyboard.
 ; Syntax ........: _HideKey()
 ; Parameters ....: None
 ; Return values .: None
@@ -74,7 +74,7 @@ Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
 EndFunc   ;==>_HideKey
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _ClearScreen
-; Description ...:
+; Description ...: function used to clear the calculator screen, including results.
 ; Syntax ........: _ClearScreen()
 ; Parameters ....: None
 ; Return values .: None

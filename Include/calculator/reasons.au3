@@ -6,7 +6,7 @@
 #include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _GetReason
-; Description ...:
+; Description ...: function to get the reason for an operation.
 ; Syntax ........: _GetReason()
 ; Parameters ....: None
 ; Return values .: None
@@ -18,8 +18,6 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _GetReason()
-	;ToDo: Reducir el código haciendo una matriz de los números ordinales en vez del switch que los contiene, y hacer un for. Durante ese ciclo for, se comprueba: si ese número está en los parámetros donde se muestren con números ordinales, se establece, o en $sRaiseType o en $sRootType. Pero sí, para reducir código será una sola matriz con los números ordinales que se manipulará en una operación x. Si se necesitan solo femeninas, será solo una matriz 1d, pero si se necesitan masculinas entonces toca hacer una matriz 2d. Yay, qué difícil soy. Pero mejora mucho el rendimiento y el código ¿Eh?
-	;ToDo #2: agregar más números ordinales. Décimo, onceabo, doceabo...
 	If GUICtrlRead($idInter) = "" Then
 		MsgBox(16, "Error", "Debes escribir un comando de función que realice una operación para obtener una razón.")
 	ElseIf $sOperation = "" Then

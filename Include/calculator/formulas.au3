@@ -6,11 +6,11 @@ global $aInfoFormulas = ["Radianes a grados|Convierte un número determinado de 
 global $aCommandTable = [["deg", 1], ["max", 2], ["min", 2], ["rad", 2], ["acc", 2], ["acos", 1], ["asin", 1], ["atan", 1], ["pc", 2], ["cos", 1], ["dox", 2], ["log", 1], ["ro", 1], ["sin", 1], ["tan", 1], ["ap-a1", 3], ["gp-a1", 3], ["ap-d", 3], ["gp-r", 3], ["ap-n", 3], ["gp-n", 3], ["ap-an", 3], ["gp-an", 3], ["ap-sn1", 3], ["gp-sn1", 3], ["raise", 2], ["root", 2], ["sr", 1], ["cr", 1], ["time", 2], ["vel", 2]]
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _get_formule_table
-; Description ...:
+; Description ...: Gets the default formula table, useful for working with parameters.
 ; Syntax ........: _get_formule_table()
 ; Parameters ....: None
-; Return values .: None
-; Author ........: Your Name
+; Return values .: Default formula table
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:

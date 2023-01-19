@@ -6,12 +6,12 @@
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _config_start
-; Description ...:
+; Description ...: Start configuration for the program and, if necessary, set the default options.
 ; Syntax ........: _config_start($sConfigFolder, $sConfigPath)
 ; Parameters ....: $sConfigFolder       - a string value.
 ;                  $sConfigPath         - a string value.
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:

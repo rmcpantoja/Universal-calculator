@@ -15,7 +15,7 @@
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _calc
-; Description ...:
+; Description ...: This is the base function for this program.
 ; Syntax ........: _calc()
 ; Parameters ....: None
 ; Return values .: None
