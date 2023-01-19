@@ -1,7 +1,6 @@
 ; language manager:
 #include <ComboConstants.au3>
 #include "globals.au3"
-#include "..\Progress.au3"
 #include "..\translator.au3"
 #include-once
 ; #FUNCTION# ====================================================================================================================
@@ -21,7 +20,7 @@ Func Selector()
 	global $aLangCodes[]
 	Global $bSelected = False
 	Global $hLangGUI, $hLanguages
-	global $iOldOpt, $iBeep = 0, $iSearch = 0
+	global $iOldOpt, $iSearch = 0
 	global $sCurrentCode = "", $sRead = "", $sCollect = "", $sCodes = ""
 	$hLangGUI = GUICreate("Language Selection")
 	$iOldOpt = Opt("GUIOnEventMode", 1)
@@ -33,18 +32,16 @@ Func Selector()
 exit
 	EndIf
 	While 1
-		$iBeep = $iBeep + 1
 		$iSearch = $iSearch + 1
 		$sCollect = FileFindNextFile($hLanguages)
 		If @error Then
 			;MsgBox(16, "Error", "We cannot find the language files or they are corrupted.")
-			If $sEnableprogresses = "yes" Then CreateAudioProgress("100")
+
 			ExitLoop
 		EndIf
 		$sCurrentCode = StringLeft($sCollect, 2)
 		$sCodes &= GetLanguageName($sCurrentCode) & ", " & GetLanguageCode($sCurrentCode) & "|"
 		$aLangCodes[$iSearch] = GetLanguageCode($sCurrentCode)
-		If $sEnableprogresses = "yes" Then CreateAudioProgress($iBeep)
 		Sleep(10)
 	WEnd
 	$langcount = StringSplit($sCodes, "|")
