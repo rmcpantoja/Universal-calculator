@@ -13,7 +13,7 @@
 #AutoIt3Wrapper_Res_CompanyName=MT Programs
 #AutoIt3Wrapper_Res_LegalCopyright=© 2018-2023 MT Programs, All rights reserved
 #AutoIt3Wrapper_Res_Language=12298
-#AutoIt3Wrapper_OutFile=../COMPILADO/UniversalCalc.exe
+#AutoIt3Wrapper_OutFile=../compiled/UniversalCalc.exe
 ;#AutoIt3Wrapper_Run_Tidy=y
 ;#AutoIt3Wrapper_Run_Au3Stripper=y
 #Au3Stripper_Parameters=/so
