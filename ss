@@ -1,0 +1,275 @@
+[33mcommit 685f52fe5983b48014bfd4f4934621dd72e8f705[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31mupstream/main[m[33m)[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 19 09:48:04 2023 -0500
+
+    Added NVDA Controller client license
+
+[33mcommit 4c905efd8dd488bd861b1a3a2380f1fea558c088[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 19 09:26:06 2023 -0500
+
+    Removed unnecesary beeps in language manager
+
+[33mcommit b1a4173e6fd24c819088d12ab1ed590b48693445[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 19 09:21:10 2023 -0500
+
+    Added help in calculator headers
+
+[33mcommit 8408c46d417cc3300e59982329e5f7807a9cb75b[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Tue Jan 17 10:31:51 2023 -0500
+
+    remove notes of things that are already done yn to do file
+
+[33mcommit 1ba35b9d04c5fb0c43adbd0ab3785079d7aac04e[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Tue Jan 17 10:29:14 2023 -0500
+
+    Added perimeter calculation.
+
+[33mcommit 58c403e6cbef5d76f4821c76706fc70f17bdd21b[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Tue Jan 17 06:36:49 2023 -0500
+
+    Many variables has been changed. The code will be easier to understand
+
+[33mcommit eb60306b381fc9b530564998d4e9ed334f012389[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Mon Jan 16 20:37:42 2023 -0500
+
+    fix includes.
+
+[33mcommit 6b98930cd2b41624a2d3db90f20a23a1985e0135[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Mon Jan 16 20:30:15 2023 -0500
+
+    Tidy config manager
+
+[33mcommit 5e18dad208a1d7b5d7cca7116d3c410ad414fe72[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Mon Jan 16 15:04:45 2023 -0500
+
+    More fixes with language manager and imports.
+
+[33mcommit 52b79253f500e246d3c1e6971989d8644aa8c367[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Mon Jan 16 14:58:01 2023 -0500
+
+    refactor the fuck language manager.
+
+[33mcommit 4996ea9aa20b1c07f2c04d3122d6249459096666[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Fri Jan 13 16:42:24 2023 -0500
+
+    moved task creation exercise to independent UDF
+
+[33mcommit 20c6c2ef18f02c5ae9ecc011d22266cf3bf74676[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Fri Jan 13 16:32:25 2023 -0500
+
+    Added GUI items for new features.
+
+[33mcommit 4f21892a721e60521539d23b447aa36f4112a9c1[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Fri Jan 13 16:13:43 2023 -0500
+
+    Cleanup calc
+
+[33mcommit 74eda2113cc8cdf05126c7e50a94e646940fc280[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 12 16:57:08 2023 -0500
+
+    Added second mode to autocomplete formulas and its config; cleanup ToDo list
+
+[33mcommit b01418e3cf2c92521546b09304811b784b34e5ab[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 12 09:13:30 2023 -0500
+
+    Fixed some spelling errors with enhanced accessibility.
+
+[33mcommit 3b4d86568b0d5839d711600370ffaaf557dce47b[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 12 05:30:54 2023 -0500
+
+    Added enhanced accessibility
+
+[33mcommit 90f0212498766c429417c2a3e2ad0a569e4532c1[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Wed Jan 11 20:29:46 2023 -0500
+
+    Added startxit sounds
+
+[33mcommit 561cf0ec48c1f8de52693dc5c093df4dccfd4ff0[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Wed Jan 11 10:09:45 2023 -0500
+
+    Removed old code and his note that talks about it
+
+[33mcommit 00338daa72ee1c60fbc155d62418c22192942126[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Tue Jan 10 17:32:43 2023 -0500
+
+    Added ustom exit
+
+[33mcommit bd6136e1eb99c7798e55c61f7d76e9e828f173ea[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Tue Jan 10 17:20:44 2023 -0500
+
+    Implementing capability to get reason of division
+
+[33mcommit 0b4dc0d42f7213c67a955be0a68bec5e57f5deeb[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Tue Jan 10 16:56:39 2023 -0500
+
+    a bunch of fixes for configs, added progress bars and LNG
+
+[33mcommit 2fa8095e59b1964f1c550c8bfa5a2b696e402c58[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Tue Jan 10 10:40:16 2023 -0500
+
+    added support for getting reasons of multiplications
+
+[33mcommit b9e72d26f2fa61913968e5080710728ac1811f92[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Mon Jan 9 09:26:13 2023 -0500
+
+    LNGS work: translate reasons and key actions
+
+[33mcommit a176d74aa10701348c3688df28076f67a298d18d[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Fri Jan 6 09:39:14 2023 -0500
+
+    Refactor globals.
+
+[33mcommit 19181c7da7a4248e13c43174e8414c53792f3442[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Fri Jan 6 09:36:15 2023 -0500
+
+    Add language manager. variables suck and fuck to understand, i know
+
+[33mcommit bc5290d31a7d5dcc919b2e551f12340687af13e1[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Fri Jan 6 09:12:33 2023 -0500
+
+    Remove some comented code in UI
+
+[33mcommit 42357376f4de9df2aab34f4b2e5d0587f53e5055[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 22:53:09 2023 -0500
+
+    LNGS work: translate UI
+
+[33mcommit f49fbf1fb19eb2c70336fd68d5398c2bb002e260[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 22:24:25 2023 -0500
+
+    remove commented code about result screen. That does not exist now.
+
+[33mcommit 05b7ef8eea664351ce8f65fa61bd9b2e519cef22[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 22:20:40 2023 -0500
+
+    more cleanup in calc!!!
+
+[33mcommit 8f5c8ea7dbef77bbf9dfdc483ec40b2971d65507[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 21:55:05 2023 -0500
+
+    Cleanup calc
+
+[33mcommit 42ee567a057bb27938c016bff0eb72b303ed6d10[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 20:47:05 2023 -0500
+
+    Optimiced includes and writing a config manager.
+
+[33mcommit 56577e96040449593812faf0928d34845a2469aa[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 10:40:49 2023 -0500
+
+    Updated gitignore
+
+[33mcommit 55b86d8cba9babbeaa5685db1ff5bef919d6da9c[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 10:38:23 2023 -0500
+
+    Change CPR year
+
+[33mcommit 14d11649dbab54426024eb79de0c804df6d4b1ad[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 10:34:38 2023 -0500
+
+    Add translation system
+
+[33mcommit 6ce9550bf102e2593a3928751de17f48133d1842[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Thu Jan 5 10:30:14 2023 -0500
+
+    Add translation system
+
+[33mcommit 93ea71a5c5603a22f739a4b92e7804e38a6df21e[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Wed Jan 4 19:07:32 2023 -0500
+
+    Add .gitignore
+
+[33mcommit b422fd7ba66339c71f39eeee508d30869c65beb5[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Wed Jan 4 19:02:04 2023 -0500
+
+    Fix some warnings and separate some code
+
+[33mcommit d079d8ecfae2777cb99e0a60d8c0faaf4a20bc15[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Wed Jan 4 11:08:28 2023 -0500
+
+    Bux fixes acording to AutoIt3 check.
+
+[33mcommit 56b0d1eca226bff40a4e3bb73fada61e25ac32d0[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Tue Jan 3 21:16:07 2023 -0500
+
+    small code refactoring
+
+[33mcommit 315ba96366d7ffcd185ebf6cd375f324647f8836[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Fri Dec 16 08:20:22 2022 -0500
+
+    added all code!
+
+[33mcommit ac8c1e969c61ec638bdd08d9c781a8ac60d0dcb9[m
+Author: rmcpantoja <angelitomateocedillo@gmail.com>
+Date:   Fri Dec 9 02:19:43 2022 -0500
+
+    added all code
+
+[33mcommit bf6ee200a55e0c1c92d270fef9681a1dec1ca3d4[m
+Author: Mateo Cedillo <54605382+rmcpantoja@users.noreply.github.com>
+Date:   Fri Sep 23 10:19:57 2022 -0500
+
+    Add files via upload
+
+[33mcommit 1f038c0a271583c67d21b3872a7751559f629fee[m
+Author: Mateo Cedillo <54605382+rmcpantoja@users.noreply.github.com>
+Date:   Thu Jun 16 20:08:00 2022 -0500
+
+    Delete include\
+
+[33mcommit 9be5557b65b29326e5381577617d471399596738[m
+Author: Mateo Cedillo <54605382+rmcpantoja@users.noreply.github.com>
+Date:   Thu Jun 16 20:07:30 2022 -0500
+
+    Create include\
+
+[33mcommit 80b7ad3afe21eabbc3bcd0cedbb345985243d51e[m
+Author: Mateo Cedillo <54605382+rmcpantoja@users.noreply.github.com>
+Date:   Thu Jun 16 20:07:14 2022 -0500
+
+    Add files via upload
+
+[33mcommit f5fe4f9259051f627e9eac03793269912e5857bb[m
+Author: Mateo Cedillo <54605382+rmcpantoja@users.noreply.github.com>
+Date:   Thu Jun 16 20:04:04 2022 -0500
+
+    Initial commit
