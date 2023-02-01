@@ -2,6 +2,7 @@
 #include <ComboConstants.au3>
 #include "globals.au3"
 #include "language_manager.au3"
+#include "..\translator.au3"
 #include-once
 
 ; #FUNCTION# ====================================================================================================================
@@ -33,7 +34,7 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	; check for enhanced accessibility
 	$sEnhancedAccess = IniRead($sConfigPath, "Accessibility", "Enable enhanced accessibility", "")
 	If Not $sEnhancedAccess = "Yes" Or Not $sEnhancedAccess = "No" Then
-		$iAccesMSG = MsgBox(4, "Enable enhanced accessibility?", "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?")
+		$iAccesMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
 		If $iAccesMSG = 6 Then
 			IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "Yes")
 			$sEnhancedAccess = "Yes"

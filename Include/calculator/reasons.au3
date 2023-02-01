@@ -29,7 +29,7 @@ Func _GetReason()
 		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "The reason why") &" " & $sOperation & " " &translate($sLang, "is equal to") &" " & $nResult &", " & translate($sLang, "it is because") &" " & $sProcess &" " &translate($sLang, "is equal to") &" " &execute($sProcess) &". " &translate($sLang, "Esta es una forma muy fácil de saber la razón de una multiplicación; sin embargo, para una mejor experiencia, puedes guiarte a través de tablas."))
 	ElseIf StringInStr($sOperation, "/") then
 		$sProcess = _div_get_reason($sOperation, $nResult)
-		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "Una forma básica de saber por qué") &" " & $sOperation & " " &translate($sLang, "is equal to") &" " & $nResult & ", " &translate($sLang, "it is because" &" " & $sProcess &" " &translate($sLang, "is equal to") &" " &round(execute($sProcess)))
+		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "Una forma básica de saber por qué") &" " & $sOperation & " " &translate($sLang, "is equal to") &" " & $nResult & ", " &translate($sLang, "it is because") &" " & $sProcess &" " &translate($sLang, "is equal to") &" " &round(execute($sProcess)))
 	Else
 		Switch $aSplitCMD[1]
 			Case "raise"

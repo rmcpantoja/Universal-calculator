@@ -5,6 +5,8 @@ version=
 author=
 Copyright=
 [strings]
+Enable enhanced accessibility?=
+This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?=
 &Calculator=
 hide keyboard=
 Exit=

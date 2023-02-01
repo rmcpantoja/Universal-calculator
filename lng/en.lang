@@ -5,6 +5,8 @@ version=0.1
 author=Mateo Cedillo
 Copyright=© 2018-2023 MT Programs, All rights reserved
 [strings]
+Enable enhanced accessibility?=Enable enhanced accessibility?
+This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?=This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?
 &Calculator=&Calculator
 hide keyboard=hide keyboard
 Exit=Exit
