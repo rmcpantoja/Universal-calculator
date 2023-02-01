@@ -110,7 +110,7 @@ Func Main()
 	GUICtrlSetTip(-1, translate($sLang, "Get info. about the program."))
 	; we are going to add the information to the list of commands, functions or formulas:
 	For $I = 0 To UBound($aInfoFormulas) - 1
-		GUICtrlCreateListViewItem($aInfoFormulas[$I] & "|" & $aFlista[$I], $idFORMULAS)
+		GUICtrlCreateListViewItem(Translate($sLang, $aInfoFormulas[$I]) & "|" & $aFlista[$I], $idFORMULAS)
 	Next
 	; setting key accelerators:
 	Local $aAccelKeys[][2] = [["^+k", $idHideKey], ["^{bs}", $idClearScreen]]

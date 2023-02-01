@@ -1,3 +1,4 @@
+#include "globals.au3"
 #include <GuiConstantsEx.au3>
 #include "params.au3"
 #include <StringConstants.au3>
@@ -35,14 +36,14 @@ Func CreateParams(ByRef $idListView)
 				Return SetError(4, 0, "")
 		EndSwitch
 	Else
-		$hCommandGUI = GUICreate("Aplicando fórmula " & $aArray[1])
-		$label1 = GUICtrlCreateLabel("Introduce los parámetros de esta fórmula y, luego, presiona aplicar para obtener el resultado final. Si necesitas ayuda con los parámetros de las fórmulas, lee la guía", 0, 10, 200, 20)
+		$hCommandGUI = GUICreate(translate($sLang, "Aplying formula") &": " & $aArray[1])
+		$label1 = GUICtrlCreateLabel(translate($sLang, "Enter the needed parameters of this formula, then press apply to get the final result. If you need help with parameters of each formula, please read the guide"), 0, 10, 200, 20)
 		For $I = 0 To $iNumParam - 1
-			$iLabels[$I] = GUICtrlCreateLabel("Parámetro " & $I + 1, 80 * $I, 10, 100, 20)
+			$iLabels[$I] = GUICtrlCreateLabel(translate($sLang, "parameter") &" " & $I + 1, 80 * $I, 10, 100, 20)
 			$idInputs[$I] = GUICtrlCreateInput("", 80, 80 * $I, 100, 20)
 		Next
-		$idApply = GUICtrlCreateButton("Aplicar", 300, 300, 100, 20)
-		$idClosebtn = GUICtrlCreateButton("Cerrar", 300, 380, 100, 20)
+		$idApply = GUICtrlCreateButton(translate($sLang, "&Aply"), 300, 300, 100, 20)
+		$idClosebtn = GUICtrlCreateButton(translate($sLang, "&Close"), 300, 380, 100, 20)
 		Local $aAccel[][2] = [["{enter}", $idApply]]
 		GUISetAccelerators($aAccel)
 		GUISetState(@SW_SHOW)
