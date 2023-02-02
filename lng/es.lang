@@ -7,7 +7,6 @@ Copyright=© 2018-2023 MT Programs, todos los derechos Reservados
 [strings]
 Enable enhanced accessibility?=¿Habilitar accesibilidad mejorada?
 This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?=Esta nueva funcionalidad de accesibilidad mejorada está diseñada para personas con discapacidad visual, en la que la mayor parte de la interfaz del programa se puede utilizar mediante atajos de voz y de teclado. ¿Activar?
-
 &Calculator=&Calculadora
 hide keyboard=Ocultar el teclado
 Exit=Salir
@@ -94,3 +93,18 @@ Square Root|Applies the square root of a given number=Raíz cuadrada|Aplica la ra
 cube root|Applies the cube root of a given number=raíz cúbica|Aplica la raíz cúbica de un número determinado
 Time|Gets the time of a speed and distance=Tiempo|Optiene el tiempo de una velocidad y distancia definidos
 Speed|Gets the speed of a given distance and time=Velocidad|Optiene la velocidad de una distancia y un tiempo determinados
+You must type an operation or select a command.=Debes escribir una operación o seleccionar un comando.
+The list doesn't require with the necessary columns to interact.=La lista no requiere con las columnas necesarias para interactuar.
+You have not selected any formula from the list.=No has seleccionado ninguna fórmula de la lista.
+The specified parameter table is incorrect.=La tabla de parámetros especificada es incorrecta.
+An attempt has been made to look for this formula in the formula table, however, it cannot be found.=Se ha tratado de buscar esta fórmula en la tabla de fórmulas, sin envargo, no se encuentra.
+The application window of this formula has been closed and it could not be applied.=La ventana de aplicación de esta fórmula se ha cerrado y esta no ha podido ser aplicada.
+You must fill in all the parameters to proceed to apply this formula. For now, this function has not been applied.=Debes rellenar todos los parámetros para proceder a aplicar esta fórmula. Por ahora, esta función no se ha aplicado.
+An error occurred while doing this operation. Please check that the syntax is correct.=Ocurrió un error al realizar esta operación. Por favor, mira que la sintaxis esté correcta.
+The command=El comando
+does not exist. If you think it is a function that allows you to perform a mathematical formula, please tell me so I can add it.=no existe. Si crees que es una función que permita realizar una fórmula matemática, por favor dime para poder agregarla.
+An error occurred while doing this operation. One or more numbers required to run are missing. Please review it and run this formula again when you have fixed the items. Structure:=Ha ocurrido un error al realizar esta operación. Faltan uno o más números requeridos para ejecutarla. Por favor, revísalo y vuelve a ejecutar esta fórmula cuando hayas corregido los elementos. Estructura:
+There's more than one parameter here. Please remove the extra parameters and try again. operation:=Hay más de un parámetro aquí. Por favor, elimina los parámetros que sobran e inténtalo nuevamente. operación:
+syntax error=Error de sintaxis
+The parameter=El parámetro
+has no numbers.=no tiene números.

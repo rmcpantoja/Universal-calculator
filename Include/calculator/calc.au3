@@ -30,7 +30,7 @@
 Func _calc()
 	$sOperation = GUICtrlRead($idInter)
 	If $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
-		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "Debes escribir una operación o seleccionar un comando."))
+		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
 	ElseIf _IsFocused($hGUI, $idFORMULAS) Then
 		; if we have focused the control in the list of commands, what to do:
 		if $sFormulaAutocompletion = "1" then
@@ -41,17 +41,17 @@ Func _calc()
 		If @error Then
 			Switch @error
 				Case 1
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "La lista no requiere con las columnas necesarias para interactuar."))
+					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The list doesn't require with the necessary columns to interact."))
 				Case 2
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "No has seleccionado ninguna fórmula de la lista."))
+					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You have not selected any formula from the list."))
 				Case 3
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "La tabla de parámetros especificada es incorrecta."))
+					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The specified parameter table is incorrect."))
 				Case 4
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "Se ha tratado de buscar esta fórmula en la tabla de fórmulas, sin envargo, no se encuentra."))
+					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An attempt has been made to look for this formula in the formula table, however, it cannot be found."))
 				Case 5
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "La ventana de aplicación de esta fórmula se ha cerrado y esta no ha podido ser aplicada."))
+					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The application window of this formula has been closed and it could not be applied."))
 				Case 6
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "Debes rellenar todos los parámetros para proceder a aplicar esta fórmula. Por ahora, esta función no se ha aplicado."))
+					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must fill in all the parameters to proceed to apply this formula. For now, this function has not been applied."))
 			EndSwitch
 		Else
 			; Adds the command in the field, if it is not focused it does so and clicks the same button automatically to get the result.
@@ -66,7 +66,7 @@ Func _calc()
 		If Not StringInStr($sOperation, ":") Then
 			$nResult = Execute($sOperation)
 			If @error Then
-				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "Ocurrió un error al realizar esta operación. Por favor, mira que la sintaxis esté correcta."))
+				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An error occurred while doing this operation. Please check that the syntax is correct."))
 			Else
 				GUICtrlSetData($idInter, $nResult)
 				If Not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
@@ -179,7 +179,7 @@ Func _calc()
 				Case $aSplitCMD[1] = "vel"
 					If _CheckComandParams($aNumbers, 2) Then $nResult = _Velocidad($aNumbers[1], $aNumbers[2])
 				Case Else
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "El comando") &" " & $aSplitCMD[1] & " " &Translate($sLang, "no existe. Si crees que es una función que permita realizar una fórmula matemática, por favor dime para poder agregarla."))
+					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The command") &" " & $aSplitCMD[1] & " " &Translate($sLang, "does not exist. If you think it is a function that allows you to perform a mathematical formula, please tell me so I can add it."))
 			EndSelect
 			if not @error then
 				GUICtrlSetData($idInter, $nResult)
@@ -187,11 +187,11 @@ Func _calc()
 			Else
 				switch @error
 					case 1
-						MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "Ha ocurrido un error al realizar esta operación. Faltan uno o más números requeridos para ejecutarla. Por favor, revísalo y vuelve a ejecutar esta fórmula cuando hayas corregido los elementos. Estructura:") &" " & $sOperation)
+						MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An error occurred while doing this operation. One or more numbers required to run are missing. Please review it and run this formula again when you have fixed the items. Structure:") &" " & $sOperation)
 					case 2
-						MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "Hay más de un parámetro aquí. Por favor, elimina los parámetros que sobran e inténtalo nuevamente. operación:") &" " & $sOperation)
+						MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "There's more than one parameter here. Please remove the extra parameters and try again. operation:") &" " & $sOperation)
 					case 3
-						MsgBox(16, Translate($sLang, "Error de sintaxis"), Translate($sLang, "El parámetro") &" " & @extended & ", " & $aNumbers[@extended] & ", " &Translate($sLang, "no tiene números."))
+						MsgBox(16, Translate($sLang, "syntax error"), Translate($sLang, "The parameter") &" " & @extended & ", " & $aNumbers[@extended] & ", " &Translate($sLang, "has no numbers."))
 				EndSwitch
 			EndIf
 		EndIf
