@@ -41,12 +41,12 @@ EndIf
 ConsoleWrite("Ready to compile" & @CRLF)
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _start_paths
-; Description ...:
+; Description ...: Starts creating folder structure.
 ; Syntax ........: _start_paths($sBaseDir, $aPaths)
-; Parameters ....: $sBaseDir            - a string value.
-;                  $aPaths              - an array of unknowns.
+; Parameters ....: $sBaseDir            - The destination folder in which to create the subfolders.
+;                  $aPaths              - an array containing the folders to create.
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -63,11 +63,11 @@ Func _start_paths($sBaseDir, $aPaths)
 EndFunc   ;==>_start_paths
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _CopiFiles
-; Description ...:
+; Description ...: Function that is responsible for copying the files necessary for the project.
 ; Syntax ........: _CopiFiles($sBaseDir)
-; Parameters ....: $sBaseDir            - a string value.
+; Parameters ....: $sBaseDir            - The destination folder where the files will be copied.
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -90,12 +90,12 @@ Func _CopiFiles($sBaseDir)
 EndFunc   ;==>_CopiFiles
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _copyFolders
-; Description ...:
+; Description ...: Copies the folders and their content required for the project.
 ; Syntax ........: _copyFolders($sBaseDir, $aPaths)
-; Parameters ....: $sBaseDir            - a string value.
-;                  $aPaths              - an array of unknowns.
+; Parameters ....: $sBaseDir            - the destination folder.
+;                  $aPaths              - An array containing the folders to be copied.
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
