@@ -108,3 +108,5 @@ There's more than one parameter here. Please remove the extra parameters and try
 syntax error=
 The parameter=
 has no numbers.=
+A basic way to know why=
+This is a very easy way to know the reason of a multiplication; however, for a better experience, you can guide yourself through multiplying tables.=

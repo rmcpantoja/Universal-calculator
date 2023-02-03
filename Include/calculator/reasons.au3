@@ -26,21 +26,21 @@ Func _GetReason()
 	ElseIf StringInStr($sOperation, "*") then
 		$sProcess = _multi_get_reason($sOperation)
 		$sProcess = StringReplace($sProcess, "+", " " &translate($sLang, "plus") &" ")
-		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "The reason why") &" " & $sOperation & " " &translate($sLang, "is equal to") &" " & $nResult &", " & translate($sLang, "it is because") &" " & $sProcess &" " &translate($sLang, "is equal to") &" " &execute($sProcess) &". " &translate($sLang, "Esta es una forma muy fácil de saber la razón de una multiplicación; sin embargo, para una mejor experiencia, puedes guiarte a través de tablas."))
+		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "The reason why") &" " & $sOperation & " " &translate($sLang, "is equal to") &" " & $nResult &", " & translate($sLang, "it is because") &" " & $sProcess &" " &translate($sLang, "is equal to") &" " &execute($sProcess) &". " &translate($sLang, "This is a very easy way to know the reason of a multiplication; however, for a better experience, you can guide yourself through multiplying tables."))
 	ElseIf StringInStr($sOperation, "/") then
 		$sProcess = _div_get_reason($sOperation, $nResult)
-		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "Una forma básica de saber por qué") &" " & $sOperation & " " &translate($sLang, "is equal to") &" " & $nResult & ", " &translate($sLang, "it is because") &" " & $sProcess &" " &translate($sLang, "is equal to") &" " &round(execute($sProcess)))
+		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "A basic way to know why") &" " & $sOperation & " " &translate($sLang, "is equal to") &" " & $nResult & ", " &translate($sLang, "it is because") &" " & $sProcess &" " &translate($sLang, "is equal to") &" " &round(execute($sProcess)))
 	Else
 		Switch $aSplitCMD[1]
 			Case "raise"
 				$aProcess = _Elevado($aNumbers[1], $aNumbers[2], True)
-				$aProcess[0] = StringReplace($aProcess[1], "*", " " &translate($sLang, "por") &" ")
+				$aProcess[0] = StringReplace($aProcess[1], "*", " " &translate($sLang, "multiplied by") &" ")
 				$aProcess[0] = StringReplace($aProcess[1], "=", " " &translate($sLang, "equal to") &" ")
 				MsgBox(0, translate($sLang, "Reason"), translate($sLang, "The reason why") &" " & $aNumbers[1] & " " &translate($sLang, "raised to") &" " & $sRaiseType & " " &translate($sLang, "is equal to") &" " & $nResult & ", " &translate($sLang, "it is because") &" " & $aProcess[0])
 			Case "root"
 				$aProcess = RaizObtenerRazon2($nResult, $aNumbers[1])
 				$aProcess[0] = StringReplace($aProcess[0], "*", " " &translate($sLang, "multiplied by") &" ")
-				MsgBox(0, translate($sLang, "Razónn"), translate($sLang, "The reason why the root") &" " & $sRootType & " " &translate($sLang, "of") &" " & $aNumbers[2] & ", " &translate($sLang, "is equal to") &" " & $nResult & ", " &translate($sLang, "it is because") &" " & $aProcess[0] & " " &translate($sLang, "is equal to") &" " & $aProcess[1])
+				MsgBox(0, translate($sLang, "Reason"), translate($sLang, "The reason why the root") &" " & $sRootType & " " &translate($sLang, "of") &" " & $aNumbers[2] & ", " &translate($sLang, "is equal to") &" " & $nResult & ", " &translate($sLang, "it is because") &" " & $aProcess[0] & " " &translate($sLang, "is equal to") &" " & $aProcess[1])
 				;Vamos a comentar esto, porque trae problemas. EN realidad, la razón para sr está deshabilitada porque está comentada, hasta que encontremos una solución para poder obtener correctamente las razones.
 				;case "sr"
 				;$aProcess = RaizObtenerRazon2(2, $aNumbers[1])
