@@ -17,11 +17,11 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func Selector()
-	global $aLangCodes[]
+	Global $aLangCodes[]
 	Global $bSelected = False
 	Global $hLangGUI, $hLanguages
-	global $iOldOpt, $iSearch = 0
-	global $sCurrentCode = "", $sRead = "", $sCollect = "", $sCodes = ""
+	Global $iOldOpt, $iSearch = 0
+	Global $sCurrentCode = "", $sRead = "", $sCollect = "", $sCodes = ""
 	$hLangGUI = GUICreate("Language Selection")
 	$iOldOpt = Opt("GUIOnEventMode", 1)
 	GUICtrlCreateLabel("Select language:", -1, 0)
@@ -29,14 +29,13 @@ Func Selector()
 	$hLanguages = FileFindFirstFile(@ScriptDir & "\lng\*.lang")
 	If $hLanguages = -1 Then
 		MsgBox(16, "Fatal error", "We cannot find the language files. Please download the program again...")
-exit
+		Exit
 	EndIf
 	While 1
 		$iSearch = $iSearch + 1
 		$sCollect = FileFindNextFile($hLanguages)
 		If @error Then
 			;MsgBox(16, "Error", "We cannot find the language files or they are corrupted.")
-
 			ExitLoop
 		EndIf
 		$sCurrentCode = StringLeft($sCollect, 2)
@@ -74,8 +73,8 @@ EndFunc   ;==>Selector
 ; ===============================================================================================================================
 Func LangSelect()
 	$sRead = GUICtrlRead($Choose)
-	if not $sRead = "" then global $queidiomaes = StringSplit($sRead, ",")
-EndFunc   ;==>select
+	If Not $sRead = "" Then Global $queidiomaes = StringSplit($sRead, ",")
+EndFunc   ;==>LangSelect
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: save
 ; Description ...: This function saves the language selected by the user when running for the first time
@@ -90,7 +89,7 @@ EndFunc   ;==>select
 ; Example .......: No
 ; ===============================================================================================================================
 Func save()
-	if $sRead = "" then
+	If $sRead = "" Then
 		MsgBox(16, "Error", "no language selected.")
 	Else
 		$bSelected = True
