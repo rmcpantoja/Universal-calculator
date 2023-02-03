@@ -39,6 +39,20 @@ If @error Then
 	Exit
 EndIf
 ConsoleWrite("Ready to compile" & @CRLF)
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _start_paths
+; Description ...:
+; Syntax ........: _start_paths($sBaseDir, $aPaths)
+; Parameters ....: $sBaseDir            - a string value.
+;                  $aPaths              - an array of unknowns.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
 Func _start_paths($sBaseDir, $aPaths)
 	Local $sPath = ""
 	If Not FileExists($sBaseDir) Then DirCreate($sBaseDir)
@@ -47,6 +61,19 @@ Func _start_paths($sBaseDir, $aPaths)
 	Next
 	Return 1
 EndFunc   ;==>_start_paths
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _CopiFiles
+; Description ...:
+; Syntax ........: _CopiFiles($sBaseDir)
+; Parameters ....: $sBaseDir            - a string value.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
 Func _CopiFiles($sBaseDir)
 	Local $aFiles
 	If Not FileExists($sBaseDir) Then Return SetError(1, 0, "") ; please call to _start_paths first
@@ -61,6 +88,20 @@ Func _CopiFiles($sBaseDir)
 	Next
 	Return 1
 EndFunc   ;==>_CopiFiles
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _copyFolders
+; Description ...:
+; Syntax ........: _copyFolders($sBaseDir, $aPaths)
+; Parameters ....: $sBaseDir            - a string value.
+;                  $aPaths              - an array of unknowns.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
 Func _copyFolders($sBaseDir, $aPaths)
 	Local $sPath
 	If Not FileExists($sBaseDir) Then Return SetError(1, 0, "") ; please call to _start_paths first
