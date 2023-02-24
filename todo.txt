@@ -8,3 +8,4 @@ Estoy pensando que en lugar de la lista de fórmulas, se agregue una vista de á
 Agregar sistema de actualizaciones.
 Agregar accesibilidad mejorada. Será necesario, desde luego.
 Agregar el sistema de traducción.
+Corregir el problemón que, a veces, cuando vas a la lista de fórmulas, te lleva a las opciones. Aunque es raro, ya que se indica cuando el control está enfocado en la lista.

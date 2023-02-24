@@ -7,6 +7,7 @@
 #include <GuiConstantsEx.au3>
 #include "keyboard.au3"
 #include <ListViewConstants.au3>
+#include "options.au3"
 #include "params.au3"
 #include "reasons.au3"
 #include <StaticConstants.au3>
@@ -132,7 +133,7 @@ Func Main()
 			Case $idEqual
 				_calc()
 			Case $idOptions
-				MsgBox(0, "No disponible", "Pronto abrá, pero voy a hacer un to do o ideas: 1, enfocar la pantalla de resultados al realizar una operación o que te la hable el lector directamente. 2, idioma inglés. 3, mostrar automáticamente la razón en una operción en caso de que sean operaciones avanzadas como raíces, potencias etc.")
+				_Options($sConfigFolder, $sConfigPath)
 			Case $idGetReason
 				_GetReason()
 			Case $idAbout
