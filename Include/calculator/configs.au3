@@ -58,7 +58,7 @@ EndFunc   ;==>_config_start
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-func _ConfigureAccessibility($sConfigPath)
+func _Configure_Accessibility($sConfigPath)
 	local $iAccesMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
 	local $sEnhancedAccess
 	If $iAccesMSG = 6 Then
