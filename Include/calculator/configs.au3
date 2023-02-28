@@ -34,14 +34,7 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	; check for enhanced accessibility
 	$sEnhancedAccess = IniRead($sConfigPath, "Accessibility", "Enable enhanced accessibility", "")
 	If Not $sEnhancedAccess = "Yes" Or Not $sEnhancedAccess = "No" Then
-		$iAccesMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
-		If $iAccesMSG = 6 Then
-			IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "Yes")
-			$sEnhancedAccess = "Yes"
-		Else
-			IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "No")
-			$sEnhancedAccess = "No"
-		EndIf
+		$sEnhancedAccess = _configure_accessibility($sConfigPath)
 	EndIf
 	; Check formula autocompletion:
 	$sFormulaAutocompletion = IniRead($sConfigPath, "Calculator", "formula autocompletion mode", "")
@@ -52,3 +45,28 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	EndIf
 	Return 1
 EndFunc   ;==>_config_start
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _ConfigureAccessibility
+; Description ...:
+; Syntax ........: _ConfigureAccessibility($sConfigPath)
+; Parameters ....: $sConfigPath         - a string value.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+func _ConfigureAccessibility($sConfigPath)
+	local $iAccesMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
+	local $sEnhancedAccess
+	If $iAccesMSG = 6 Then
+		IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "Yes")
+		$sEnhancedAccess = "Yes"
+	Else
+		IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "No")
+		$sEnhancedAccess = "No"
+	EndIf
+	return $sEnhancedAccess
+EndFunc
