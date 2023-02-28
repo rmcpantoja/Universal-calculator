@@ -68,7 +68,7 @@ Func _Options($sConfigFolder, $sConfigPath)
 					MsgBox(48, translate($lng, "Information"), translate($lng, "Please restart Universal Calculator for the changes to take effect."))
 					Exitpersonaliced()
 				EndIf
-			Case -3 Or $idApply
+			Case $GUI_EVENT_CLOSE, $idApply
 				GUIDelete($hOptionsGui)
 				ExitLoop
 		EndSwitch
