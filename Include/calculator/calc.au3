@@ -131,25 +131,27 @@ Func _calc()
 				Case $aSplitCMD[1] = "gp-sn1"
 					If _CheckComandParams($aNumbers, 2) Then $nResult = _Sn3($aNumbers[1], $aNumbers[2])
 				Case $aSplitCMD[1] = "raise"
-					If _CheckComandParams($aNumbers, 2) Then $nResult = _Elevado($aNumbers[1], $aNumbers[2])
-					Switch $aNumbers[2]
-						Case 2
-							$sRaiseType = "cuadrado"
-						Case 3
-							$sRaiseType = "cubo"
-						Case 4
-							$sRaiseType = "cuarto"
-						Case 5
-							$sRaiseType = "quinto"
-						Case 6
-							$sRaiseType = "sexto"
-						Case 7
-							$sRaiseType = "septimo"
-						Case 8
-							$sRaiseType = "octavo"
-						Case 9
-							$sRaiseType = "noveno"
-					EndSwitch
+					If _CheckComandParams($aNumbers, 2) Then
+						$nResult = _Elevado($aNumbers[1], $aNumbers[2])
+						Switch $aNumbers[2]
+							Case 2
+								$sRaiseType = "cuadrado"
+							Case 3
+								$sRaiseType = "cubo"
+							Case 4
+								$sRaiseType = "cuarto"
+							Case 5
+								$sRaiseType = "quinto"
+							Case 6
+								$sRaiseType = "sexto"
+							Case 7
+								$sRaiseType = "septimo"
+							Case 8
+								$sRaiseType = "octavo"
+							Case 9
+								$sRaiseType = "noveno"
+						EndSwitch
+					endIf
 				Case $aSplitCMD[1] = "root"
 					If _CheckComandParams($aNumbers, 2) Then $nResult = _Raiz2($aNumbers[1], $aNumbers[2])
 					Switch $aNumbers[1]
