@@ -61,7 +61,7 @@ Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
 		Next
 		$bHideKeyboard = True
 		GUICtrlSetState($idHideKeyControl, $GUI_checked)
-		if $sEnhancedAccess = "Yes" then speaking(Translate($sLang, "Keyboard hidden"))
+		if $sEnhancedAccessibility = "Yes" then speaking(Translate($sLang, "Keyboard hidden"))
 	Else
 		; here we do the opposite, we show it.
 		For $I = 0 To UBound($aNums)
@@ -69,7 +69,7 @@ Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
 		Next
 		$bHideKeyboard = False
 		GUICtrlSetState($idHideKey, $GUI_unchecked)
-		if $sEnhancedAccess = "Yes" then speaking(Translate($sLang, "Keyboard shown"))
+		if $sEnhancedAccessibility = "Yes" then speaking(Translate($sLang, "Keyboard shown"))
 	EndIf
 EndFunc   ;==>_HideKey
 ; #FUNCTION# ====================================================================================================================
@@ -87,7 +87,7 @@ EndFunc   ;==>_HideKey
 ; ===============================================================================================================================
 Func _ClearScreen($idScreenControl)
 	If GUICtrlRead($idScreenControl) = "" Then
-		if $sEnhancedAccess = "Yes" then
+		if $sEnhancedAccessibility = "Yes" then
 			Speaking(Translate($sLang, "there's nothing to clean"))
 		Else
 			MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "there's nothing to clean"))
@@ -96,6 +96,6 @@ Func _ClearScreen($idScreenControl)
 		GUICtrlSetData($idScreenControl, "")
 		$sInterOperacion = ""
 		$nResult = ""
-		if $sEnhancedAccess = "Yes" then speaking(Translate($sLang, "Screen cleaned"))
+		if $sEnhancedAccessibility = "Yes" then speaking(Translate($sLang, "Screen cleaned"))
 	EndIf
 EndFunc   ;==>_ClearScreen

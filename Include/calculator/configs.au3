@@ -33,9 +33,9 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	$sLang = IniRead($sConfigPath, "General settings", "language", "")
 	If $sLang = "" Then Selector()
 	; check for enhanced accessibility
-	$sEnhancedAccess = IniRead($sConfigPath, "Accessibility", "Enable enhanced accessibility", "")
-	If Not $sEnhancedAccess = "Yes" Or Not $sEnhancedAccess = "No" Then
-		$sEnhancedAccess = _configure_accessibility($sConfigPath)
+	$sEnhancedAccessibility = IniRead($sConfigPath, "Accessibility", "Enable enhanced accessibility", "")
+	If Not $sEnhancedAccessibility = "Yes" Or Not $sEnhancedAccessibility = "No" Then
+		$sEnhancedAccessibility = _configure_accessibility($sConfigPath)
 	EndIf
 	; Check formula autocompletion:
 	$sFormulaAutocompletion = IniRead($sConfigPath, "Calculator", "formula autocompletion mode", "")
@@ -74,15 +74,15 @@ EndFunc   ;==>_config_start
 ; ===============================================================================================================================
 func _Configure_Accessibility($sConfigPath)
 	local $iAccessMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
-	local $sEnhancedAccess
+	local $sEnhancedAccessibility
 	If $iAccessMSG = 6 Then
 		IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "Yes")
-		$sEnhancedAccess = "Yes"
+		$sEnhancedAccessibility = "Yes"
 	Else
 		IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "No")
-		$sEnhancedAccess = "No"
+		$sEnhancedAccessibility = "No"
 	EndIf
-	return $sEnhancedAccess
+	return $sEnhancedAccessibility
 EndFunc
 func _calc_commit()
 	$sCalcCommit = _GetLastCommit("rmcpantoja", "universal-calculator")
