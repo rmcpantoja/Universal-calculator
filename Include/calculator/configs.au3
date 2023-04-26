@@ -65,7 +65,7 @@ EndFunc   ;==>_config_start
 ; Syntax ........: _ConfigureAccessibility($sConfigPath)
 ; Parameters ....: $sConfigPath         - a string value.
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -84,6 +84,19 @@ func _Configure_Accessibility($sConfigPath)
 	EndIf
 	return $sEnhancedAccessibility
 EndFunc
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _calc_commit
+; Description ...: Gets the last commit of the universal calculator project.
+; Syntax ........: _calc_commit()
+; Parameters ....: None
+; Return values .: The last commit
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: Yes
+; ===============================================================================================================================
 func _calc_commit()
 	$sCalcCommit = _GetLastCommit("rmcpantoja", "universal-calculator")
 	if @error then
@@ -96,6 +109,19 @@ func _calc_commit()
 	EndIf ; errors
 	return $sCalcCommit
 EndFunc
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _download_repo
+; Description ...: Function that downloads the latest universal calculator source code.
+; Syntax ........: _download_repo()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: Yes
+; ===============================================================================================================================
 func _download_repo()
 	$bDownloaded = _download_Github_repo("https://github.com/rmcpantoja/Universal-calculator/archive/main.zip", "calc.zip", @ScriptDir)
 	if @error then
