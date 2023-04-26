@@ -51,10 +51,10 @@ Func _config_start($sConfigFolder, $sConfigPath)
 		if $sCommit = "" then
 			$sCommit = $sCommitGot
 			IniWrite($sConfigPath, "Update", "Last commit", $sCommit)
-		elseIf not $sCommit <> $sCommitGot then
+		elseIf $sCommit <> $sCommitGot then
 			MsgBox(64, "New repository update", "A new update of the calculator was found. Press OK to apply it.")
 			IniWrite($sConfigPath, "Update", "Last commit", $sCommitGot)
-			_download_repo
+			_download_repo()
 		EndIf ; commit is empti or different
 	EndIf ; compiled
 	Return 1
@@ -107,7 +107,7 @@ func _download_repo()
 		EndSwitch
 	else
 		MsgBox(64, "Success!", "Universal calculator updated successfully. Press OK to exit, then run the new version.")
-		return $bDownloaded
+		;return $bDownloaded
 		exit
 	EndIf ; errors
 EndFunc

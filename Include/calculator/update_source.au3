@@ -29,11 +29,11 @@ Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
 	WEnd
 	ProgressSet(100, "Done!")
 	Sleep(1000)
-	ProgressOff
+	ProgressOff()
 	if not FileExists($sDestinationFolder & "\" & $sFileName) then return SetError(2, 0, "")
 	$oShell = ObjCreate("WScript.Shell")
 	$sCommand = 'Expand-Archive "' & @ScriptDir & $sDestinationFolder & "\" & $sDestinationFolder & "\" & $sFileName & "\" & '" -DestinationPath "' & @ScriptDir & '" -Force -Verbose'
-	$oShell.Run('powershell.exe -Command "' & $command & '"')
+	$oShell.Run('powershell.exe -Command "' & $sCommand & '"')
 	ProcessWait("powershell.exe")
 	DirMove (@ScriptDir &"\Universal-calculator-main", @ScriptDir, 1)
 	return True
