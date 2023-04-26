@@ -21,7 +21,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _config_start($sConfigFolder, $sConfigPath)
-	Local $iAccesMSG
+	Local $iAccessMSG
 	If Not FileExists($sConfigFolder) Then DirCreate($sConfigFolder)
 	; beep progress bars:
 	$sEnableProgresses = IniRead($sConfigPath, "General settings", "Beep for progress bars", "")
@@ -46,34 +46,16 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	EndIf
 	; check last commit:
 	if not @compiled then
-		$sCommit = IniRead($sConfigPath, "Update", "Last commit", "")
+		$sCommitGot = string(_calc_commit())
+		$sCommit = string(IniRead($sConfigPath, "Update", "Last commit", ""))
 		if $sCommit = "" then
-			$sCommit = _GetLastCommit("rmcpantoja", "universal-calculator")
-			if @error then
-				switch @error
-					case 1
-						; skip for now:
-					case 2
-						MsgBox(16, "Error", "The last commit could not be determined.")
-				endSwitch
-			EndIf ; errors
+			$sCommit = $sCommitGot
 			IniWrite($sConfigPath, "Update", "Last commit", $sCommit)
-		elseIf not $sCommit = _GetLastCommit("rmcpantoja", "universal-calculator") then
+		elseIf not $sCommit <> $sCommitGot then
 			MsgBox(64, "New repository update", "A new update of the calculator was found. Press OK to apply it.")
-			IniWrite($sConfigPath, "Update", "Last commit", _GetLastCommit("rmcpantoja", "universal-calculator"))
-			$bDownloaded = _download_Github_repo("https://github.com/rmcpantoja/Universal-calculator/archive/main.zip", "calc.zip", @ScriptDir)
-			if @error then
-				switch @error
-					case 1
-						MsgBox(16, "Error", "Cannot connect to the server.")
-					case 2
-						MsgBox(16, "Error", "Could not download file :(")
-				EndSwitch
-			else
-				MsgBox(64, "Success!", "Universal calculator updated successfully. Press OK to exit, then run the new version.")
-				exit
-			EndIf ; errors
-		EndIf ; commit is empti
+			IniWrite($sConfigPath, "Update", "Last commit", $sCommitGot)
+			_download_repo
+		EndIf ; commit is empti or different
 	EndIf ; compiled
 	Return 1
 EndFunc   ;==>_config_start
@@ -91,9 +73,9 @@ EndFunc   ;==>_config_start
 ; Example .......: No
 ; ===============================================================================================================================
 func _Configure_Accessibility($sConfigPath)
-	local $iAccesMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
+	local $iAccessMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
 	local $sEnhancedAccess
-	If $iAccesMSG = 6 Then
+	If $iAccessMSG = 6 Then
 		IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "Yes")
 		$sEnhancedAccess = "Yes"
 	Else
@@ -101,4 +83,31 @@ func _Configure_Accessibility($sConfigPath)
 		$sEnhancedAccess = "No"
 	EndIf
 	return $sEnhancedAccess
+EndFunc
+func _calc_commit()
+	$sCalcCommit = _GetLastCommit("rmcpantoja", "universal-calculator")
+	if @error then
+		switch @error
+			case 1
+				; skip for now:
+			case 2
+				MsgBox(16, "Error", "The last commit could not be determined.")
+		endSwitch
+	EndIf ; errors
+	return $sCalcCommit
+EndFunc
+func _download_repo()
+	$bDownloaded = _download_Github_repo("https://github.com/rmcpantoja/Universal-calculator/archive/main.zip", "calc.zip", @ScriptDir)
+	if @error then
+		switch @error
+			case 1
+				MsgBox(16, "Error", "Cannot connect to the server.")
+			case 2
+				MsgBox(16, "Error", "Could not download file :(")
+		EndSwitch
+	else
+		MsgBox(64, "Success!", "Universal calculator updated successfully. Press OK to exit, then run the new version.")
+		return $bDownloaded
+		exit
+	EndIf ; errors
 EndFunc
