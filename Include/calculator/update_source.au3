@@ -36,6 +36,6 @@ Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
 	$oShell.Run('powershell.exe -Command "' & $sCommand & '"')
 	ProcessWait("powershell.exe")
 	DirMove (@ScriptDir &"\Universal-calculator-main", @ScriptDir, 1)
-	FileDelete(@ScriptDir & "calc.zip")
+	FileDelete($sDestinationFolder & "\" &$sFileName)
 	return True
 EndFunc
