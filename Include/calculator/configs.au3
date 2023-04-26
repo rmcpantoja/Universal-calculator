@@ -3,6 +3,7 @@
 #include "globals.au3"
 #include "language_manager.au3"
 #include "..\translator.au3"
+#include "update_source.au3"
 #include-once
 
 ; #FUNCTION# ====================================================================================================================
@@ -43,6 +44,37 @@ Func _config_start($sConfigFolder, $sConfigPath)
 		IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "1")
 		$sFormulaAutocompletion = "1"
 	EndIf
+	; check last commit:
+	if not @compiled then
+		$sCommit = IniRead($sConfigPath, "Update", "Last commit", "")
+		if $sCommit = "" then
+			$sCommit = _GetLastCommit("rmcpantoja", "universal-calculator")
+			if @error then
+				switch @error
+					case 1
+						; skip for now:
+					case 2
+						MsgBox(16, "Error", "The last commit could not be determined.")
+				endSwitch
+			EndIf ; errors
+			IniWrite($sConfigPath, "Update", "Last commit", $sCommit)
+		elseIf not $sCommit = _GetLastCommit("rmcpantoja", "universal-calculator") then
+			MsgBox(64, "New repository update", "A new update of the calculator was found. Press OK to apply it.")
+			IniWrite($sConfigPath, "Update", "Last commit", _GetLastCommit("rmcpantoja", "universal-calculator"))
+			$bDownloaded = _download_Github_repo("https://github.com/rmcpantoja/Universal-calculator/archive/main.zip", "calc.zip", @ScriptDir)
+			if @error then
+				switch @error
+					case 1
+						MsgBox(16, "Error", "Cannot connect to the server.")
+					case 2
+						MsgBox(16, "Error", "Could not download file :(")
+				EndSwitch
+			else
+				MsgBox(64, "Success!", "Universal calculator updated successfully. Press OK to exit, then run the new version.")
+				exit
+			EndIf ; errors
+		EndIf ; commit is empti
+	EndIf ; compiled
 	Return 1
 EndFunc   ;==>_config_start
 ; #FUNCTION# ====================================================================================================================
