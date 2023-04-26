@@ -135,7 +135,7 @@ Func Main()
 			Case $idOptions
 				_Options($sConfigFolder, $sConfigPath)
 			Case $idGetReason
-				_GetReason()
+				_GetReason($idInter, $sOperation)
 			Case $idAbout
 				MsgBox(48, translate($sLang, "About"), translate($sLang, "An easy, simple and interactive calculator where you can do operations, formulas, conversions and more. This program has been developed by Mateo Cedillo. Creation of the GUI by Valeria Parra."))
 			Case $GUI_EVENT_CLOSE, $idMenuExit

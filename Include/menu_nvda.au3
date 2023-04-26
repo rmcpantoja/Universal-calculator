@@ -1,5 +1,4 @@
 #include-once
-#include "audio.au3"
 #include "KEYINPUT.AU3"
 #include "reader.au3"
 ; #FUNCTION# ====================================================================================================================
@@ -51,8 +50,7 @@ Func reader_create_menu($description, $options, $announcePos = "1", $indicator =
 			ContinueLoop
 		EndIf
 		If $menu_key = "enter" Then
-			$selected = $device.opensound(@scriptDir &"\sounds/selected.ogg", True)
-			$selected.play()
+			SoundPlay(@scriptDir &"\sounds/selected.ogg", 0)
 			If $selection > 0 Then
 				$menu = ""
 				Return $selection
@@ -62,12 +60,10 @@ Func reader_create_menu($description, $options, $announcePos = "1", $indicator =
 			$selection = $selection - 1
 			If $selection < 1 Then
 				$selection = $menu_length
-				$top = $device.opensound(@scriptdir &"\sounds/scrollTop.ogg", True)
-				$top.play()
+				SoundPlay(@scriptdir &"\sounds/scrollTop.ogg", 0)
 			EndIf
 			$file_to_open = $items[$selection]
-			$scroll = $device.opensound(@scriptdir &"\sounds/bound.ogg", True)
-			$scroll.play()
+			SoundPlay(@scriptdir &"\sounds/bound.ogg", 0)
 			If $announcePos = "1" Then
 				speaking($file_to_open & ", " & $selection & $indicator & " " & $menu_length, true)
 			Else
@@ -79,12 +75,10 @@ Func reader_create_menu($description, $options, $announcePos = "1", $indicator =
 			$limit = $menu_length + 1
 			If $selection = $limit Then
 				$selection = 1
-				$top = $device.opensound(@scriptdir &"\sounds/scrollTop.ogg", True)
-				$top.play()
+				SoundPlay(@scriptdir &"\sounds/scrollTop.ogg", 0)
 			EndIf
 			$file_to_open = $items[$selection]
-			$bound = $device.opensound(@scriptdir &"\sounds/bound.ogg", True)
-			$bound.play()
+			SoundPlay(@scriptdir &"\sounds/bound.ogg", 0)
 			If $announcePos = "1" Then
 				speaking($file_to_open & ", " & $selection & "of " & $menu_length, true)
 			Else

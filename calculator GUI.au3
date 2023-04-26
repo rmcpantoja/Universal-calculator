@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_Comment=This is a mini calculator, but big at same time, because you can do advanced formulas and operations too!
 #AutoIt3Wrapper_Res_Description=Universal calculator
-#AutoIt3Wrapper_Res_Fileversion=0.1.0.36
+#AutoIt3Wrapper_Res_Fileversion=0.1.0.39
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_ProductName=Universal calculator
 #AutoIt3Wrapper_Res_ProductVersion=0.1.0.0
@@ -16,17 +16,16 @@
 ;#AutoIt3Wrapper_Run_Tidy=y
 ;#AutoIt3Wrapper_Run_Au3Stripper=y
 #Au3Stripper_Parameters=/so
-#AutoIt3Wrapper_Run_Before=autoit3 /ErrorStdOut "%scriptdir%\compiler.au3"
+#AutoIt3Wrapper_Run_Before="%scriptdir%\build.bat"
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ; include dependencies:
 #include "include\calculator\configs.au3"
 #include <Constants.au3>
 #include "include\calculator\globals.au3"
-$oOpenSND = $device.opensound(@ScriptDir & "\sounds/open.ogg", True)
 #include "include\calculator\UI.au3"
 ;Universal calculator (in development):
 ; check for configs:
 _config_start($sConfigFolder, $sConfigPath)
-$oOpenSND.play
+SoundPlay(@ScriptDir & "\sounds\open.ogg", 0)
 ; We call the main function of the program:
 Main()

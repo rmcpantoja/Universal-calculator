@@ -1,4 +1,3 @@
-#include "audio.au3"
 #include-once
 Global $count
 Global $progress_ver = "1.2"

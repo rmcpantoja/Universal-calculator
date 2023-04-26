@@ -3,11 +3,12 @@
 #include <File.au3>
 Local $aPaths = ["Documentation", _
 		"images", _
-		"lng"]
+		"lng", _
+		"sounds"]
 Local $sCopy = ""
 ConsoleWrite("Compilation util: starting..." &@crlf)
-if not @compiled then
-	ConsoleWriteError("Error: script compiled")
+if @compiled then
+	ConsoleWriteError("Error: script compiled" &@crlf)
 	Exit
 EndIf
 ConsoleWrite("Compilation util: Starting paths..." & @CRLF)
@@ -77,7 +78,7 @@ EndFunc   ;==>_start_paths
 Func _CopiFiles($sBaseDir)
 	Local $aFiles
 	If Not FileExists($sBaseDir) Then Return SetError(1, 0, "") ; please call to _start_paths first
-	$aFiles = _FileListToArrayRec(@ScriptDir, "nvdaControllerClient32.dll;sounds.dat", $FLTAR_FILES, $FLTAR_NORECUR, $FLTAR_SORT)
+	$aFiles = _FileListToArrayRec(@ScriptDir, "nvdaControllerClient32.dll", $FLTAR_FILES, $FLTAR_NORECUR, $FLTAR_SORT)
 	If @error Then Return SetError(2, 0, "")
 	For $I = 1 To $aFiles[0]
 		If Not FileExists($aFiles) Then FileCopy($aFiles[$I], $sBaseDir)

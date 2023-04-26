@@ -18,7 +18,7 @@
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func _GetReason()
+Func _GetReason($idInter, $sOperation)
 	If GUICtrlRead($idInter) = "" Then
 		MsgBox(16, translate($sLang, "Error"), translate($sLang, "You must write a function command that performs an operation to get a reason."))
 	ElseIf $sOperation = "" Then

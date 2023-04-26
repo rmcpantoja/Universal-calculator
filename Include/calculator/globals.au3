@@ -1,4 +1,3 @@
-#include "..\audio.au3"
 #include "..\reader.au3"
 #include-once
 ; setting variables:
@@ -34,9 +33,8 @@ global $sEnableProgresses, $sEnhancedAccess, $sFormulaAutocompletion, $sLang = "
 ; Example .......: No
 ; ===============================================================================================================================
 Func exitpersonaliced()
-	$oCloseSND = $device.opensound(@ScriptDir & "\sounds/close.ogg", True)
+	SoundPlay(@ScriptDir & "\sounds/close.ogg", 0)
 	_nvdaControllerClient_free()
-	$oCloseSND.play
 	Sleep(1000)
 	Exit
 EndFunc   ;==>exitpersonaliced
