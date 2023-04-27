@@ -1,6 +1,6 @@
 ; Update and check the latest repo:
 #include <InetConstants.au3>
-#include "..\zip.au3"
+#include "..\_zip.au3"
 #include-once
 
 ; #FUNCTION# ====================================================================================================================
@@ -60,11 +60,9 @@ Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
 	Sleep(1000)
 	ProgressOff()
 	if not FileExists($sDestinationFolder & "\" & $sFileName) then return SetError(2, 0, "")
-	$oShell = ObjCreate("WScript.Shell")
-	$sCommand = 'Expand-Archive "' & $sDestinationFolder & "\" & $sFileName & '" -DestinationPath "' & @ScriptDir & '" -Force -Verbose'
-	$oShell.Run('powershell.exe -Command "' & $sCommand & '"')
-	ProcessWait("powershell.exe")
-	;DirMove (@ScriptDir &"\Universal-calculator-main", @ScriptDir, 1)
+	_Zip_UnzipAll($sDestinationFolder &"\" &$sFileName, @ScriptDir, 20)
+	if @error then Return SetError(3, 0, "")
+	DirMove (@ScriptDir &"\Universal-calculator-main", @ScriptDir, 1)
 	FileDelete($sDestinationFolder & "\" &$sFileName)
 	return True
 EndFunc
