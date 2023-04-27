@@ -62,7 +62,7 @@ Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
 	if not FileExists($sDestinationFolder & "\" & $sFileName) then return SetError(2, 0, "")
 	_Zip_UnzipAll($sDestinationFolder &"\" &$sFileName, @ScriptDir, 20)
 	if @error then Return SetError(3, 0, "")
-	DirMove (@ScriptDir &"\Universal-calculator-main", @ScriptDir, 1)
+	FileMove(@ScriptDir &"\Universal-calculator-main\*", @ScriptDir, 9)
 	FileDelete($sDestinationFolder & "\" &$sFileName)
 	return True
 EndFunc
