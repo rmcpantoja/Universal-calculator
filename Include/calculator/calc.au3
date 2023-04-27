@@ -1,4 +1,3 @@
-; comment:
 #include "globals.au3"
 #include "..\mymath\elevar.au3"
 #include "..\mymath\fisica.au3"

@@ -130,6 +130,8 @@ func _download_repo()
 				MsgBox(16, "Error", "Cannot connect to the server.")
 			case 2
 				MsgBox(16, "Error", "Could not download file :(")
+			case 3
+				MsgBox(16, "Error", "The zip containing the repository could not be processed.")
 		EndSwitch
 	else
 		MsgBox(64, "Success!", "Universal calculator updated successfully. Press OK to exit, then run the new version.")
