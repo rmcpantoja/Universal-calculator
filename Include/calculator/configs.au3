@@ -104,7 +104,7 @@ func _calc_commit()
 			case 1
 				; skip for now:
 			case 2
-				MsgBox(16, "Error", "The last commit could not be determined.")
+				MsgBox(16, translate($sLang, "Error"), translate($sLang, "The last commit could not be determined."))
 		endSwitch
 	EndIf ; errors
 	return $sCalcCommit
@@ -127,14 +127,14 @@ func _download_repo()
 	if @error then
 		switch @error
 			case 1
-				MsgBox(16, "Error", "Cannot connect to the server.")
+				MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot connect to the server."))
 			case 2
-				MsgBox(16, "Error", "Could not download file :(")
+				MsgBox(16, translate($sLang, "Error"), translate($sLang, "Could not download file :("))
 			case 3
-				MsgBox(16, "Error", "The zip containing the repository could not be processed.")
+				MsgBox(16, translate($sLang, "Error"), translate($sLang, "The zip containing the repository could not be processed."))
 		EndSwitch
 	else
-		MsgBox(64, "Success!", "Universal calculator updated successfully. Press OK to exit, then run the new version.")
+		MsgBox(64, translate($sLang, "Success!"), translate($sLang, "Universal calculator updated successfully. Press OK to exit, then run the new version."))
 		;return $bDownloaded
 		exit
 	EndIf ; errors
