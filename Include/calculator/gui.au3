@@ -36,13 +36,13 @@ Func CreateParams(ByRef $idListView)
 				Return SetError(4, 0, "")
 		EndSwitch
 	Else
-		$hCommandGUI = GUICreate(translate($sLang, "Aplying formula") &": " & $aArray[1])
+		$hCommandGUI = GUICreate(translate($sLang, "Applying formula") &": " & $aArray[1])
 		$label1 = GUICtrlCreateLabel(translate($sLang, "Enter the needed parameters of this formula, then press apply to get the final result. If you need help with parameters of each formula, please read the guide"), 0, 10, 200, 20)
 		For $I = 0 To $iNumParam - 1
 			$iLabels[$I] = GUICtrlCreateLabel(translate($sLang, "parameter") &" " & $I + 1, 80 * $I, 10, 100, 20)
 			$idInputs[$I] = GUICtrlCreateInput("", 80, 80 * $I, 100, 20)
 		Next
-		$idApply = GUICtrlCreateButton(translate($sLang, "&Aply"), 300, 300, 100, 20)
+		$idApply = GUICtrlCreateButton(translate($sLang, "&Apply"), 300, 300, 100, 20)
 		$idClosebtn = GUICtrlCreateButton(translate($sLang, "&Close"), 300, 380, 100, 20)
 		Local $aAccel[][2] = [["{enter}", $idApply]]
 		GUISetAccelerators($aAccel)
