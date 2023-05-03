@@ -12,7 +12,7 @@
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func _ErrFunc()
+Func _ErrFunc($oError)
 	local $sMessageType
 	; Do anything here.
 	;if $sType == "internet" then
@@ -21,7 +21,6 @@ Func _ErrFunc()
 			@TAB & "Error code: " & @TAB & @TAB & "0x" & Hex($oError.number) & @CRLF & _
 			@TAB & "Error Description:" & @TAB & $oError.windescription & @CRLF & _
 			@TAB & "error AutoIt description: " & @TAB & $oError.description & @CRLF & _
-			;@TAB & "Message: " & @TAB & $sMessageType & @CRLF & _
 			@TAB & "Source: " & @TAB & @TAB & $oError.source & @CRLF & _
 			@TAB & "Help file: " & @TAB & $oError.helpfile & @CRLF & _
 			@TAB & "Help context: " & @TAB & $oError.helpcontext & @CRLF & _
