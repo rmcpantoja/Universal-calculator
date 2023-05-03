@@ -31,7 +31,7 @@ Func _Options($sConfigFolder, $sConfigPath)
 	GuiCtrlSetTip(-1, "Allows the user to change the language of the program. More languages can be added by suggesting the author and reading the translation guide doc to contribute.")
 	$idAccessibility = GUICtrlCreateButton("Enhanced accessibility enhabled: " & $sEnhancedAccessibility, 70, 10, 120, 20)
 	GuiCtrlSetTip(-1, "Allows the user to toggle Enhanced Accessibility. The enhanced accessibility feature is focused on improving the experience for people with visual impairments.")
-	GUICtrlCreateLabel("Choose autocompletion mode", 130, 10, 120, 20)
+	GUICtrlCreateLabel("Choose autocompletion mode:", 130, 10, 120, 20)
 	$idAutocompleteFormula = GUICtrlCreateCombo("", 130, 70, 120, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 	GuiCtrlSetTip(-1, "Changes the way you want to fill in the formulas, either by using a GUI to set the parameters or if you want to fill in the parameters manually in the interaction field, for this the respective command will be added first.")
 	If $sFormulaAutocompletion = "1" Then

@@ -1,4 +1,5 @@
 ; Update and check the latest repo:
+#include "..\error_reporter.au3"
 #include <InetConstants.au3>
 #include "..\_zip.au3"
 #include-once
@@ -18,15 +19,18 @@
 ; Example .......: Yes
 ; ===============================================================================================================================
 Func _GetLastCommit($sOwner, $sRepo)
+	Local $oErrorHandler = ObjEvent("AutoIt.Error", "_ErrFunc")
 	Local $oHTTP = ObjCreate("WinHttp.WinHttpRequest.5.1")
 	$oHTTP.Open("GET", "https://api.github.com/repos/" & $sOwner & "/" & $sRepo & "/commits", False)
+	If (@error) Then Return SetError(1, 0, "")
 	$oHTTP.setRequestHeader("User-Agent", "Mozilla/5.0")
 	$oHTTP.setRequestHeader("Accept", "application/vnd.github+json")
 	$oHTTP.Send()
-	If $oHTTP.Status <> 200 Then Return SetError(1, 0, "")
+	If (@error) Then Return SetError(2, 0, "")
+	If $oHTTP.Status <> 200 Then Return SetError(3, 0, "")
 	Local $sResponse = $oHTTP.ResponseText
 	Local $aCommits = StringRegExp($sResponse, '\{"sha":"(.*?)",', 3)
-	If @error Then Return SetError(2, 0, "")
+	If @error Then Return SetError(4, 0, "")
 	Return $aCommits[0]
 EndFunc
 

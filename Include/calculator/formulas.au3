@@ -33,7 +33,37 @@ global $aInfoFormulas = ["Radians to Degrees|Converts a given number of radians 
 		"Time|Gets the time of a speed and distance", _
 		"Speed|Gets the speed of a given distance and time"]
 ; form table:
-global $aCommandTable = [["deg", 1], ["max", 2], ["min", 2], ["rad", 2], ["acc", 2], ["acos", 1], ["asin", 1], ["atan", 1], ["pc", 2], ["cos", 1], ["dox", 2], ["log", 1], ["ro", 1], ["sin", 1], ["tan", 1], ["ap-a1", 3], ["gp-a1", 3], ["ap-d", 3], ["gp-r", 3], ["ap-n", 3], ["gp-n", 3], ["ap-an", 3], ["gp-an", 3], ["ap-sn1", 3], ["gp-sn1", 3], ["raise", 2], ["root", 2], ["sr", 1], ["cr", 1], ["time", 2], ["vel", 2]]
+global $aCommandTable = [["deg", 1], _
+		["max", 2], _
+		["min", 2], _
+		["rad", 2], _
+		["acc", 2], _
+		["acos", 1], _
+		["asin", 1], _
+		["atan", 1], _
+		["pc", 2], _
+		["cos", 1], _
+		["dox", 2], _
+		["log", 1], _
+		["ro", 1], _
+		["sin", 1], _
+		["tan", 1], _
+		["ap-a1", 3], _
+		["gp-a1", 3], _
+		["ap-d", 3], _
+		["gp-r", 3], _
+		["ap-n", 3], _
+		["gp-n", 3], _
+		["ap-an", 3], _
+		["gp-an", 3], _
+		["ap-sn1", 3], _
+		["gp-sn1", 3], _
+		["raise", 2], _
+		["root", 2], _
+		["sr", 1], _
+		["cr", 1], _
+		["time", 2], _
+		["vel", 2]]
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _get_formule_table
 ; Description ...: Gets the default formula table, useful for working with parameters.
