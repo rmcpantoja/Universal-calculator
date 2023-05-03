@@ -1,6 +1,8 @@
 ; Update and check the latest repo:
 #include "..\error_reporter.au3"
+#include "globals.au3"
 #include <InetConstants.au3>
+#include "..\translator.au3"
 #include "..\_zip.au3"
 #include-once
 
@@ -52,7 +54,7 @@ EndFunc
 Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
 	Local $iRet = InetGet($sRepoURL, $sDestinationFolder & "\" & $sFileName, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
 	If $iRet == 0 Then return SetError(1, 0, "")
-	ProgressOn("Downloading", "Downloading latest repo updates...", "0%")
+	ProgressOn(translate($sLang, "Downloading"), translate($sLang, "Downloading latest repo updates..."), "0%")
 	While InetGetInfo($iRet, $INET_DOWNLOADCOMPLETE) = 0
 		$iBytesRead = InetGetInfo($iRet, $INET_DOWNLOADREAD)
 		$iTotalBytes = InetGetInfo($iRet, $INET_DOWNLOADSIZE)
@@ -60,7 +62,7 @@ Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
 		ProgressSet($iProgress)
 		Sleep(10)
 	WEnd
-	ProgressSet(100, "Done!")
+	ProgressSet(100, translate($sLang, "Done!"))
 	Sleep(1000)
 	ProgressOff()
 	if not FileExists($sDestinationFolder & "\" & $sFileName) then return SetError(2, 0, "")
