@@ -1,3 +1,4 @@
-#include "include\NumToWord.au3"
-$iNum = 25432
-MsgBox(0, "Num2Words", NumToWord($iNum))
+#include "..\include\mymath\num2words.au3"
+$nNumber = 25432
+$bIncludeAnd = False
+MsgBox($MB_SYSTEMMODAL, "Numbers to words conversion", NumberToWords($nNumber, $bIncludeAnd))

@@ -1,3 +1,5 @@
+__pycache__/
+__pycache__/*
 BackUp/
 config/
 config/*
@@ -8,3 +10,4 @@ Include/mymath/BackUp/
 *.exe
 *.cmd
 _ScreenCapture_CaptureWnd.au3
+calculator GUI_stripped.au3

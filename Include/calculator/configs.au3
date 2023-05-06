@@ -52,9 +52,11 @@ Func _config_start($sConfigFolder, $sConfigPath)
 			$sCommit = $sCommitGot
 			IniWrite($sConfigPath, "Update", "Last commit", $sCommit)
 		elseIf $sCommit <> $sCommitGot then
-			MsgBox(64, translate($sLang, "New repository update"), translate($sLang, "A new update of the calculator was found. Press OK to apply it."))
-			IniWrite($sConfigPath, "Update", "Last commit", $sCommitGot)
-			_download_repo()
+			if not $sCommitGot == "" then
+				MsgBox(64, translate($sLang, "New repository update"), translate($sLang, "A new update of the calculator was found. Press OK to apply it."))
+				IniWrite($sConfigPath, "Update", "Last commit", $sCommitGot)
+				_download_repo()
+			endIf ; got commit empti because the internet connection.
 		EndIf ; commit is empti or different
 	EndIf ; compiled
 	Return 1
