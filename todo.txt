@@ -1,11 +1,9 @@
 • Hacer la barra de menú como siempre, como todos los programas.
 • si se agrega la barra de menú, se podría agregar un soporte que pueda permitir conversiones, por ejemplo de altura, peso, profundidad, etc.
 • Para que podamos conocer el historial, es decir, saber la operación que hayamos escrito antes, se puede añadir un elemento en la barra de menú para el historial de operaciones. Esto, en una versión futura lo tendré.
-Emplear la libreria advanced math e investigar más sobre algunas fórmulas de ella.
+• Emplear la librería advanced math e investigar más sobre algunas fórmulas de ella.
 Esta es una tarea que requiere mucho por hacer si queremos aplicarla en la calculadora.
-Estoy pensando que en lugar de la lista de fórmulas, se agregue una vista de árbol donde estén categorizadas las fórmulas. Por ejemplo: fórmulas de potencia, raíces, progresiones, etc. Así podrán encontrar mejor las fórmulas en este sentido, en lugar de que la lista tenga todas las fórmulas de todos los tipos en una sola y cada vez que se agreguen más fórmulas sea un lío.
-Agregar sistema de actualizaciones.
-Agregar accesibilidad mejorada. Será necesario, desde luego.
-Agregar el sistema de traducción.
-Corregir el problemón que, a veces, cuando vas a la lista de fórmulas, te lleva a las opciones. Aunque es raro, ya que se indica cuando el control está enfocado en la lista.
-Este proyecto ya está finalizando la etapa de desarrollo para presentar la versión final. Por tanto, habrá lentitud para lectores de pantalla. Entonces... habrá que dejar guiGetMSB() y usar eventos para la GUI para su aceleración... aunque consume mucha CPU. Podría trabajar en um complemento de NVDA para GUIS con AutoIt3 o algo.
+• Estoy pensando que en lugar de la lista de fórmulas, se agregue una vista de árbol donde estén categorizadas las fórmulas. Por ejemplo: fórmulas de potencia, raíces, progresiones, etc. Así podrán encontrar mejor las fórmulas en este sentido, en lugar de que la lista tenga todas las fórmulas de todos los tipos en una sola y cada vez que se agreguen más fórmulas sea un lío.
+• Agregar sistema de actualizaciones.
+• Corregir el problemón que, a veces, cuando vas a la lista de fórmulas, te lleva a las opciones. Aunque es raro, ya que se indica cuando el control está enfocado en la lista.
+• Este proyecto ya está finalizando la etapa de desarrollo para presentar la versión final. Por tanto, habrá lentitud para lectores de pantalla. Entonces... habrá que dejar guiGetMSB() y usar eventos para la GUI para su aceleración... aunque consume mucha CPU. Podría trabajar en um complemento de NVDA para GUIS con AutoIt3 o algo.

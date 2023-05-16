@@ -27,9 +27,9 @@ Func _Options($sConfigFolder, $sConfigPath)
 	Local $sCompleteOption, $sCompleteRead
 	_config_start($sConfigFolder, $sConfigPath)
 	$hOptionsGui = GUICreate(translate($sLang, "Options"))
-	$idLanguage = GUICtrlCreateButton(translate($sLang, "Change language, currently") & " " & $sLang, 10, 10, 120, 20)
+	$idLanguage = GUICtrlCreateButton(translate($sLang, "Change language, currently") & " " & GetLanguageName($sLang), 10, 10, 120, 20)
 	GuiCtrlSetTip(-1, translate($sLang, "Allows the user to change the language of the program. More languages can be added by suggesting the author and reading the translation guide doc to contribute."))
-	$idAccessibility = GUICtrlCreateButton(translate($sLang, "Enhanced accessibility enhabled:") & " " & $sEnhancedAccessibility, 70, 10, 120, 20)
+	$idAccessibility = GUICtrlCreateButton(translate($sLang, "Enhanced accessibility enhabled:") & " " & translate($sLang, $sEnhancedAccessibility), 70, 10, 120, 20)
 	GuiCtrlSetTip(-1, translate($sLang, "Allows the user to toggle Enhanced Accessibility. The enhanced accessibility feature is focused on improving the experience for people with visual impairments."))
 	GUICtrlCreateLabel(translate($sLang, "Choose autocompletion mode:"), 130, 10, 120, 20)
 	$idAutocompleteFormula = GUICtrlCreateCombo("", 130, 70, 120, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -53,6 +53,8 @@ Func _Options($sConfigFolder, $sConfigPath)
 				exitpersonaliced()
 			Case $idAccessibility
 				_configure_accessibility($sConfigPath)
+				MsgBox(48, translate($sLang, "Information"), translate($sLang, "Please restart Universal Calculator for the changes to take effect."))
+				exitpersonaliced()
 			Case $idAutocompleteFormula
 				$sCompleteOption = GUICtrlRead($idAutocompleteFormula)
 				If $sCompleteOption = translate($sLang, "GUI mode") Then

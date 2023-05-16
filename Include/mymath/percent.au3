@@ -1,5 +1,5 @@
 #include ".\misc.au3" ; for avoit conflicts with native misc.au3.
-
+#include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _percent
 ; Description ...: gets the percentage of a minimum and maximum value and the number to get percentage on. (default 100)
