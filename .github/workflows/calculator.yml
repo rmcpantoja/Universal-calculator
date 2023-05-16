@@ -1,0 +1,55 @@
+name: calculator
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: Windows-latest
+##    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache tools
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            autoit-v3-setup.exe
+            SciTE4AutoIt3.exe
+            C:\Program Files (x86)\AutoIt3\SciTE\Au3Stripper
+          key: v2
+      - name: Download tools
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          curl -sSfLO https://www.autoitscript.com/cgi-bin/getfile.pl?autoit3/autoit-v3-setup.exe `
+            -sSfLO https://www.autoitscript.com/cgi-bin/getfile.pl?../autoit3/scite/download/SciTE4AutoIt3.exe `
+            -sSfLO https://www.autoitscript.com/autoit3/scite/download/Au3Stripper.zip
+          Expand-Archive Au3Stripper.zip "${env:ProgramFiles(x86)}\AutoIt3\SciTE\Au3Stripper"
+      - name: Install tools
+        run: |
+          Start-Process autoit-v3-setup.exe -ArgumentList /S -NoNewWindow -Wait
+          Start-Process SciTE4AutoIt3.exe -ArgumentList /S -NoNewWindow -Wait
+      - name: Compiling
+        run: |
+          Start-Process "${env:ProgramFiles(x86)}\AutoIt3\AutoIt3.exe" "`"${env:ProgramFiles(x86)}\AutoIt3\SciTE\AutoIt3Wrapper\AutoIt3Wrapper.au3`" /NoStatus /prod /in btx.au3" -NoNewWindow -Wait
+      - uses: actions/upload-artifact@v2
+        with:
+          name: calculator
+          path: |
+            Documentation\en\*.txt
+            Documentation\es\*.txt
+            lng\*.lang
+            lng\*.txt
+            nvdaControllerClient32.dll
+            UniversalCalc.exe
+          if-no-files-found: error
+      - name: Zip package
+        if: startsWith(github.ref, 'refs/tags/')
+        run: 7z a universal_calculator.zip UniversalCalc.exe Documentation\en\ Documentation\es\ lng\ *.dll
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            universal_calculator.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
