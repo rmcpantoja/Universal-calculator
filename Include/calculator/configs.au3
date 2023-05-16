@@ -45,7 +45,7 @@ Func _config_start($sConfigFolder, $sConfigPath)
 		$sFormulaAutocompletion = "1"
 	EndIf
 	; check last commit:
-	if not @compiled then
+	if not @compiled and $sCommitGot = "" then
 		$sCommitGot = string(_calc_commit())
 		$sCommit = string(IniRead($sConfigPath, "Update", "Last commit", ""))
 		if $sCommit = "" then

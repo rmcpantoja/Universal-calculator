@@ -1,4 +1,5 @@
 ; Creador de operaciones muy cool.
+#include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: generarOperacion
 ; Description ...: Crea una suma, resta, multiplicación, división o potencia.

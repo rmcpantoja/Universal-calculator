@@ -3,6 +3,7 @@
 ; incluyendo dependencias:
 #include "array.au3"
 #include "generador_operaciones.au3"
+#include-once
 ; declarando:
 Global $sOperators
 ; aquí vamos a establecer todos los operadores matemáticos que se puede soportar para hacer tareas:

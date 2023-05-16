@@ -31,7 +31,8 @@ global $aInfoFormulas = ["Radians to Degrees|Converts a given number of radians 
 		"Square Root|Applies the square root of a given number", _
 		"cube root|Applies the cube root of a given number", _
 		"Time|Gets the time of a speed and distance", _
-		"Speed|Gets the speed of a given distance and time"]
+		"Speed|Gets the speed of a given distance and time", _
+		"Percentage|Gets the percent of a minimum and maximum value."]
 ; form table:
 global $aCommandTable = [["deg", 1], _
 		["max", 2], _
@@ -63,7 +64,8 @@ global $aCommandTable = [["deg", 1], _
 		["sr", 1], _
 		["cr", 1], _
 		["time", 2], _
-		["vel", 2]]
+		["vel", 2], _
+		["per", 2]]
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _get_formule_table
 ; Description ...: Gets the default formula table, useful for working with parameters.

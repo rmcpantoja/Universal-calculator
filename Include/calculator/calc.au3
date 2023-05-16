@@ -7,6 +7,7 @@
 #include "keyboard.au3"
 #include <Math.au3>
 ;#include "..\advmathudf-au3\Math.au3"
+#include "..\mymath\percent.au3"
 #include "..\mymath\perimeter.au3"
 #include "..\mymath\Progresiones.au3"
 #include "..\mymath\raiz.au3"
@@ -180,6 +181,11 @@ Func _calc()
 					If _CheckComandParams($aNumbers, 2) Then $nResult = _tiempo($aNumbers[1], $aNumbers[2])
 				Case $aSplitCMD[1] = "vel"
 					If _CheckComandParams($aNumbers, 2) Then $nResult = _Velocidad($aNumbers[1], $aNumbers[2])
+				Case $aSplitCMD[1] = "per"
+					If _CheckComandParams($aNumbers, 2) Then
+						$aPercentArray = _percent($aNumbers[1], $aNumbers[2])
+						$nResult = $aPercentArray[1]
+					EndIf
 				Case Else
 					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The command") &" " & $aSplitCMD[1] & " " &Translate($sLang, "does not exist. If you think it is a function that allows you to perform a mathematical formula, please tell me so I can add it."))
 			EndSelect

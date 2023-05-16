@@ -4,7 +4,7 @@
 ; calculator globals:
 Global $aSplitCMD[]
 Global $aNumbers[]
-Global $aNums[], $aFormulas[], $aProcess[]
+Global $aNums[], $aFormulas[], $aProcess[], $aPercentArray[]
 global $nResult
 Global $sOperation = "", $sProcess = "", $sRaiseType = "", $sRootType = ""
 ; program globals:
@@ -17,7 +17,7 @@ Global $hGUI, $idInter, $idClearScreen, $idFORMULAS, $idOptions, $idGetReason, $
 global $sConfigFolder = @ScriptDir &"\config"
 global $sConfigPath = $sConfigFolder &"\config.st"
 ; related to configs:
-global $sEnableProgresses, $sEnhancedAccessibility, $sFormulaAutocompletion, $sCommit, $sCommitGot, $sLang = "en"
+global $sEnableProgresses, $sEnhancedAccessibility, $sFormulaAutocompletion, $sCommit, $sCommitGot = "", $sLang = "en"
 ; global functions:
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: exitpersonaliced
