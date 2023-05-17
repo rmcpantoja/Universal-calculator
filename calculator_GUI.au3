@@ -16,7 +16,7 @@
 ;#AutoIt3Wrapper_Run_Tidy=y
 ;#AutoIt3Wrapper_Run_Au3Stripper=y
 #Au3Stripper_Parameters=/so
-#AutoIt3Wrapper_Run_Before="%scriptdir%\build.bat"
+#AutoIt3Wrapper_Run_Before="build.bat"
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ; include dependencies:
 #include "include\calculator\configs.au3"
