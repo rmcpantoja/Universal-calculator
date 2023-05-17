@@ -40,7 +40,7 @@ jobs:
             lng\*.lang
             lng\*.txt
             nvdaControllerClient32.dll
-            ${{ github.workspace }}/../compiled/UniversalCalc.exe
+            D:/a/Universal-calculator/compiled/UniversalCalc.exe
           if-no-files-found: error
       - name: Zip package
         if: startsWith(github.ref, 'refs/tags/')
