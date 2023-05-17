@@ -108,7 +108,8 @@ Func _copyFolders($sBaseDir, $aPaths)
 	If Not FileExists($sBaseDir) Then Return SetError(1, 0, "") ; please call to _start_paths first
 	For $sPath In $aPaths
 		If Not FileExists(@ScriptDir & "\" & $sPath) Then Return SetError(2, 0, $sPath)
-		DirCopy(@ScriptDir & "\" & $sPath, $sBaseDir & "\" & $sPath)
+		consoleWrite("Copying folder " & @ScriptDir & "\" & $sPath & " to " & $sBaseDir &@crlf)
+		DirCopy(@ScriptDir & "\" & $sPath, $sBaseDir & "\" & $sPath, 1)
 	Next
 	Return 1
 EndFunc   ;==>_copyFolders

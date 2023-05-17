@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_Comment=This is a mini calculator, but big at same time, because you can do advanced formulas and operations too!
 #AutoIt3Wrapper_Res_Description=Universal calculator
-#AutoIt3Wrapper_Res_Fileversion=0.1.0.45
+#AutoIt3Wrapper_Res_Fileversion=0.1.0.46
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_ProductName=Universal calculator
 #AutoIt3Wrapper_Res_ProductVersion=0.1.0.0
@@ -16,7 +16,7 @@
 ;#AutoIt3Wrapper_Run_Tidy=y
 ;#AutoIt3Wrapper_Run_Au3Stripper=y
 #Au3Stripper_Parameters=/so
-;#AutoIt3Wrapper_Run_Before="%scriptdir%\build.bat"
+#AutoIt3Wrapper_Run_Before="%scriptdir%\build.bat"
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ; include dependencies:
 #include "include\calculator\configs.au3"
