@@ -1,11 +1,6 @@
-Notas de código fuente
 source code notes
-Para ejecutar la calculadora, necesitas AutoIt 3.3.16+
 To run the calculator, you need AutoIt 3.3.16+
-Además, necesitas el paquete completo de sciTe (de manera opcional) pero se usa para depurar el programa y así como también para usar las herramientas de compilación, comprobación de errores, indentado, pruebas, etc.
 Also, you need the complete SciTe for AutoIt package installed (optional) because this uses it for program debugging, for use the compiling tools such as autoitResWrapper, check errors, tiding, tests, etc.
-El programa originalmente ha sido escrito en español. Tengo una librería que escribí para emplear un sistema de traducciones para otros idiomas que actualmente se usa muy poco, así que puedo implementarlo en este proyecto.
-The program originally has been writed in spanish. I have a library that I have writen for implement a translation sistem for other languages, so that I can implement this translation sistem in this project soon.
 # spanish only
 ## acerca de este proyecto:
 Me inspiré en hacer esto gracias a que durante los estudios y sobre todo en el tema Matemáticas tenía ideas para ir reforzando distintas operaciones, fórmulas, sistemas... algunas cosas las hacía en la mente (la uso mucho hasta día de hoy porque es lo mejor debido a que puedes razonar cómo es la estructura de cada uno de estos algoritmos) pero usaba la calculadora de Windows para hacer operaciones más complejas como trigonometría. Pese a que era un poco confusa para mí, buscaba alternatibas como los lenguajes de programación. Es más, cuando comencé la preparatoria había tenido presente en mente que terminaría creando una calculadora una vez tubiera un número considerable de fórmulas, hasta que lo termino haciendo en el fin del primer año.
