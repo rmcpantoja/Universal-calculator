@@ -86,7 +86,7 @@ EndFunc   ;==>_HideKey
 ; Example .......: No
 ; ===============================================================================================================================
 Func _ClearScreen($idScreenControl)
-	If GUICtrlRead($idScreenControl) = "" Then
+	If GUICtrlRead($idScreenControl) = "" and uBound($aStoreOperators) = 0 Then
 		if $sEnhancedAccessibility = "Yes" then
 			Speaking(Translate($sLang, "there's nothing to clean"))
 		Else

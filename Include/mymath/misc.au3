@@ -30,7 +30,7 @@ Func _count_math_Operators($sString)
 		EndIf
 	Next
 	Return $aResults
-EndFunc
+EndFunc   ;==>_count_math_Operators
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _get_math_Operators
@@ -49,8 +49,8 @@ Func _get_math_Operators($sString)
 	Local $aResults[1]
 	Local $iIndex = -1
 
-	For $i = 1 To StringLen($sString)
-		Local $sCurrent = StringMid($sString, $i, 1)
+	For $I = 1 To StringLen($sString)
+		Local $sCurrent = StringMid($sString, $I, 1)
 
 		If StringRegExp($sCurrent, "[+\-*/^]") Then
 			$iIndex += 1
@@ -59,12 +59,12 @@ Func _get_math_Operators($sString)
 		EndIf
 	Next
 	__CleanArray($aResults)
-	if not $aResults[0] = "" then
+	If Not $aResults[0] = "" Then
 		Return $aResults
-	else
-		return SetError(1, 0, "")
+	Else
+		Return SetError(1, 0, "")
 	EndIf
-EndFunc
+EndFunc   ;==>_get_math_Operators
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _split_math_operators
@@ -80,20 +80,33 @@ EndFunc
 ; Example .......: No
 ; ===============================================================================================================================
 Func _split_math_operators($sOperation)
-	if not IsString($sOperation) then Return SetError(1, 0, "")
+	If Not IsString($sOperation) Then Return SetError(1, 0, "")
 	Local $aResult = StringRegExp($sOperation, "([\d\.]+)|([+|\-|*|/|^])", 3)
 	__CleanArray($aResult)
 	Return $aResult
-EndFunc
+EndFunc   ;==>_split_math_operators
 
-func _is_math_operation($sOperation)
-	$iRes = uBound(_get_math_Operators($sOperation))
-	if @error then
-		return False
-	else
-		return True
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _is_math_operation
+; Description ...: Checks if the current operation is a math operation that contains symbols.
+; Syntax ........: _is_math_operation($sOperation)
+; Parameters ....: $sOperation          - a string value that contains the operation.
+; Return values .: True if the operation is valid (that is, it contains mathematical symbols), false on failure.
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: Yes
+; ===============================================================================================================================
+Func _is_math_operation($sOperation)
+	$iRes = UBound(_get_math_Operators($sOperation))
+	If @error Then
+		Return False
+	Else
+		Return True
 	EndIf
-EndFunc
+EndFunc   ;==>_is_math_operation
 
 ; #INTERNAL_USE_ONLY# ===========================================================================================================
 ; Name ..........: __CleanArray
@@ -111,7 +124,7 @@ EndFunc
 Func __CleanArray(ByRef $aArray)
 	If Not IsArray($aArray) Then Return SetError(1, 0, "")
 	For $I = 0 To UBound($aArray) - 1
-		If UBound($aArray) = $I+1 Then ExitLoop
+		If UBound($aArray) = $I + 1 Then ExitLoop
 		If $aArray[$I] = "" Then
 			_ArrayDelete($aArray, $I)
 			If @error Then
