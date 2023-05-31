@@ -94,6 +94,7 @@ Func _ClearScreen($idScreenControl)
 		EndIf
 	Else
 		GUICtrlSetData($idScreenControl, "")
+		$aStoreOperators = []
 		$sInterOperacion = ""
 		$nResult = ""
 		if $sEnhancedAccessibility = "Yes" then speaking(Translate($sLang, "Screen cleaned"))

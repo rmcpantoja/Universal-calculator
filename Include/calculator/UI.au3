@@ -131,7 +131,7 @@ Func Main()
 			Case $idClearScreen
 				_ClearScreen($idInter)
 			Case $idEqual
-				_calc()
+				_calc($idInter)
 			Case $idOptions
 				_Options($sConfigFolder, $sConfigPath)
 			Case $idGetReason

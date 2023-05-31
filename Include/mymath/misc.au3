@@ -52,14 +52,18 @@ Func _get_math_Operators($sString)
 	For $i = 1 To StringLen($sString)
 		Local $sCurrent = StringMid($sString, $i, 1)
 
-		If StringRegExp($sCurrent, "[+\-*/]") Then
+		If StringRegExp($sCurrent, "[+\-*/^]") Then
 			$iIndex += 1
 			ReDim $aResults[$iIndex + 1]
 			$aResults[$iIndex] = $sCurrent
 		EndIf
 	Next
-
-	Return $aResults
+	__CleanArray($aResults)
+	if not $aResults[0] = "" then
+		Return $aResults
+	else
+		return SetError(1, 0, "")
+	EndIf
 EndFunc
 
 ; #FUNCTION# ====================================================================================================================
@@ -80,6 +84,15 @@ Func _split_math_operators($sOperation)
 	Local $aResult = StringRegExp($sOperation, "([\d\.]+)|([+|\-|*|/|^])", 3)
 	__CleanArray($aResult)
 	Return $aResult
+EndFunc
+
+func _is_math_operation($sOperation)
+	$iRes = uBound(_get_math_Operators($sOperation))
+	if @error then
+		return False
+	else
+		return True
+	EndIf
 EndFunc
 
 ; #INTERNAL_USE_ONLY# ===========================================================================================================

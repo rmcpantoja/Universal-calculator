@@ -4,7 +4,7 @@
 ; calculator globals:
 Global $aSplitCMD[]
 Global $aNumbers[]
-Global $aNums[], $aFormulas[], $aProcess[], $aPercentArray[]
+Global $aNums[], $aFormulas[], $aProcess[], $aPercentArray[], $aStoreOperators[]
 global $nResult
 Global $sOperation = "", $sProcess = "", $sRaiseType = "", $sRootType = ""
 ; program globals:

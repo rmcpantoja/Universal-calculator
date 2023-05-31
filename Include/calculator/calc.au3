@@ -28,7 +28,7 @@
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func _calc()
+Func _calc($idInter)
 	$sOperation = GUICtrlRead($idInter)
 	If $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
@@ -65,6 +65,11 @@ Func _calc()
 		If StringInStr($sOperation, ",") Then $sOperation = StringReplace($sOperation, ",", ".")
 		; Now we check if a command has been typed. The key sign for this is the ":" (colon) sign.
 		If Not StringInStr($sOperation, ":") Then
+			if not _is_math_operation($sOperation) then
+				$sOperation = $sOperation & $aStoreOperators[uBound($aStoreOperators)-2] & $aStoreOperators[UBound($aStoreOperators)-1]
+			else
+				$aStoreOperators = _split_math_operators($sOperation)
+			EndIf
 			$nResult = Execute($sOperation)
 			If @error Then
 				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An error occurred while doing this operation. Please check that the syntax is correct."))
