@@ -33,17 +33,16 @@ jobs:
           Start-Process "${env:ProgramFiles(x86)}\AutoIt3\AutoIt3.exe" "`"${env:ProgramFiles(x86)}\AutoIt3\SciTE\AutoIt3Wrapper\AutoIt3Wrapper.au3`" /NoStatus /prod /in calculator_GUI.au3" -NoNewWindow -Wait
       - name: Move executable
         run: |
-          Move-Item D:/a/Universal-calculator/compiled/UniversalCalc.exe D:/a/Universal-calculator/
+          Move-Item D:/a/Universal-calculator/compiled/UniversalCalc.exe D:/a/Universal-calculator/Universal-calculator/
       - uses: actions/upload-artifact@v3
         with:
           name: calculator
           path: |
-            Documentation\en\*.txt
-            Documentation\es\*.txt
+            Documentation\*\*.txt
             lng\*.lang
             lng\*.txt
             nvdaControllerClient32.dll
-            D:/a/Universal-calculator/UniversalCalc.exe
+            UniversalCalc.exe
           if-no-files-found: error
       - name: Zip package
         if: startsWith(github.ref, 'refs/tags/')
