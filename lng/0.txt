@@ -136,3 +136,4 @@ Are you sure?=
 Yes=
 No=
 Information=
+Percentage|Gets the percent of a minimum and maximum value=
