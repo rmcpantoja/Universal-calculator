@@ -123,7 +123,6 @@ Func Main()
 	$aAccelKeys[15][1] = $idHideKey
 	$aAccelKeys[16][0] = "^{bs}"
 	$aAccelKeys[16][1] = $idClearScreen
-	_arraydisplay($aAccelKeys)
 	GUISetAccelerators($aAccelKeys)
 	; show GUI:
 	GUISetState(@SW_SHOW)
