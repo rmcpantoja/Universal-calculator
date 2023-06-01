@@ -114,7 +114,16 @@ Func Main()
 		GUICtrlCreateListViewItem(Translate($sLang, $aInfoFormulas[$I]) & "|" & $aFlista[$I], $idFORMULAS)
 	Next
 	; setting key accelerators:
-	Local $aAccelKeys[][2] = [["^+k", $idHideKey], ["^{bs}", $idClearScreen]]
+	Local $aAccelKeys[17][2] 
+	For $I = 0 To UBound($aNums) -4
+		$aAccelKeys[$I][0] = _convert_key_from_keymap($I)
+		$aAccelKeys[$I][1] = $aNums[$I]
+	Next
+	$aAccelKeys[15][0] = "^+k"
+	$aAccelKeys[15][1] = $idHideKey
+	$aAccelKeys[16][0] = "^{bs}"
+	$aAccelKeys[16][1] = $idClearScreen
+	_arraydisplay($aAccelKeys)
 	GUISetAccelerators($aAccelKeys)
 	; show GUI:
 	GUISetState(@SW_SHOW)
@@ -124,14 +133,14 @@ Func Main()
 			; setting switch for keyboard keys:
 			Case $aNums[0] To $aNums[17]
 				For $I = 0 To UBound($aNums)
-					If $idMsg = $aNums[$I] Then _addSymbol($hGui, $aNums[$I])
+					If $idMsg = $aNums[$I] Then _addSymbol($hGui, $aNums[$I], $sEnhancedAccessibility, $bSpeak_numbers)
 				Next
 			Case $idHideKey
 				_HideKey($aNums, $idHideKey, $bHideKeyboard)
 			Case $idClearScreen
 				_ClearScreen($idInter)
 			Case $idEqual
-				_calc($hGUI, $idFORMULAS, $idInter)
+				_calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 			Case $idOptions
 				_Options($sConfigFolder, $sConfigPath)
 			Case $idGetReason

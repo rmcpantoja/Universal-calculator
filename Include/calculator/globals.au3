@@ -5,6 +5,7 @@
 Global $aSplitCMD[]
 Global $aNumbers[]
 Global $aNums[], $aFormulas[], $aProcess[], $aPercentArray[], $aStoreOperators[]
+global $bSpeak_numbers = False
 global $nResult
 Global $sOperation = "", $sProcess = "", $sRaiseType = "", $sRootType = ""
 ; program globals:

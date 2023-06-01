@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_Comment=This is a mini calculator, but big at same time, because you can do advanced formulas and operations too!
 #AutoIt3Wrapper_Res_Description=Universal calculator
-#AutoIt3Wrapper_Res_Fileversion=0.1.0.47
+#AutoIt3Wrapper_Res_Fileversion=0.1.0.48
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_ProductName=Universal calculator
 #AutoIt3Wrapper_Res_ProductVersion=0.1.0.0
@@ -22,10 +22,13 @@
 #include "include\calculator\configs.au3"
 #include <Constants.au3>
 #include "include\calculator\globals.au3"
+#include "include\calculator\keyboard.au3"
 #include "include\calculator\UI.au3"
 ;Universal calculator (in development):
+SoundPlay(@ScriptDir & "\sounds\open.ogg", 0)
 ; check for configs:
 _config_start($sConfigFolder, $sConfigPath)
-SoundPlay(@ScriptDir & "\sounds\open.ogg", 0)
+; Configure global accessibility commands:
+if $sEnhancedAccessibility = "yes" then HotKeySet("+{f2}", "_switch_read_keys")
 ; We call the main function of the program:
 Main()

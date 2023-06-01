@@ -137,3 +137,5 @@ Yes=Yes
 No=No
 Information=Information
 Percentage|Gets the percent of a minimum and maximum value=Percentage|Gets the percent of a minimum and maximum value
+Character reading enabled=Character reading enabled
+Character reading disabled=Character reading disabled

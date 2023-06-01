@@ -3,7 +3,22 @@
 #include "..\reader.au3"
 #include "..\translator.au3"
 #include-once
-#include-once
+Local $aCalculatorKeys[15][2] = [[0, "{numpad0}"], _
+		[1, "{numpad1}"], _
+		[2, "{numpad2}"], _
+		[3, "{numpad3}"], _
+		["-", "{NUMPADSUB}"], _
+		[4, "{numpad4}"], _
+		[5, "{numpad5}"], _
+		[6, "{numpad6}"], _
+		["*", "{NUMPADMULT}"], _
+		[7, "{numpad7}"], _
+		[8, "{numpad8}"], _
+		[9, "{numpad9}"], _
+		["/", "{NUMPADDIV}"], _
+		[".", "{NUMPADDOT}"], _
+		["+", "{NUMPADADD}"]]
+
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IsFocused
 ; Description ...: Check if a control is focused.
@@ -34,11 +49,12 @@ EndFunc   ;==>_IsFocused
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func _addSymbol($hGui, $idSymbolButton)
+Func _addSymbol($hGui, $idSymbolButton, $sEnhancedAccessibility, $bSpeak_numbers)
 	Local $sText
-	$sText = ControlGetText($hGUI, "", "Edit1")
+	$sText = ControlGetText($hGui, "", "Edit1")
 	; we place said number or symbol to the field:
-	ControlSetText($hGUI, "", "Edit1", $sText & ControlGetText($hGUI, "", $idSymbolButton))
+	ControlSetText($hGui, "", "Edit1", $sText & ControlGetText($hGui, "", $idSymbolButton))
+	If $sEnhancedAccessibility = "yes" And $bSpeak_numbers Then speaking(ControlGetText($hGui, "", $idSymbolButton), True)
 EndFunc   ;==>_addSymbol
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _HideKey
@@ -53,7 +69,7 @@ EndFunc   ;==>_addSymbol
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
+Func _HideKey($aKeyControls, $idHideKeyControl, ByRef $bHideKeyboard)
 	If Not $bHideKeyboard Then
 		; we make a for to hide all keyboard controls based on the array we created:
 		For $I = 0 To UBound($aKeyControls)
@@ -61,7 +77,7 @@ Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
 		Next
 		$bHideKeyboard = True
 		GUICtrlSetState($idHideKeyControl, $GUI_checked)
-		if $sEnhancedAccessibility = "Yes" then speaking(Translate($sLang, "Keyboard hidden"))
+		If $sEnhancedAccessibility = "Yes" Then speaking(Translate($sLang, "Keyboard hidden"))
 	Else
 		; here we do the opposite, we show it.
 		For $I = 0 To UBound($aNums)
@@ -69,9 +85,52 @@ Func _HideKey($aKeyControls, $idHideKeyControl, byRef $bHideKeyboard)
 		Next
 		$bHideKeyboard = False
 		GUICtrlSetState($idHideKey, $GUI_unchecked)
-		if $sEnhancedAccessibility = "Yes" then speaking(Translate($sLang, "Keyboard shown"))
+		If $sEnhancedAccessibility = "Yes" Then speaking(Translate($sLang, "Keyboard shown"))
 	EndIf
 EndFunc   ;==>_HideKey
+
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _switch_read_keys
+; Description ...: Change the state to say the written numbers for enhanced accessibility.
+; Syntax ........: _switch_read_keys()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func _switch_read_keys()
+	If Not $bSpeak_numbers Then
+		$bSpeak_numbers = True
+		speaking(Translate($sLang, "Character reading enabled"), True)
+	Else
+		$bSpeak_numbers = False
+		speaking(Translate($sLang, "Character reading disabled"), True)
+	EndIf
+EndFunc   ;==>_switch_read_keys
+
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _convert_key_from_keymap
+; Description ...: Convert a key to a compatible one to establish key mappings
+; Syntax ........: _convert_key_from_keymap($iIndice)
+; Parameters ....: $iIndice             - the index of the key to convert.
+; Return values .: The converted key. @error=1 if $iInt is not an integer and $error = 2 if the index is greater than 14.
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func _convert_key_from_keymap($iIndice)
+	If Not IsInt($iIndice) Then Return SetError(1, 0, "")
+	If $iIndice > 14 Then Return SetError(2, 0, "")
+	Return $aCalculatorKeys[$iIndice][1]
+EndFunc   ;==>_convert_key_from_keymap
+
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _ClearScreen
 ; Description ...: function used to clear the calculator screen, including results.
@@ -86,8 +145,8 @@ EndFunc   ;==>_HideKey
 ; Example .......: No
 ; ===============================================================================================================================
 Func _ClearScreen($idScreenControl)
-	If GUICtrlRead($idScreenControl) = "" and uBound($aStoreOperators) = 0 Then
-		if $sEnhancedAccessibility = "Yes" then
+	If GUICtrlRead($idScreenControl) = "" And UBound($aStoreOperators) = 0 Then
+		If $sEnhancedAccessibility = "Yes" Then
 			Speaking(Translate($sLang, "there's nothing to clean"))
 		Else
 			MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "there's nothing to clean"))
@@ -97,6 +156,6 @@ Func _ClearScreen($idScreenControl)
 		ReDim $aStoreOperators[0]
 		$sInterOperacion = ""
 		$nResult = ""
-		if $sEnhancedAccessibility = "Yes" then speaking(Translate($sLang, "Screen cleaned"))
+		If $sEnhancedAccessibility = "Yes" Then speaking(Translate($sLang, "Screen cleaned"))
 	EndIf
 EndFunc   ;==>_ClearScreen
