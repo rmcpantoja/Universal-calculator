@@ -3,7 +3,7 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Compile_Both=N
 #AutoIt3Wrapper_UseX64=n
-#AutoIt3Wrapper_Res_Comment=This is a mini calculator, but big at same time, because you can do advanced formulas and operations too!
+#AutoIt3Wrapper_Res_Comment=An easy, simple and interactive calculator where you can interact using many formulas and mathematical operations
 #AutoIt3Wrapper_Res_Description=Universal calculator
 #AutoIt3Wrapper_Res_Fileversion=0.1.0.48
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
@@ -24,11 +24,16 @@
 #include "include\calculator\globals.au3"
 #include "include\calculator\keyboard.au3"
 #include "include\calculator\UI.au3"
-;Universal calculator (in development):
+;program loading:
 SoundPlay(@ScriptDir & "\sounds\open.ogg", 0)
 ; check for configs:
 _config_start($sConfigFolder, $sConfigPath)
-; Configure global accessibility commands:
-if $sEnhancedAccessibility = "yes" then HotKeySet("+{f2}", "_switch_read_keys")
+if $sEnhancedAccessibility = "yes" then _accessibility_config_start($sConfigFolder, $sConfigPath)
+; Configure global accessibility key commands:
+if $sEnhancedAccessibility = "yes" then
+	for $iScriptKey = 0 to uBound($aScriptkeys) -1
+		HotKeySet($aScriptkeys[$iScriptKey][0], $aScriptkeys[$iScriptKey][1])
+	Next
+EndIf
 ; We call the main function of the program:
 Main()

@@ -1,5 +1,6 @@
 #include "globals.au3"
 #include <GuiConstantsEx.au3>
+#include "options.au3"
 #include "..\reader.au3"
 #include "..\translator.au3"
 #include-once
@@ -130,6 +131,23 @@ Func _convert_key_from_keymap($iIndice)
 	If $iIndice > 14 Then Return SetError(2, 0, "")
 	Return $aCalculatorKeys[$iIndice][1]
 EndFunc   ;==>_convert_key_from_keymap
+
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _scriftkey_options
+; Description ...:
+; Syntax ........: _scriftkey_options()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+func _scriftkey_options()
+	return _accessibility_Options($sConfigFolder, $sConfigPath)
+EndFunc
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _ClearScreen

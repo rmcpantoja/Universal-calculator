@@ -4,7 +4,9 @@
 #include "globals.au3"
 #include <GuiConstantsEx.au3>
 #include "language_manager.au3"
+#include "..\menu_nvda.au3"
 #include "..\translator.au3"
+#include-once
 ;_options()
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _Options
@@ -76,6 +78,58 @@ Func _Options($sConfigFolder, $sConfigPath)
 		EndSwitch
 	WEnd
 EndFunc   ;==>_Options
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _accessibility_Options
+; Description ...:
+; Syntax ........: _accessibility_Options($sConfigFolder, $sConfigPath)
+; Parameters ....: $sConfigFolder       - a string value.
+;                  $sConfigPath         - a string value.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+func _accessibility_Options($sConfigFolder, $sConfigPath)
+	Local $hOptionsGui
+	_accessibility_config_start($sConfigFolder, $sConfigPath)
+	local $sOptions = translate($sLang, "Say the result when pressing the equal button") & "|" & _
+		translate($sLang, "Enable / disable:") & " " & translate($lng, "Announce position of items in menus and in lists") & "|" & _
+		translate($sLang, "exit")
+	$hOptionsGui = GUICreate(translate($sLang, "Accessibility options"))
+	GUISetState(@SW_SHOW)
+	sleep(500)
+	speaking(Translate($sLang, "Use up and down arrows to scroll through the options and enter to change them."))
+	while 1
+		$iMenu = reader_create_menu("Menu", $sOptions, $sReadPosition, translate($sLang, "OF"))
+		switch $iMenu
+			case 1
+				if $sSpeak_result = "No" then
+					$sSpeak_result = "Yes"
+				else
+					$sSpeak_result = "no"
+				endIf
+				speaking(translate($sLang, $sSpeak_result), True)
+				IniWrite($sConfigPath, "Accessibility", "Say result when pressing equal", $sSpeak_result)
+			case 2
+				if $sReadPosition = "1" then
+					$sReadPosition = "0"
+					speaking(translate($sLang, "Disabled"), True)
+				else
+					$sReadPosition = "1"
+					speaking(translate($sLang, "Enabled"), True)
+				endIf
+				IniWrite($sConfigPath, "Accessibility", "Announce position", $sReadPosition)
+			case 3
+				speaking(Translate($sLang, "Settings saved"), True)
+				exitLoop
+		EndSwitch
+		sleep(100)
+	WEnd
+	GUIDelete($hOptionsGui)
+EndFunc
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _DeleteSettings
 ; Description ...: Function that deletes all program settings.

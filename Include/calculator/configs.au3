@@ -23,12 +23,6 @@
 Func _config_start($sConfigFolder, $sConfigPath)
 	Local $iAccessMSG
 	If Not FileExists($sConfigFolder) Then DirCreate($sConfigFolder)
-	; beep progress bars:
-	$sEnableProgresses = IniRead($sConfigPath, "General settings", "Beep for progress bars", "")
-	If $sEnableProgresses = "" Then
-		IniWrite($sConfigPath, "General settings", "Beep for progress bars", "No")
-		$sEnableProgresses = "No"
-	EndIf
 	; check for language:
 	$sLang = IniRead($sConfigPath, "General settings", "language", "")
 	If $sLang = "" Then Selector()
@@ -61,6 +55,42 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	EndIf ; compiled
 	Return 1
 EndFunc   ;==>_config_start
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _accessibility_config_start
+; Description ...:
+; Syntax ........: _accessibility_config_start($sConfigFolder, $sConfigPath)
+; Parameters ....: $sConfigFolder       - a string value.
+;                  $sConfigPath         - a string value.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+func _accessibility_config_start($sConfigFolder, $sConfigPath)
+	If Not FileExists($sConfigFolder) Then DirCreate($sConfigFolder)
+	; beep progress bars:
+	$sEnableProgresses = IniRead($sConfigPath, "Accessibility", "Beep for progress bars", "")
+	If $sEnableProgresses = "" Then
+		IniWrite($sConfigPath, "Accessibility", "Beep for progress bars", "No")
+		$sEnableProgresses = "No"
+	EndIf
+	; reader position:
+	$sReadPosition = IniRead($sConfigPath, "Accessibility", "Announce position", "")
+	If $sReadPosition = "" Then
+		IniWrite($sConfigPath, "Accessibility", "Announce position", "1")
+		$sReadPosition = "1"
+	EndIf
+	; Speak characters:
+	$sSpeak_result = IniRead($sConfigPath, "Accessibility", "Say result when pressing equal", "")
+	If $sSpeak_result = "" Then
+		IniWrite($sConfigPath, "Accessibility", "Say result when pressing equal", "no")
+		$sSpeak_result = "no"
+	EndIf
+	return 1
+EndFunc
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _ConfigureAccessibility
 ; Description ...:

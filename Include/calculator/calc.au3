@@ -22,6 +22,7 @@
 ; Parameters ....: $hGUI                - the handler that contains the GUI of the program.
 ;                  $idFORMULAS          - The ID of the formula list control.
 ;                  $idInter             - the ID of the interaction inputbox control.
+;                  $idEqual             - the ID of the equal button control.
 ; Return values .: None
 ; Author ........: Mateo Cedillo
 ; Modified ......:
@@ -77,7 +78,11 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An error occurred while doing this operation. Please check that the syntax is correct."))
 			Else
 				GUICtrlSetData($idInter, $nResult)
-				if $sEnhancedAccessibility = "Yes" then Speaking($nResult, True)
+				if $sEnhancedAccessibility = "Yes" then
+					if $sSpeak_result = "yes" then
+						Speaking($nResult, True)
+					EndIf
+				EndIf
 				If Not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
 			EndIf
 		Else
@@ -220,7 +225,11 @@ Func _interact($sOperation, $idInter)
 	If Not @error Then
 		GUICtrlSetData($idInter, $nResult)
 		if _IsFocused($hGUI, $idInter) then GUICtrlSetState($idInter, $GUI_Focus)
-		if $sEnhancedAccessibility = "Yes" then Speaking($nResult, True)
+		if $sEnhancedAccessibility = "Yes" then
+			if $sSpeak_result = "Yes" then
+				Speaking($nResult, True)
+			EndIf
+		EndIf
 	Else
 		Switch @error
 			Case 1

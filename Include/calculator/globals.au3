@@ -19,6 +19,10 @@ global $sConfigFolder = @ScriptDir &"\config"
 global $sConfigPath = $sConfigFolder &"\config.st"
 ; related to configs:
 global $sEnableProgresses, $sEnhancedAccessibility, $sFormulaAutocompletion, $sCommit, $sCommitGot = "", $sLang = "en"
+; related to accessibility configs:
+global $aScriptkeys[][2] = [["+{f2}", "_switch_read_keys"], _
+	["^+o", "_scriftkey_options"]]
+global $sSpeak_result, $sReadPosition
 ; global functions:
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: exitpersonaliced
