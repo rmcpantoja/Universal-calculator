@@ -1,7 +1,9 @@
 #include "..\translator.au3"
 #include-once
 ; help table:
-global $aInfoFormulas = ["Radians to Degrees|Converts a given number of radians to degrees", _
+global $aInfoFormulas = [ _
+		"Average|Gets the total average of a cople of numbers", _
+		"Radians to Degrees|Converts a given number of radians to degrees", _
 		"Maximum number|Between two numbers, check which is the maximum", _
 		"Minimum number|Between two numbers, check which is the minimum", _
 		"Degrees to Radians|Converts a given number of degrees to radians", _
@@ -32,9 +34,12 @@ global $aInfoFormulas = ["Radians to Degrees|Converts a given number of radians 
 		"cube root|Applies the cube root of a given number", _
 		"Time|Gets the time of a speed and distance", _
 		"Speed|Gets the speed of a given distance and time", _
-		"Percentage|Gets the percent of a minimum and maximum value"]
+		"Percentage|Gets the percent of a minimum and maximum value" _
+]
 ; form table:
-global $aCommandTable = [["deg", 1], _
+global $aCommandTable = [ _
+		["av", null], _
+		["deg", 1], _
 		["max", 2], _
 		["min", 2], _
 		["rad", 2], _
@@ -65,7 +70,8 @@ global $aCommandTable = [["deg", 1], _
 		["cr", 1], _
 		["time", 2], _
 		["vel", 2], _
-		["per", 2]]
+		["per", 2 _
+]]
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _get_formule_table
 ; Description ...: Gets the default formula table, useful for working with parameters.

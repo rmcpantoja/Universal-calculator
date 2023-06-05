@@ -1,10 +1,12 @@
 ; program compiler:
 #include <Array.au3>
 #include <File.au3>
-Local $aPaths = ["Documentation", _
+Local $aPaths = [ _
+		"Documentation", _
 		"images", _
 		"lng", _
-		"sounds"]
+		"sounds" _
+]
 Local $sCopy = ""
 ConsoleWrite("Compilation util: starting..." &@crlf)
 if @compiled then

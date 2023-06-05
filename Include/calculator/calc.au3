@@ -1,3 +1,4 @@
+#include "..\mymath\average.au3"
 #include "globals.au3"
 #include "..\mymath\elevar.au3"
 #include "..\mymath\fisica.au3"
@@ -114,6 +115,13 @@ Func _interact($sOperation, $idInter)
 	Next
 	; We make support for commands or formulas available:
 	Select
+		Case $aSplitCMD[1] = "av"	
+			_ArrayDelete($aNumbers, 0)
+			if uBound($aNumbers) > 1 and $aNumbers[0] > 0 then
+				$nResult = _average($aNumbers)
+			else
+				MsgBox(16, "Error", "There are no parametters or average:1 item")
+			EndIf
 		Case $aSplitCMD[1] = "deg"
 			If _CheckComandParams($aNumbers, 1) Then $nResult = _Degree($aNumbers[1])
 		Case $aSplitCMD[1] = "max"

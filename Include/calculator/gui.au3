@@ -18,7 +18,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func CreateParams(ByRef $idListView)
-	Local $sExtract, $sCommandToSearch, $aArray[], $iNumParam, $idInputs[], $iLabels[], $idApply, $nFormula = ""
+	Local $sExtract, $sCommandToApply, $sCommandToSearch, $aArray[], $iNumParam, $idInputs[], $iLabels[], $idApply, $nFormula = ""
 	$sExtract = GUICtrlRead(GUICtrlRead($idListView))
 	If Not $sExtract = 0 Then
 		$aArray = StringSplit($sExtract, "|")
@@ -26,6 +26,7 @@ Func CreateParams(ByRef $idListView)
 	Else
 		Return SetError(2, 0, "")
 	EndIf
+	$sCommandToApply = $aArray[1]
 	$sCommandToSearch = $aArray[3]
 	$iNumParam = _SearchParam($sCommandToSearch)
 	If @error Then
@@ -38,10 +39,15 @@ Func CreateParams(ByRef $idListView)
 	Else
 		$hCommandGUI = GUICreate(translate($sLang, "Applying formula") &": " & $aArray[1])
 		$label1 = GUICtrlCreateLabel(translate($sLang, "Enter the needed parameters of this formula, then press apply to get the final result. If you need help with parameters of each formula, please read the guide"), 0, 10, 200, 20)
-		For $I = 0 To $iNumParam - 1
-			$iLabels[$I] = GUICtrlCreateLabel(translate($sLang, "parameter") &" " & $I + 1, 80 * $I, 10, 100, 20)
-			$idInputs[$I] = GUICtrlCreateInput("", 80, 80 * $I, 100, 20)
-		Next
+		if not $sCommandToApply = "av" then
+			For $I = 0 To $iNumParam - 1
+				$iLabels[$I] = GUICtrlCreateLabel(translate($sLang, "parameter") &" " & $I + 1, 80 * $I, 10, 100, 20)
+				$idInputs[$I] = GUICtrlCreateInput("", 80, 80 * $I, 100, 20)
+			Next
+		Else
+			$iLabels[0] = GUICtrlCreateLabel(translate($sLang, "Please separate your values with space"), 80, 10, 100, 20)
+			$idInputs[0] = GUICtrlCreateInput("", 80, 80, 100, 20)
+		EndIf
 		$idApply = GUICtrlCreateButton(translate($sLang, "&Apply"), 300, 300, 100, 20)
 		$idClosebtn = GUICtrlCreateButton(translate($sLang, "&Close"), 300, 380, 100, 20)
 		Local $aAccel[][2] = [["{enter}", $idApply]]
@@ -54,7 +60,6 @@ Func CreateParams(ByRef $idListView)
 					Return SetError(5, 0, "")
 					ExitLoop
 				Case $idApply
-					;todo: si faltan elementos...
 					For $I = 0 To UBound($idInputs) - 1
 						If GUICtrlRead($idInputs[$I]) = "" Then
 							GUIDelete($hCommandGUI)
@@ -65,7 +70,11 @@ Func CreateParams(ByRef $idListView)
 						EndIf
 					Next
 					GUIDelete($hCommandGUI)
-					Return $sCommandToSearch & ":" & StringStripWS($nFormula, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)
+					if $sCommandToApply = "av" then
+						return StringSplit(StringStripWS($nFormula, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES), " ")
+					else
+						Return $sCommandToSearch & ":" & StringStripWS($nFormula, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)
+					endIf
 					ExitLoop
 			EndSwitch
 		WEnd
