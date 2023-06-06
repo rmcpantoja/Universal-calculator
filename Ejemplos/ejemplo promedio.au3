@@ -1,3 +1,4 @@
+#include "..\include\mymath\average.au3"
 local $aNums = [ _
 	13, _
 	11, _
@@ -6,15 +7,11 @@ local $aNums = [ _
 	12, _
 	14 _
 ]
-$iAverage = _average($aNums )
+$iAverage = _average($aNums)
 MsgBox(0, "", $iAverage)
-func _average($aNums)
-	If not IsArray($aNums) then Return SetError(1, 0, "")
-	local $sPlus
-	for $iNum in $aNums
-		$sPlus &= $iNum & "+"
-	Next
-	$sPlus = StringTrimRight($sPlus, 1)
-	$sPlus = Execute($sPlus)
-	return $sPlus / uBound($aNums)
-EndFunc
+; error debugging:
+ReDim $aNums[0]
+$iAverage = _average($aNums)
+if @error then
+MsgBox(0, "error in averaging", "Code: " & @error)
+EndIf

@@ -15,9 +15,10 @@
 ; ===============================================================================================================================
 func _average($aNums)
 	If not IsArray($aNums) then Return SetError(1, 0, "")
+	if uBound($aNums) <= 1 then Return SetError(2, 0, "")
 	local $sPlus
 	for $iNum in $aNums
-		if not IsNumber($iNum) then Return SetError(2, 0, "")
+		if not IsNumber($iNum) then Return SetError(3, 0, "")
 		$sPlus &= $iNum & "+"
 	Next
 	$sPlus = StringTrimRight($sPlus, 1)

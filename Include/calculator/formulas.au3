@@ -2,7 +2,7 @@
 #include-once
 ; help table:
 global $aInfoFormulas = [ _
-		"Average|Gets the total average of a cople of numbers", _
+		"Average|gets the total average of several set numbers", _
 		"Radians to Degrees|Converts a given number of radians to degrees", _
 		"Maximum number|Between two numbers, check which is the maximum", _
 		"Minimum number|Between two numbers, check which is the minimum", _

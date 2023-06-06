@@ -65,7 +65,7 @@ Func reader_create_menu($description, $options, $announcePos = "1", $indicator =
 			$file_to_open = $items[$selection]
 			SoundPlay(@scriptdir &"\sounds/bound.ogg", 0)
 			If $announcePos = "1" Then
-				speaking($file_to_open & ", " & $selection & $indicator & " " & $menu_length, true)
+				speaking($file_to_open & ", " & $selection & " " & $indicator & " " & $menu_length, true)
 			Else
 				speaking($file_to_open, true)
 			EndIf
@@ -80,7 +80,7 @@ Func reader_create_menu($description, $options, $announcePos = "1", $indicator =
 			$file_to_open = $items[$selection]
 			SoundPlay(@scriptdir &"\sounds/bound.ogg", 0)
 			If $announcePos = "1" Then
-				speaking($file_to_open & ", " & $selection & "of " & $menu_length, true)
+				speaking($file_to_open & ", " & $selection & " " & $indicator & " " & $menu_length, true)
 			Else
 				speaking($file_to_open, true)
 			EndIf

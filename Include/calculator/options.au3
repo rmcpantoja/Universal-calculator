@@ -95,8 +95,9 @@ EndFunc   ;==>_Options
 func _accessibility_Options($sConfigFolder, $sConfigPath)
 	Local $hOptionsGui
 	_accessibility_config_start($sConfigFolder, $sConfigPath)
-	local $sOptions = translate($sLang, "Say the result when pressing the equal button") & "|" & _
-		translate($sLang, "Enable / disable:") & " " & translate($lng, "Announce position of items in menus and in lists") & "|" & _
+	local $sOptions = _
+		translate($sLang, "Say the result when pressing the equal button") & "|" & _
+		translate($sLang, "Enable / disable:") & " " & translate($sLang, "Announce position of items in menus and in lists") & "|" & _
 		translate($sLang, "exit")
 	$hOptionsGui = GUICreate(translate($sLang, "Accessibility options"))
 	GUISetState(@SW_SHOW)

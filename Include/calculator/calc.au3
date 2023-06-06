@@ -120,7 +120,7 @@ Func _interact($sOperation, $idInter)
 			if uBound($aNumbers) > 1 and $aNumbers[0] > 0 then
 				$nResult = _average($aNumbers)
 			else
-				MsgBox(16, "Error", "There are no parametters or average:1 item")
+				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "There are no parametters or average:number has only one parametter"))
 			EndIf
 		Case $aSplitCMD[1] = "deg"
 			If _CheckComandParams($aNumbers, 1) Then $nResult = _Degree($aNumbers[1])
