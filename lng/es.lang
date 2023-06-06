@@ -149,3 +149,4 @@ Enabled=Activado
 Settings saved=Opciones guardadas
 Average|gets the total average of several set numbers=Promedio|Obtiene el promedio total de varios números establecidos
 Please separate your values with space=Por favor, separa tus valores con un espacio.
+There are no parametters or average:number has only one parametter=No hay parámetros o average:número solo tiene un parámetro
