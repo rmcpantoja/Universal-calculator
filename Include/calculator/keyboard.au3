@@ -4,7 +4,8 @@
 #include "..\reader.au3"
 #include "..\translator.au3"
 #include-once
-Local $aCalculatorKeys[15][2] = [[0, "{numpad0}"], _
+Local $aCalculatorKeys[15][2] = [ _
+		[0, "{numpad0}"], _
 		[1, "{numpad1}"], _
 		[2, "{numpad2}"], _
 		[3, "{numpad3}"], _
@@ -18,7 +19,8 @@ Local $aCalculatorKeys[15][2] = [[0, "{numpad0}"], _
 		[9, "{numpad9}"], _
 		["/", "{NUMPADDIV}"], _
 		[".", "{NUMPADDOT}"], _
-		["+", "{NUMPADADD}"]]
+		["+", "{NUMPADADD}"] _
+]
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IsFocused

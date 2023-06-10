@@ -44,8 +44,9 @@ Func _GetReason($idInter, $sOperation)
 			Case "per"
 				$sProcess = _percent_get_reason($aPercentArray)
 				MsgBox(0, translate($sLang, "Reason"), translate($sLang, "The reason why") & " " & $apercentArray[0] & " " & translate($sLang, "is equal to") &" " & $nResult & ", " &translate($sLang, "it is because") &" " & $sProcess & " " &translate($sLang, "is equal to") &" " & execute($sProcess))
+			Case "av"
+				MsgBox(0, translate($sLang, "Reasons"), "")
 
-				;Vamos a comentar esto, porque trae problemas. EN realidad, la razón para sr está deshabilitada porque está comentada, hasta que encontremos una solución para poder obtener correctamente las razones.
 				;case "sr"
 				;$aProcess = RaizObtenerRazon2(2, $aNumbers[1])
 				;$aProcess[0] = StringReplace($aProcess[0], "*", " para ")
