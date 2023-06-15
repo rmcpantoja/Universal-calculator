@@ -1,5 +1,6 @@
 ; language manager:
 #include <ComboConstants.au3>
+#include <File.au3>
 #include "globals.au3"
 #include "..\translator.au3"
 #include-once
@@ -17,7 +18,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func Selector()
-	Global $aLangCodes[]
+	Global $aLangFiles, $aLangCodes[]
 	Global $bSelected = False
 	Global $hLangGUI, $hLanguages
 	Global $iOldOpt, $iSearch = 0
@@ -26,23 +27,17 @@ Func Selector()
 	$iOldOpt = Opt("GUIOnEventMode", 1)
 	GUICtrlCreateLabel("Select language:", -1, 0)
 	GUISetBkColor(0x00E0FFFF)
-	$hLanguages = FileFindFirstFile(@ScriptDir & "\lng\*.lang")
-	If $hLanguages = -1 Then
+	$aLangFiles = _FileListToArrayRec(@ScriptDir & "\lng", "*.lang", 1, 0, 2)
+	If @error Then
 		MsgBox(16, "Fatal error", "We cannot find the language files. Please download the program again...")
 		Exit
 	EndIf
-	While 1
-		$iSearch = $iSearch + 1
-		$sCollect = FileFindNextFile($hLanguages)
-		If @error Then
-			;MsgBox(16, "Error", "We cannot find the language files or they are corrupted.")
-			ExitLoop
-		EndIf
+	For $I = 1 To $aLangFiles[0]
+		$sCollect = $aLangFiles[$I]
 		$sCurrentCode = StringLeft($sCollect, 2)
 		$sCodes &= GetLanguageName($sCurrentCode) & ", " & GetLanguageCode($sCurrentCode) & "|"
-		$aLangCodes[$iSearch] = GetLanguageCode($sCurrentCode)
-		Sleep(10)
-	WEnd
+		$aLangCodes[$I-1] = GetLanguageCode($sCurrentCode)
+	Next
 	$langcount = StringSplit($sCodes, "|")
 	Global $Choose = GUICtrlCreateCombo("", 100, 50, 200, 30, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 	GUICtrlSetOnEvent(-1, "LangSelect")
