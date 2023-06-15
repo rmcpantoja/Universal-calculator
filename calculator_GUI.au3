@@ -25,7 +25,7 @@
 #include "include\calculator\keyboard.au3"
 #include "include\calculator\UI.au3"
 ;program loading:
-SoundPlay(@ScriptDir & "\sounds\open.ogg", 0)
+SoundPlay(@ScriptDir & "\sounds\open.wav", 0)
 ; check for configs:
 _config_start($sConfigFolder, $sConfigPath)
 if $sEnhancedAccessibility = "yes" then _accessibility_config_start($sConfigFolder, $sConfigPath)

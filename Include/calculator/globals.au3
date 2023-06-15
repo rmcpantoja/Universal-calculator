@@ -38,7 +38,7 @@ global $sSpeak_result, $sReadPosition
 ; Example .......: No
 ; ===============================================================================================================================
 Func exitpersonaliced()
-	SoundPlay(@ScriptDir & "\sounds/close.ogg", 0)
+	SoundPlay(@ScriptDir & "\sounds/close.wav", 0)
 	_nvdaControllerClient_free()
 	Sleep(1000)
 	Exit
