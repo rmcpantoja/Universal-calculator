@@ -150,3 +150,5 @@ Settings saved=Opciones guardadas
 Average|gets the total average of several set numbers=Promedio|Obtiene el promedio total de varios números establecidos
 Please separate your values with space=Por favor, separa tus valores con un espacio.
 There are no parametters or average:number has only one parametter=No hay parámetros o average:número solo tiene un parámetro
+It is possible to know the reason why the average of all these numbers is equal to=Es posible saber la razón de por qué el promedio de todos estos números es igual a
+As follows:=De la siguiente forma:

@@ -150,3 +150,5 @@ Settings saved=
 Average|gets the total average of several set numbers=
 Please separate your values with space=
 There are no parametters or average:number has only one parametter=
+It is possible to know the reason why the average of all these numbers is equal to=
+As follows:=

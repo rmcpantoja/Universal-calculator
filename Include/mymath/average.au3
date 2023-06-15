@@ -44,7 +44,7 @@ EndFunc
 ; Example .......: Yes
 ; ===============================================================================================================================
 func _average_get_reason($aNums)
-	Local $aReasons[]
+	Local $aReasons[2]
 	local $sOperation
 	If not IsArray($aNums) then Return SetError(1, 0, "")
 	if uBound($aNums) <= 1 then Return SetError(2, 0, "")

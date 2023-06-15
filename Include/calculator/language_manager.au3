@@ -20,7 +20,7 @@
 Func Selector()
 	Global $aLangFiles, $aLangCodes[]
 	Global $bSelected = False
-	Global $hLangGUI, $hLanguages
+	Global $hLangGUI
 	Global $iOldOpt, $iSearch = 0
 	Global $sCurrentCode = "", $sRead = "", $sCollect = "", $sCodes = ""
 	$hLangGUI = GUICreate("Language Selection")
