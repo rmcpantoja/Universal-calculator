@@ -7,6 +7,7 @@ include/BackUp/
 include/calculator/BackUp/
 BackUp/*
 Include/mymath/BackUp/
+speaker/*.onnx
 *.exe
 *.cmd
 _ScreenCapture_CaptureWnd.au3

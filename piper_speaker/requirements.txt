@@ -1,0 +1,5 @@
+numpy
+onnxruntime==1.14.1
+espeak_phonemizer
+tqdm
+soundfile
