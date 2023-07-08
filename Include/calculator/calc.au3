@@ -1,7 +1,7 @@
 #include "..\mymath\average.au3"
-#include "globals.au3"
 #include "..\mymath\elevar.au3"
 #include "..\mymath\fisica.au3"
+#include "..\Glance\glance.au3"
 #include "globals.au3"
 #include "gui.au3"
 #include <GuiButton.au3>

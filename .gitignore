@@ -11,3 +11,4 @@ Include/mymath/BackUp/
 *.cmd
 _ScreenCapture_CaptureWnd.au3
 calculator GUI_stripped.au3
+glance.dll

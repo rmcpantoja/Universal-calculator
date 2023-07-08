@@ -1,0 +1,3 @@
+[submodule "Include/Glance"]
+	path = Include/Glance
+	url = https://github.com/kcvinker/Glance

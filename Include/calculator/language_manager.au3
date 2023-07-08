@@ -2,6 +2,7 @@
 #include <ComboConstants.au3>
 #include <File.au3>
 #include "globals.au3"
+#include "..\Glance\glance.au3"
 #include "..\translator.au3"
 #include-once
 ; #FUNCTION# ====================================================================================================================

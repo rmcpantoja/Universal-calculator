@@ -1,5 +1,5 @@
 #include "globals.au3"
-#include <GuiConstantsEx.au3>
+#include "..\Glance\glance.au3"
 #include "params.au3"
 #include <StringConstants.au3>
 #include "..\translator.au3"
