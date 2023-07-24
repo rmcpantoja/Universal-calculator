@@ -34,7 +34,10 @@
 ; ===============================================================================================================================
 Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	$sOperation = GUICtrlRead($idInter)
-	If $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
+	; recently, I discovered that execute can run script functions too, so:
+	if StringInStr($sOperation, '("') or StringInStr($sOperation, '($') then
+		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
+	elseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
 	ElseIf _IsFocused($hGUI, $idFORMULAS) Then
 		; if we have focused the control in the list of commands, what to do:
