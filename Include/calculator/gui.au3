@@ -39,14 +39,14 @@ Func CreateParams(ByRef $idListView)
 	Else
 		$hCommandGUI = GUICreate(translate($sLang, "Applying formula") &": " & $aArray[1])
 		$label1 = GUICtrlCreateLabel(translate($sLang, "Enter the needed parameters of this formula, then press apply to get the final result. If you need help with parameters of each formula, please read the guide"), 0, 10, 200, 20)
-		if not $sCommandToApply = "av" then
+		if $sCommandToSearch = "av" then
+			$iLabels[0] = GUICtrlCreateLabel(translate($sLang, "Please separate your values with space"), 80, 10, 100, 20)
+			$idInputs[0] = GUICtrlCreateInput("", 80, 80, 100, 20)
+		Else
 			For $I = 0 To $iNumParam - 1
 				$iLabels[$I] = GUICtrlCreateLabel(translate($sLang, "parameter") &" " & $I + 1, 80 * $I, 10, 100, 20)
 				$idInputs[$I] = GUICtrlCreateInput("", 80, 80 * $I, 100, 20)
 			Next
-		Else
-			$iLabels[0] = GUICtrlCreateLabel(translate($sLang, "Please separate your values with space"), 80, 10, 100, 20)
-			$idInputs[0] = GUICtrlCreateInput("", 80, 80, 100, 20)
 		EndIf
 		$idApply = GUICtrlCreateButton(translate($sLang, "&Apply"), 300, 300, 100, 20)
 		$idClosebtn = GUICtrlCreateButton(translate($sLang, "&Close"), 300, 380, 100, 20)
@@ -70,11 +70,7 @@ Func CreateParams(ByRef $idListView)
 						EndIf
 					Next
 					GUIDelete($hCommandGUI)
-					if $sCommandToApply = "av" then
-						return StringSplit(StringStripWS($nFormula, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES), " ")
-					else
-						Return $sCommandToSearch & ":" & StringStripWS($nFormula, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)
-					endIf
+					Return $sCommandToSearch & ":" & StringStripWS($nFormula, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)
 					ExitLoop
 			EndSwitch
 		WEnd

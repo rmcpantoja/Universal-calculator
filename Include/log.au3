@@ -1,15 +1,32 @@
 #include-once
 #include <fileConstants.au3>
-Global $ifSave = IniRead(@ScriptDir &"\config\config.st", "General settings", "Save Logs", "")
-Select
-	Case $ifSave = ""
-		IniWrite(@ScriptDir &"\config\config.st", "General settings", "Save Logs", "No")
-		$ifSave = "no"
-	Case $ifSave = "no"
-		sleep(10)
-	Case else
-		Local $logfile = FileOpen("logs\" & @YEAR & @MON & @MDAY & ".log", $FC_OVERWRITE + $FC_CREATEPATH)
-EndSelect
+local $hLogFile
+$sLogPath = @ScriptDir &"\logs"
+$SSave = ""
+
+; #FUNCTION# ====================================================================================================================
+; Name ..........: log_start
+; Description ...: Starts a log file.
+; Syntax ........: log_start()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+func log_start()
+	Local $logfile
+	$SSave = IniRead(@ScriptDir &"\config\config.st", "General settings", "Save Logs", "")
+	Select
+		Case $SSave = ""
+			IniWrite(@ScriptDir &"\config\config.st", "General settings", "Save Logs", "Yes")
+			$SSave = "Yes"
+	EndSelect
+	if $SSave = "Yes" then $hLogFile = FileOpen($sLogPath & "\" & @YEAR & @MON & @MDAY & ".log", $FC_OVERWRITE + $FC_CREATEPATH)
+EndFunc
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: writeinlog
 ; Description ...: write a text or information to the log
@@ -17,15 +34,15 @@ EndSelect
 ; Parameters ....: $text                - A dll struct value.
 ; Return values .: None
 ; Author ........: Mateo Cedillo
-; Modified ......: 
-; Remarks .......: 
-; Related .......: 
-; Link ..........: 
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
 Func writeinlog($text)
-	If $ifSave = "yes" Then
-		FileWrite($logfile, @YEAR & "-" & @MON & "-" & @MDAY & " " & @HOUR & ":" & @MIN & ": " & $text & @CRLF)
+	If $sSave = "yes" Then
+		FileWrite($hLogFile, @YEAR & "-" & @MON & "-" & @MDAY & " " & @HOUR & ":" & @MIN & ": " & $text & @CRLF)
 	EndIf
 EndFunc   ;==>writeinlog
 ; #FUNCTION# ====================================================================================================================
@@ -36,20 +53,20 @@ EndFunc   ;==>writeinlog
 ;                  $sAction             - A string value.
 ; Return values .: None
 ; Author ........: Mateo Cedillo
-; Modified ......: 
-; Remarks .......: 
-; Related .......: 
-; Link ..........: 
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
 Func ___DeBug($iError, $sAction)
 	Switch $iError
 		Case -1
-			FileWrite($logfile, @CRLF & "-" & $sAction & @CRLF)
+			FileWrite($hLogFile, @CRLF & "-" & $sAction & @CRLF)
 		Case 0
-			FileWrite($logfile, @CRLF & "+" & $sAction & " - OK" & @CRLF)
+			FileWrite($hLogFile, @CRLF & "+" & $sAction & " - OK" & @CRLF)
 		Case Else
-			FileWrite($logfile, @CRLF & "!" & $sAction & " - FAILED" & @CRLF)
+			FileWrite($hLogFile, @CRLF & "!" & $sAction & " - FAILED" & @CRLF)
 			Exit
 	EndSwitch
 EndFunc   ;==>___DeBug

@@ -2,28 +2,28 @@
 #include-once
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _Libras_A_Quilos
-; Description ...:
+; Description ...: como su nombre lo indica, convertir un número específico de libras a quilos.
 ; Syntax ........: _Libras_A_Quilos($NLibras)
-; Parameters ....: $NLibras             - an unknown value.
-; Return values .: None
-; Author ........: Your Name
+; Parameters ....: $NLibras             - Número de libras a convertir.
+; Return values .: El número de quilos convertidos
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func _Libras_A_Quilos($NLibras)
+Func _Libras_A_Quilos($nLibras)
 	If not StringIsAlNum($nLibras) Or not IsNumber($nLibras) or not IsInt($nLibras) Then return SetError(1, 0, "")
 	Return $nLibras / 2.2
 EndFunc   ;==>_Libras_A_Quilos
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _Quilos_A_Libras
-; Description ...:
+; Description ...: Como su nombre lo indica, convierte un número específico de quilos a libras.
 ; Syntax ........: _Quilos_A_Libras($nQuilos)
-; Parameters ....: $nQuilos             - a general number value.
-; Return values .: None
-; Author ........: Your Name
+; Parameters ....: $nQuilos             - Un número específico de quilos a convertir.
+; Return values .: Resultado convertido en libras.
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -36,11 +36,11 @@ Func _Quilos_A_Libras($nQuilos)
 EndFunc   ;==>_Quilos_A_Libras
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _estatura_Centimetros_A_KG
-; Description ...:
+; Description ...: convierte centímetros a kilogramos.
 ; Syntax ........: _estatura_Centimetros_A_KG($nCentimetros)
-; Parameters ....: $nCentimetros        - a general number value.
-; Return values .: None
-; Author ........: Your Name
+; Parameters ....: $nCentimetros        - Número de centímetros a convertir.
+; Return values .: El resultado convertido a kilogramos.
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -53,11 +53,11 @@ Func _estatura_Centimetros_A_KG($nCentimetros)
 EndFunc   ;==>_estatura_Centimetros_A_KG
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _estatura_KG_a_Centimetros
-; Description ...:
+; Description ...: Convierte kilogramos a centímetros.
 ; Syntax ........: _estatura_KG_a_Centimetros($nKg)
-; Parameters ....: $nKg                 - a general number value.
-; Return values .: None
-; Author ........: Your Name
+; Parameters ....: $nKg                 - Número de kilogramos a convertir.
+; Return values .: El resultado convertido a libras.
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -70,12 +70,12 @@ Func _estatura_KG_a_Centimetros($nKg)
 EndFunc   ;==>_estatura_KG_a_Centimetros
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IMC
-; Description ...:
+; Description ...: Masa Corporal
 ; Syntax ........: _IMC($nk, $estaturametros)
-; Parameters ....: $nk                  - a general number value.
-;                  $estaturametros      - an unknown value.
-; Return values .: None
-; Author ........: Your Name
+; Parameters ....: $nk                  - número de quilos.
+;                  $estaturametros      - el número de metros.
+; Return values .: El resultado de Masa Corporal
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -92,12 +92,12 @@ Func _IMC($nk, $estaturametros)
 EndFunc   ;==>_IMC
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IMC_en_Libras
-; Description ...:
+; Description ...: aplica Masa Corporal en libras.
 ; Syntax ........: _IMC_en_Libras($nl, $estaturametros)
-; Parameters ....: $nl                  - a general number value.
-;                  $estaturametros      - an unknown value.
-; Return values .: None
-; Author ........: Your Name
+; Parameters ....: $nl                  - Número de libras de la persona.
+;                  $estaturametros      - Metros de estatura.
+; Return values .: El resultado de Masa Corporal
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:

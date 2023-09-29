@@ -29,6 +29,7 @@ global $aInfoFormulas = [ _
 		"Arithmetic progression: SN1|This is the first method that adds the terms", _
 		"Geometric progression: sn1|First method that adds the terms", _
 		"Raise|Power, eg: 3 to the power of 8", _
+		"Random number|Between two numbers, (minimum and maximum value), gets a random number", _
 		"Root|Applies any root of a number, eg: Fourth root of 1024", _
 		"Square Root|Applies the square root of a given number", _
 		"cube root|Applies the cube root of a given number", _
@@ -65,6 +66,7 @@ global $aCommandTable = [ _
 		["ap-sn1", 3], _
 		["gp-sn1", 3], _
 		["raise", 2], _
+		["rand", 2], _
 		["root", 2], _
 		["sr", 1], _
 		["cr", 1], _

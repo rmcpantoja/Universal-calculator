@@ -34,7 +34,7 @@
 ; ===============================================================================================================================
 Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	$sOperation = GUICtrlRead($idInter)
-	; recently, I discovered that execute can run script functions too, so:
+	; recently, I discovered that "execute" can run script functions too, so:
 	if StringInStr($sOperation, '("') or StringInStr($sOperation, "('") or StringInStr($sOperation, '($') then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
 	elseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
@@ -197,6 +197,8 @@ Func _interact($sOperation, $idInter)
 						$sRaiseType = "noveno"
 				EndSwitch
 			EndIf
+		Case $aSplitCMD[1] = "rand"
+			If _CheckComandParams($aNumbers, 2) Then $nResult = random($aNumbers[1], $aNumbers[2], 1)
 		Case $aSplitCMD[1] = "root"
 			If _CheckComandParams($aNumbers, 2) Then $nResult = _Raiz2($aNumbers[1], $aNumbers[2])
 			Switch $aNumbers[1]

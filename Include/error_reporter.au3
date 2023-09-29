@@ -3,7 +3,7 @@
 ; Name ..........: _ErrFunc
 ; Description ...: User's COM error function. Will be called if COM error occurs.
 ; Syntax ........: _ErrFunc($oError)
-; Parameters ....: $oError              - an object.
+; Parameters ....: $oError              - an AutoIt object.
 ; Return values .: None
 ; Author ........:
 ; Modified ......:
