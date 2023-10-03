@@ -39,11 +39,11 @@ EndFunc   ;==>_speak_with_speaker
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _speak_sequence
 ; Description ...: Speaks more than one number, one by one.
-; Syntax ........: _speak_sequence($sLanguage, $sSpeaker, $sNumbers, $sSecondDelay)
+; Syntax ........: _speak_sequence($sLanguage, $sSpeaker, $sNumbers, $nSecondDelay)
 ; Parameters ....: $sLanguage           - The language of the voice.
 ;                  $sSpeaker            - A speaker name.
 ;                  $sNumbers            - A set of numbers.
-;                  $sSecondDelay        - How often will you say each number.
+;                  $nSecondDelay        - How often will you say each number in seconds. Default is 0.5 seconds.
 ; Return values .: True if all is correct. Otherwise, @error = 1 if the speaker diesn't exists or @error = 2, failed to play.
 ; Author ........: Mateo Cedillo
 ; Modified ......:
@@ -52,7 +52,7 @@ EndFunc   ;==>_speak_with_speaker
 ; Link ..........:
 ; Example .......: Yes
 ; ===============================================================================================================================
-Func _speak_sequence($sLanguage, $sSpeaker, $sNumbers, $sSecondDelay)
+Func _speak_sequence($sLanguage, $sSpeaker, $sNumbers, $nSecondDelay = 0.5)
 	Local $sDir = $sSpeakerDir & "\" & $sLanguage & "\" & $sSpeaker
 	If Not FileExists($sDir) Then Return SetError(1, 0, "")
 	Local $sDelay = $sSecondDelay * 1000
