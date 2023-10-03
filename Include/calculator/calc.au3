@@ -37,6 +37,9 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	; recently, I discovered that "execute" can run script functions too, so:
 	if StringInStr($sOperation, '("') or StringInStr($sOperation, "('") or StringInStr($sOperation, '($') then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
+	; Fix division by 0:
+	elseIf StringInStr($sOperation, "/0") then
+		MsgBox(16, "Math error", "Couldn't divide by 0.")
 	elseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
 	ElseIf _IsFocused($hGUI, $idFORMULAS) Then
