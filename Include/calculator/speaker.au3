@@ -55,7 +55,7 @@ EndFunc   ;==>_speak_with_speaker
 Func _speak_sequence($sLanguage, $sSpeaker, $sNumbers, $nSecondDelay = 0.5)
 	Local $sDir = $sSpeakerDir & "\" & $sLanguage & "\" & $sSpeaker
 	If Not FileExists($sDir) Then Return SetError(1, 0, "")
-	Local $sDelay = $sSecondDelay * 1000
+	Local $sDelay = $nSecondDelay * 1000
 	For $I = 1 To StringLen($sNumbers)
 		$sNumber = StringMid($sNumbers, $I, 1)
 		Switch $sNumber
