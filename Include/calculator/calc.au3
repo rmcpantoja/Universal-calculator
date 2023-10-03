@@ -85,7 +85,7 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 						Speaking($nResult, True)
 					EndIf
 				EndIf
-				if $sUseSpeaker = "Yes" then _speak_sequence("f1", $nResult, 0.5)
+				if $sUseSpeaker = "Yes" then _speak_sequence($sLang, "f1", $nResult, 0.5)
 				If Not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
 			EndIf
 		Else

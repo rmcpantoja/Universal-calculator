@@ -60,7 +60,7 @@ Func _addSymbol($hGui, $idSymbolButton, $sEnhancedAccessibility, $bSpeak_numbers
 	ControlSetText($hGui, "", "Edit1", $sText & ControlGetText($hGui, "", $idSymbolButton))
 	If $sEnhancedAccessibility = "yes" And $bSpeak_numbers Then
 		speaking(ControlGetText($hGui, "", $idSymbolButton), True)
-		if $sUseSpeaker = "Yes" then _speak_with_speaker("f1", ControlGetText($hGui, "", $idSymbolButton))
+		if $sUseSpeaker = "Yes" then _speak_with_speaker($sLang, "f1", ControlGetText($hGui, "", $idSymbolButton))
 	EndIf
 EndFunc   ;==>_addSymbol
 ; #FUNCTION# ====================================================================================================================
