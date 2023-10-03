@@ -13,6 +13,7 @@
 #include "..\mymath\Progresiones.au3"
 #include "..\mymath\raiz.au3"
 #include "..\advmathudf-au3\Math\Roots.au3"
+#include "speaker.au3"
 #include "..\translator.au3"
 #include-once
 
@@ -84,6 +85,7 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 						Speaking($nResult, True)
 					EndIf
 				EndIf
+				if $sUseSpeaker = "Yes" then _speak_sequence("f1", $nResult, 0.5)
 				If Not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
 			EndIf
 		Else

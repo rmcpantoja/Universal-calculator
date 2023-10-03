@@ -31,6 +31,12 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	If Not $sEnhancedAccessibility = "Yes" Or Not $sEnhancedAccessibility = "No" Then
 		$sEnhancedAccessibility = _configure_accessibility($sConfigPath)
 	EndIf
+	; Check speaker:
+	$sUseSpeaker = IniRead($sConfigPath, "Accessibility", "Use speaker", "")
+	if $sUseSpeaker = "" then
+		IniWrite($sConfigPath, "Accessibility", "Use speaker", "No")
+		$sUseSpeaker = "No"
+	EndIf
 	; Check formula autocompletion:
 	$sFormulaAutocompletion = IniRead($sConfigPath, "Calculator", "formula autocompletion mode", "")
 	If Not $sFormulaAutocompletion = "1" Or Not $sFormulaAutocompletion = "2" Then

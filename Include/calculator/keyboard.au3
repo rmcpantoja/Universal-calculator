@@ -2,6 +2,7 @@
 #include <GuiConstantsEx.au3>
 #include "options.au3"
 #include "..\reader.au3"
+#include "speaker.au3"
 #include "..\translator.au3"
 #include-once
 Local $aCalculatorKeys[15][2] = [ _
@@ -57,7 +58,10 @@ Func _addSymbol($hGui, $idSymbolButton, $sEnhancedAccessibility, $bSpeak_numbers
 	$sText = ControlGetText($hGui, "", "Edit1")
 	; we place said number or symbol to the field:
 	ControlSetText($hGui, "", "Edit1", $sText & ControlGetText($hGui, "", $idSymbolButton))
-	If $sEnhancedAccessibility = "yes" And $bSpeak_numbers Then speaking(ControlGetText($hGui, "", $idSymbolButton), True)
+	If $sEnhancedAccessibility = "yes" And $bSpeak_numbers Then
+		speaking(ControlGetText($hGui, "", $idSymbolButton), True)
+		if $sUseSpeaker = "Yes" then _speak_with_speaker("f1", ControlGetText($hGui, "", $idSymbolButton))
+	EndIf
 EndFunc   ;==>_addSymbol
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _HideKey
