@@ -2,7 +2,7 @@
 ; set directives for compilation:
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Compile_Both=N
-#AutoIt3Wrapper_UseX64=n
+#AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=An easy, simple and interactive calculator where you can interact using many formulas and mathematical operations
 #AutoIt3Wrapper_Res_Description=Universal calculator
 #AutoIt3Wrapper_Res_Fileversion=0.1.0.50
