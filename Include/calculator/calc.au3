@@ -8,6 +8,7 @@
 #include "keyboard.au3"
 #include <Math.au3>
 ;#include "..\advmathudf-au3\Math.au3"
+#include "..\miscstring.au3"
 #include "..\mymath\percent.au3"
 #include "..\mymath\perimeter.au3"
 #include "..\mymath\Progresiones.au3"
@@ -38,7 +39,7 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	if StringInStr($sOperation, '("') or StringInStr($sOperation, "('") or StringInStr($sOperation, '($') then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
 	; Fix division by 0:
-	elseIf StringInStr($sOperation, "/0") then
+	elseIf _String_EndsWith($sOperation, "/0") or StringInStr($sOperation, "/0") then
 		MsgBox(16, "Math error", "Couldn't divide by 0.")
 	elseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
