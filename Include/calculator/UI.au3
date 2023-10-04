@@ -31,11 +31,11 @@ _ArrayColDelete($aFlista, 1, True)
 ; ===============================================================================================================================
 Func Main()
 	; Creating GUI and its controls:
-	;Note! No GUI acceleration is guaranteed for now, because I'm using the default and common message loop that everyone uses. In fact, I have already reported this in the NVDA code. Maybe a solution will be found: https://github.com/nvaccess/nvda/issues/13833
 	$hGUI = glf_NewForm("Universal calculator " & $sProgramVer, 400, 350, 290, 257)
 	glf_FormCreateHwnd($hGui)
 	glf_FormAddMenuBar($hGui, "&Calculator|&Tools for Beginners")
 	glf_FormAddMenuItems($hGui, "&Calculator", translate($sLang, "hide keyboard") & @TAB & "CTRL+shift+k" & "|" & translate($sLang, "Exit"))
+	glf_MainMenuAddHandler($hGui, translate($sLang, "Exit"), $hGui.onMenuClick, "exitpersonaliced")
 	glf_FormAddMenuItems($hGui, "&Tools for Beginners", translate($sLang, "Automatic task generation") &"|" & translate($sLang, "Generate and interact with the interface") & "|" & translate($sLang, "Generate a text file"))
 	$idInterLabel = glf_NewLabel($hGui, translate($sLang, "Write operation"), 10, 10, 160, 90)
 	glf_ControlSetProperty($idInterLabel, $idInterLabel.foreColor, 0x000000)
@@ -61,43 +61,39 @@ Func Main()
 	$aNums[16] = glf_NewButton($hGui, "(", 160, 130, 30, 30)
 	$aNums[17] = glf_NewButton($hGui, ")", 200, 130, 30, 30)
 	$idEqual = glf_NewButton($hGui, "&=", 220, 280, 30, 30)
+	glf_ControlAddHandler($idEqual, $idEqual.onClick, "_calc_from_UI")
 	$idClearScreen = glf_NewButton($hGui, "C", 240, 130, 30, 30)
+	glf_ControlAddHandler($idClearScreen, $idClearScreen.onClick, "_clearScreen_from_UI")
 	$idCommandsLb = glf_NewLabel($hGui, Translate($sLang, "&Commands"), 280, 170, 80, 30)
 	$idFORMULAS = glf_NewListView($hGui, 10, 110, 90, 149)
 	glf_ListViewAddColumns($idFormulas, translate($sLang, "Name|Description|Command"))
 	$idOptions = glf_NewButton($hGui, translate($sLang, "&Options"), 40, 260, 60, 70)
+	glf_ControlAddHandler($idOptions, $idOptions.onClick, "_options_from_UI")
 	$idGetReason = glf_NewButton($hGui, translate($sLang, "&Reason"), 280, 110, 40, 50)
+	glf_ControlAddHandler($idGetReason, $idGetReason.onClick, "_reason_from_UI")
 	$idAbout = glf_NewButton($hGui, translate($sLang, "&About"), 280, 210, 80, 50)
+	glf_ControlAddHandler($idAbout, $idAbout.onClick, "_about_dialog")
 	; we are going to add the information to the list of commands, functions or formulas:
 	For $I = 0 To UBound($aInfoFormulas) - 1
 		glf_ListViewAddRow($idFORMULAS, Translate($sLang, $aInfoFormulas[$I]) & "|" & $aFlista[$I])
 	Next
 	; show GUI:
 	glf_FormShow($hGui.ptr)
-	While 1
-		$idMsg = GUIGetMsg()
-		Switch $idMsg
-			; setting switch for keyboard keys:
-			Case $aNums[0] To $aNums[17]
-				For $I = 0 To UBound($aNums)
-					If $idMsg = $aNums[$I] Then _addSymbol($hGui, $aNums[$I], $sEnhancedAccessibility, $bSpeak_numbers)
-				Next
-			Case $idHideKey
-				_HideKey($aNums, $idHideKey, $bHideKeyboard)
-			Case $idClearScreen
-				_ClearScreen($idInter)
-			Case $idEqual
-				_calc($hGUI, $idFORMULAS, $idInter, $idEqual)
-			Case $idOptions
-				_Options($sConfigFolder, $sConfigPath)
-			Case $idGetReason
-				_GetReason($idInter, $sOperation)
-			Case $idAbout
-				MsgBox(48, translate($sLang, "About"), translate($sLang, "An easy, simple and interactive calculator where you can do operations, formulas, conversions and more. This program has been developed by Mateo Cedillo. Creation of the GUI by Valeria Parra."))
-			Case $GUI_EVENT_CLOSE, $idMenuExit
-				ExitPersonaliced()
-		EndSwitch
-	WEnd
 EndFunc   ;==>Main
+func _clearScreen_from_UI($C, $E)
+	return _ClearScreen($idInter)
+EndFunc
+func _calc_from_UI($C, $E)
+	return _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
+EndFunc
+func _reason_from_UI($C, $E)
+	return _GetReason($idInter, $sOperation)
+EndFunc
+func _options_from_UI($C, $E)
+	return _Options($sConfigFolder, $sConfigPath)
+EndFunc
+func _about_dialog($C, $E)
+	MsgBox(48, translate($sLang, "About"), translate($sLang, "An easy, simple and interactive calculator where you can do operations, formulas, conversions and more. This program has been developed by Mateo Cedillo. Creation of the GUI by Valeria Parra."))
+EndFunc
 Func Generate_task()
 EndFunc

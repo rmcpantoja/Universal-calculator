@@ -33,7 +33,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
-	$sOperation = GUICtrlRead($idInter)
+	$sOperation = glf_ControlGetProperty($idInter, $idInter.text)
 	If $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
 	ElseIf _IsFocused($hGUI, $idFORMULAS) Then
@@ -60,8 +60,7 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 			EndSwitch
 		Else
 			; Adds the command in the field, if it is not focused it does so and clicks the same button automatically to get the result.
-			GUICtrlSetData($idInter, $sOperation)
-			If Not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
+			glf_ControlSetProperty($idInter, $idInter.text, $sOperation)
 			If $sFormulaAutocompletion = "1" Then _GUICtrlButton_Click($idEqual)
 		EndIf
 	Else
@@ -78,13 +77,12 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 			If @error Then
 				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An error occurred while doing this operation. Please check that the syntax is correct."))
 			Else
-				GUICtrlSetData($idInter, $nResult)
+				glf_ControlSetProperty($idInter, $idInter.text, $nResult)
 				if $sEnhancedAccessibility = "Yes" then
 					if $sSpeak_result = "yes" then
 						Speaking($nResult, True)
 					EndIf
 				EndIf
-				If Not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
 			EndIf
 		Else
 			_interact($sOperation, $idInter)
@@ -231,8 +229,7 @@ Func _interact($sOperation, $idInter)
 			MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The command") & " " & $aSplitCMD[1] & " " & Translate($sLang, "does not exist. If you think it is a function that allows you to perform a mathematical formula, please tell me so I can add it."))
 	EndSelect
 	If Not @error Then
-		GUICtrlSetData($idInter, $nResult)
-		if _IsFocused($hGUI, $idInter) then GUICtrlSetState($idInter, $GUI_Focus)
+		glf_ControlSetProperty($idInter, $idInter.text, $nResult)
 		if $sEnhancedAccessibility = "Yes" then
 			if $sSpeak_result = "Yes" then
 				Speaking($nResult, True)

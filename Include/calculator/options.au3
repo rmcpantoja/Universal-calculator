@@ -2,6 +2,7 @@
 #include <comboConstants.au3>
 #include "configs.au3"
 #include "globals.au3"
+#include "GuiConstantsEx.au3"
 #include "..\Glance\glance.au3"
 #include "language_manager.au3"
 #include "..\menu_nvda.au3"
