@@ -2,6 +2,7 @@
 #include-once
 ; help table:
 global $aInfoFormulas = [ _
+		"Absolute number|Gets the absolute value of an expression", _
 		"Average|gets the total average of several set numbers", _
 		"Radians to Degrees|Converts a given number of radians to degrees", _
 		"Maximum number|Between two numbers, check which is the maximum", _
@@ -39,6 +40,7 @@ global $aInfoFormulas = [ _
 ]
 ; form table:
 global $aCommandTable = [ _
+		["abs", 1], _
 		["av", null], _
 		["deg", 1], _
 		["max", 2], _

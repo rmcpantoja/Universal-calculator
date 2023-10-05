@@ -8,11 +8,11 @@
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _config_start
-; Description ...: Start configuration for the program and, if necessary, set the default options.
+; Description ...: Starts configuration for the program and, if necessary, set the default options.
 ; Syntax ........: _config_start($sConfigFolder, $sConfigPath)
-; Parameters ....: $sConfigFolder       - a string value.
-;                  $sConfigPath         - a string value.
-; Return values .: None
+; Parameters ....: $sConfigFolder       - The configs folder.
+;                  $sConfigPath         - The full path to the config.ini or ST.
+; Return values .: 1 if all is OK
 ; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
@@ -57,11 +57,11 @@ Func _config_start($sConfigFolder, $sConfigPath)
 EndFunc   ;==>_config_start
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _accessibility_config_start
-; Description ...:
+; Description ...: Starts the config for accessibility purposes.
 ; Syntax ........: _accessibility_config_start($sConfigFolder, $sConfigPath)
-; Parameters ....: $sConfigFolder       - a string value.
-;                  $sConfigPath         - a string value.
-; Return values .: None
+; Parameters ....: $sConfigFolder       - The path to the configs folder.
+;                  $sConfigPath         - The full path to the config ini or ST.
+; Return values .: 1 if all is OK.
 ; Author ........: Your Name
 ; Modified ......:
 ; Remarks .......:
@@ -93,10 +93,10 @@ func _accessibility_config_start($sConfigFolder, $sConfigPath)
 EndFunc
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _ConfigureAccessibility
-; Description ...:
+; Description ...: Function that questions to the user if he want enhanced accessibility.
 ; Syntax ........: _ConfigureAccessibility($sConfigPath)
-; Parameters ....: $sConfigPath         - a string value.
-; Return values .: None
+; Parameters ....: $sConfigPath         - The full path to the ini or ST.
+; Return values .: The answered question.
 ; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:

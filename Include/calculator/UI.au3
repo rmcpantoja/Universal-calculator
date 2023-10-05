@@ -2,6 +2,7 @@
 #include <ButtonConstants.au3>
 #include "calc.au3"
 #include "configs.au3"
+#include <EditConstants.au3>
 #include "formulas.au3"
 #include "globals.au3"
 #include <GuiConstantsEx.au3>
@@ -13,6 +14,7 @@
 #include <StaticConstants.au3>
 #include "..\mymath\Task_creator.au3"
 #include "..\translator.au3"
+#include <WindowsConstants.au3>
 #include-once
 Global $aFlista = _SearchParam(Null, Default, True)
 _ArrayColDelete($aFlista, 1, True)
@@ -41,6 +43,13 @@ Func Main()
 	$idTasks = GUICtrlCreateMenu(translate($sLang, "Automatic task generation"), $idBeginners)
 	$iTaskGUI = GUICtrlCreateMenuItem(translate($sLang, "Generate and interact with the interface"), $idTasks)
 	$iTaskTxt = GUICtrlCreateMenuItem(translate($sLang, "Generate a text file"), $idTasks)
+	$idHelpmenu = GUICtrlCreateMenu(translate($sLang, "&Help"))
+	$idChanges = GUICtrlCreateMenuItem(translate($sLang, "Changes"), $idHelpmenu)
+	$idUserManual = GUICtrlCreateMenuItem(translate($sLang, "&User manual"), $idHelpmenu)
+	$idErrorReporting = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions"), $idHelpmenu)
+	$idGitHub = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions (gitHub)"), $idHelpmenu)
+	$idWebsite = GUICtrlCreateMenuItem(translate($sLang, "&Visit website"), $idHelpmenu)
+	$idAboutItem = GUICtrlCreateMenuItem(translate($sLang, "About"), $idHelpmenu)
 	$idInterLabel = GUICtrlCreateLabel(translate($sLang, "Write operation"), 10, 10, 160, 90)
 	GUICtrlSetColor(-1, 0x000000)
 	$idInter = GUICtrlCreateInput("", 170, 0, 220, 110)
@@ -144,12 +153,65 @@ Func Main()
 				_Options($sConfigFolder, $sConfigPath)
 			Case $idGetReason
 				_GetReason($idInter, $sOperation)
-			Case $idAbout
+			case $idChanges
+				_ReadDoc($sLang, "Changes")
+			case $idUserManual
+				_ReadDoc($sLang, "Manual")
+			CASE $idErrorReporting
+				ShellExecute("https://docs.google.com/forms/d/e/1FAIpQLSdDW6LqMKGHjUdKmHkAZdAlgSDilHaWQG9VZjwLz0CJSXKqHA/viewform?usp=sf_link")
+				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
+			Case $idGitHub
+				ShellExecute("https://github.com/rmcpantoja/universal-calculator/issues/new")
+				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
+			case $idWebsite
+				ShellExecute("http://mateocedillo.260mb.net/")
+				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
+			Case $idAbout, $idAboutItem
 				MsgBox(48, translate($sLang, "About"), translate($sLang, "An easy, simple and interactive calculator where you can do operations, formulas, conversions and more. This program has been developed by Mateo Cedillo. Creation of the GUI by Valeria Parra."))
 			Case $GUI_EVENT_CLOSE, $idMenuExit
 				ExitPersonaliced()
 		EndSwitch
 	WEnd
 EndFunc   ;==>Main
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _ReadChanges
+; Description ...: Read changes document
+; Syntax ........: _ReadChanges()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func _ReadDoc($sLang, $sTipe)
+	local $hGui
+	local $sContent, $sDocumentationPath = @ScriptDir & "\documentation\" & $sLang
+	if $sTipe = "Changes" then
+		$sDoc = $sDocumentationPath & "\changes.txt"
+	ElseIf $sTipe = "Manuel" then
+		$sDoc = $sDocumentationPath & "\manual.txt"
+	else
+		return SetError(1, 0, "")
+	EndIf
+	local $hFile = FileOpen($sDoc, $FO_READ)
+	If $hFile = "-1" Then MsgBox(16, translate($sLang, "error"), translate($sLang, "An error occurred when reading the file."))
+	$sContent = FileRead($hFile)
+	$hChangesGui = GUICreate(translate($sLang, "Changes"))
+	$idEdit = GUICtrlCreateEdit($sContent, 5, 5, 390, 360, BitOR($WS_VSCROLL, $WS_HSCROLL, $ES_READONLY))
+	$idExit = GUICtrlCreateButton(translate($sLang, "Close"), 100, 370, 150, 30)
+	GUISetState(@SW_SHOW)
+	While 1
+		Switch GUIGetMsg()
+			Case $GUI_EVENT_CLOSE, $idExit
+				FileClose($hFile)
+				ExitLoop
+		EndSwitch
+	WEnd
+	GUIDelete($hChangesGui)
+EndFunc   ;==>ReadChanges2
+
 Func Generate_task()
 EndFunc

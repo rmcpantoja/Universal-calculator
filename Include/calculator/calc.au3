@@ -40,7 +40,7 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
 	; Fix division by 0:
 	elseIf _String_EndsWith($sOperation, "/0") or StringInStr($sOperation, "/0") then
-		MsgBox(16, "Math error", "Couldn't divide by 0.")
+		MsgBox(16, Translate($sLang, "Math error"), Translate($sLang, "Couldn't divide by 0."))
 	elseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
 	ElseIf _IsFocused($hGUI, $idFORMULAS) Then
@@ -122,6 +122,8 @@ Func _interact($sOperation, $idInter)
 	Next
 	; We make support for commands or formulas available:
 	Select
+		Case $aSplitCMD[1] = "abs"
+			If _CheckComandParams($aNumbers, 1) Then $nResult = abs($aNumbers[1])
 		Case $aSplitCMD[1] = "av"	
 			_ArrayDelete($aNumbers, 0)
 			if uBound($aNumbers) > 1 and $aNumbers[0] > 0 then
