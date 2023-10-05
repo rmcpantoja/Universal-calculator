@@ -201,7 +201,7 @@ Func _ReadDoc($sLang, $sTipe)
 	$sContent = FileRead($hFile)
 	$hChangesGui = GUICreate(translate($sLang, "Changes"))
 	$idEdit = GUICtrlCreateEdit($sContent, 5, 5, 390, 360, BitOR($WS_VSCROLL, $WS_HSCROLL, $ES_READONLY))
-	$idExit = GUICtrlCreateButton(translate($sLang, "Close"), 100, 370, 150, 30)
+	$idExit = GUICtrlCreateButton(translate($sLang, "&Close"), 100, 370, 150, 30)
 	GUISetState(@SW_SHOW)
 	While 1
 		Switch GUIGetMsg()
