@@ -25,8 +25,9 @@ Func _GetReason($idInter, $sOperation)
 		MsgBox(16, translate($sLang, "Error"), translate($sLang, "You must first get the result of") & " " & GUICtrlRead($idInter) & ", " & translate($sLang, "to get the reason for this."))
 	ElseIf StringInStr($sOperation, "*") Then
 		$sProcess = _multi_get_reason($sOperation)
+		$sProcessResult = execute($sProcess)
 		$sProcess = StringReplace($sProcess, "+", " " & translate($sLang, "plus") & " ")
-		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "The reason why") & " " & $sOperation & " " & translate($sLang, "is equal to") & " " & $nResult & ", " & translate($sLang, "it is because") & " " & $sProcess & " " & translate($sLang, "is equal to") & " " & Execute($sProcess) & ". " & translate($sLang, "This is a very easy way to know the reason of a multiplication; however, for a better experience, you can guide yourself through multiplying tables."))
+		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "The reason why") & " " & $sOperation & " " & translate($sLang, "is equal to") & " " & $nResult & ", " & translate($sLang, "it is because") & " " & $sProcess & " " & translate($sLang, "is equal to") & " " & Execute($sProcessResult) & ". " & translate($sLang, "This is a very easy way to know the reason of a multiplication; however, for a better experience, you can guide yourself through multiplying tables."))
 	ElseIf StringInStr($sOperation, "/") Then
 		$sProcess = _div_get_reason($sOperation, $nResult)
 		MsgBox(0, translate($sLang, "Reason"), translate($sLang, "A basic way to know why") & " " & $sOperation & " " & translate($sLang, "is equal to") & " " & $nResult & ", " & translate($sLang, "it is because") & " " & $sProcess & " " & translate($sLang, "is equal to") & " " & Round(Execute($sProcess)))

@@ -164,3 +164,4 @@ Errors and suggestions=
 Errors and suggestions (gitHub)=
 &Visit website=
 Cannot run browser. It is likely that you have to add an association.=
+plus=
