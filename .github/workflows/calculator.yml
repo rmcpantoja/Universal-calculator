@@ -47,14 +47,15 @@ jobs:
           if-no-files-found: error
       - name: Zip package
         if: startsWith(github.ref, 'refs/tags/')
-        run: 7z a universal_calculator.zip UniversalCalc.exe Documentation\ lng\ sounds\ *.dll
-      - name: Release
-        if: startsWith(github.ref, 'refs/tags/')
         run: |
+          7z a universal_calculator.zip UniversalCalc.exe Documentation\ lng\ sounds\ *.dll
           curl -sSfL https://jrsoftware.org/download.php/is.exe -o is.exe
           Start-Process "is.exe /VERYSILENT" -NoNewWindow -Wait
           Start-Process "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "setup.iss"" -NoNewWindow -Wait
+
+      - name: Release
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             universal_calculator.zip
