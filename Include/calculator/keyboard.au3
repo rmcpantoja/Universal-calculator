@@ -23,6 +23,23 @@ Local $aCalculatorKeys[15][2] = [ _
 ]
 
 ; #FUNCTION# ====================================================================================================================
+; Name ..........: _IsChecked
+; Description ...: check if a control is checked
+; Syntax ........: _IsChecked($idControlID)
+; Parameters ....: $idControlID         - An AutoIt controlID.
+; Return values .: None
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func _IsChecked($idControlID)
+	Return BitAND(GUICtrlRead($idControlID), $GUI_CHECKED) = $GUI_CHECKED
+EndFunc   ;==>_IsChecked
+
+; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IsFocused
 ; Description ...: Check if a control is focused.
 ; Syntax ........: _IsFocused($hWnd, $iControlID)

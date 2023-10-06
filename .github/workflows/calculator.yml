@@ -51,8 +51,13 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          curl -sSfL https://jrsoftware.org/download.php/is.exe -o is.exe
+          Start-Process "is.exe /VERYSILENT" -NoNewWindow -Wait
+          Start-Process "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "setup.iss"" -NoNewWindow -Wait
         with:
           files: |
             universal_calculator.zip
+            Output/universal_calculator_setup.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

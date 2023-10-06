@@ -38,6 +38,12 @@ Func _config_start($sConfigFolder, $sConfigPath)
 		IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "1")
 		$sFormulaAutocompletion = "1"
 	EndIf
+	; Check tips:
+	$sShowTips = IniRead($sConfigPath, "Calculator", "Show tips", "")
+	If $sShowTips = "" Then
+		IniWrite($sConfigPath, "Calculator", "Show tips", "Yes")
+		$sFormulaAutocompletion = "Yes"
+	EndIf
 	; check last commit:
 	if not @compiled or $sCommitGot = "" then
 		$sCommitGot = string(_calc_commit())

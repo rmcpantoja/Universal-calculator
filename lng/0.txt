@@ -165,3 +165,5 @@ Errors and suggestions (gitHub)=
 &Visit website=
 Cannot run browser. It is likely that you have to add an association.=
 plus=
+An error occurred when reading the file.=
+Show tips=

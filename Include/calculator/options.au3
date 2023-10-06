@@ -3,6 +3,7 @@
 #include "configs.au3"
 #include "globals.au3"
 #include <GuiConstantsEx.au3>
+;#include "keyboard.au3"
 #include "language_manager.au3"
 #include "..\menu_nvda.au3"
 #include "..\translator.au3"
@@ -25,27 +26,29 @@
 Func _Options($sConfigFolder, $sConfigPath)
 	Local $hOptionsGui
 	local $iDeleteResult
-	Local $idLanguage, $idAccessibility, $idAutocompleteFormula, $idApply
-	Local $sCompleteOption, $sCompleteRead
+	Local $idLanguage, $idAccessibility, $idAutocompleteFormula, $idShuwTips, $idApply
+	Local $sCompleteOption, $sCompleteRead, $sTipsRead
 	_config_start($sConfigFolder, $sConfigPath)
 	$hOptionsGui = GUICreate(translate($sLang, "Options"))
 	$idLanguage = GUICtrlCreateButton(translate($sLang, "Change language, currently") & " " & GetLanguageName($sLang), 10, 10, 120, 20)
-	GuiCtrlSetTip(-1, translate($sLang, "Allows the user to change the language of the program. More languages can be added by suggesting the author and reading the translation guide doc to contribute."))
+	if $sShowTips = "Yes" then GuiCtrlSetTip(-1, translate($sLang, "Allows the user to change the language of the program. More languages can be added by suggesting the author and reading the translation guide doc to contribute."))
 	$idAccessibility = GUICtrlCreateButton(translate($sLang, "Enhanced accessibility enhabled:") & " " & translate($sLang, $sEnhancedAccessibility), 70, 10, 120, 20)
-	GuiCtrlSetTip(-1, translate($sLang, "Allows the user to toggle Enhanced Accessibility. The enhanced accessibility feature is focused on improving the experience for people with visual impairments."))
+		if $sShowTips = "Yes" then GuiCtrlSetTip(-1, translate($sLang, "Allows the user to toggle Enhanced Accessibility. The enhanced accessibility feature is focused on improving the experience for people with visual impairments."))
 	GUICtrlCreateLabel(translate($sLang, "Choose autocompletion mode:"), 130, 10, 120, 20)
 	$idAutocompleteFormula = GUICtrlCreateCombo("", 130, 70, 120, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-	GuiCtrlSetTip(-1, translate($sLang, "Changes the way you want to fill in the formulas, either by using a GUI to set the parameters or if you want to fill in the parameters manually in the interaction field, for this the respective command will be added first."))
+		if $sShowTips = "Yes" then GuiCtrlSetTip(-1, translate($sLang, "Changes the way you want to fill in the formulas, either by using a GUI to set the parameters or if you want to fill in the parameters manually in the interaction field, for this the respective command will be added first."))
 	If $sFormulaAutocompletion = "1" Then
 		$sCompleteRead = translate($sLang, "GUI mode")
 	Else
 		$sCompleteRead = translate($sLang, "Autocomplete mode")
 	EndIf
 	GUICtrlSetData($idAutocompleteFormula, translate($sLang, "Autocomplete mode") &"|" &translate($sLang, "GUI mode"), $sCompleteRead)
-	$idDeleteconfig = GUICtrlCreateButton(translate($sLang, "Clear settings"), 210, 210, 200, 20)
-	GuiCtrlSetTip(-1, translate($sLang, "This clears the current configs of the program, so it will be set to the default configs when it's reopened."))
-	$idApply = GUICtrlCreateButton(translate($sLang, "&Apply"), 210, 80, 200, 20)
-	GuiCtrlSetTip(-1, translate($sLang, "Saves the changes that have been made and close this window."))
+	$idShowTips = GuiCtrlCreateCheckBox(translate($sLang, "Show tips"), 210, 10, 120, 20)
+	if $sShowTips = "Yes" then GUICtrlSetState(-1, $GUI_Checked)
+	$idDeleteconfig = GUICtrlCreateButton(translate($sLang, "Clear settings"), 290, 210, 200, 20)
+		if $sShowTips = "Yes" then GuiCtrlSetTip(-1, translate($sLang, "This clears the current configs of the program, so it will be set to the default configs when it's reopened."))
+	$idApply = GUICtrlCreateButton(translate($sLang, "&Apply"), 290, 80, 200, 20)
+		if $sShowTips = "Yes" then GuiCtrlSetTip(-1, translate($sLang, "Saves the changes that have been made and close this window."))
 	GUISetState(@SW_SHOW)
 	While 1
 		Switch GUIGetMsg()
@@ -63,6 +66,12 @@ Func _Options($sConfigFolder, $sConfigPath)
 					IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "1")
 				Else
 					IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "2")
+				EndIf
+			case $idShowTips
+				If _IsChecked($idShowtips) Then
+					IniWrite($sConfigPath, "Calculator", "Show tips", "Yes")
+				Else
+					IniWrite($sConfigPath, "Calculator", "Show tips", "No")
 				EndIf
 			case $idDeleteconfig
 				$iDeleteResult = _DeleteSettings($sConfigPath)
