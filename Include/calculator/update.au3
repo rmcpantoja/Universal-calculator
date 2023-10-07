@@ -1,7 +1,7 @@
 #cs ----------------------------------------------------------------------------
 
  AutoIt Version: 3.3.16.1
- Author:         myName
+ Author:         Mateo Cedillo
 
  Script Function:
 	Template AutoIt script.
@@ -11,6 +11,21 @@
 ; Script Start - Add your code below here
 #include-once
 
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _perform_update
+; Description ...:
+; Syntax ........: _perform_update($sJson, $sRepo[, $sUpdaterDest = @ScriptDir & "\updater.exe"])
+; Parameters ....: $sJson               - a string value.
+;                  $sRepo               - a string value.
+;                  $sUpdaterDest        - [optional] a string value. Default is @ScriptDir & "\updater.exe".
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
 Func _perform_update($sJson, $sRepo, $sUpdaterDest = @ScriptDir & "\updater.exe")
 	If Not IsString($sRepo) Then Return SetError(1, 0, "")
 	$sRepo = StringReplace($sRepo, "://", "...")
@@ -23,6 +38,22 @@ Func _perform_update($sJson, $sRepo, $sUpdaterDest = @ScriptDir & "\updater.exe"
 	If Not FileExists($sUpdaterDest) Then Return SetError(3, 0, "")
 	Return True
 EndFunc   ;==>_perform_update
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _DoUpdate
+; Description ...:
+; Syntax ........: _DoUpdate($sExecutable, $sURL, $sDest[, $sUpdaterDest = @ScriptDir & "\updater.exe"])
+; Parameters ....: $sExecutable         - a string value.
+;                  $sURL                - a string value.
+;                  $sDest               - a string value.
+;                  $sUpdaterDest        - [optional] a string value. Default is @ScriptDir & "\updater.exe".
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
 Func _DoUpdate($sExecutable, $sURL, $sDest, $sUpdaterDest = @ScriptDir & "\updater.exe")
 	If Not FileExists($sUpdaterDest) Then Return SetError(1, 0, "")
 	Return Run($sUpdaterDest & ' "' & $sExecutable & '" "' & $sURL & '" "' & $sDest & '"')

@@ -4,6 +4,19 @@
 #include "update.au3"
 #include-once
 
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _calc_check_update
+; Description ...:
+; Syntax ........: _calc_check_update([$bSilent = False])
+; Parameters ....: $bSilent             - [optional] a boolean value. Default is False.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
 Func _calc_check_update($bSilent = False)
 	$aUpdateHandler = checkupdate($sProgramVer, "rmcpantoja/universal-calculator", $bSilent)
 	If @error Then
