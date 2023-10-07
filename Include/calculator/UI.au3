@@ -14,6 +14,7 @@
 #include <StaticConstants.au3>
 #include "..\mymath\Task_creator.au3"
 #include "..\translator.au3"
+#include "update.au3"
 #include <WindowsConstants.au3>
 #include-once
 Global $aFlista = _SearchParam(Null, Default, True)
@@ -49,6 +50,7 @@ Func Main()
 	$idErrorReporting = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions"), $idHelpmenu)
 	$idGitHub = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions (gitHub)"), $idHelpmenu)
 	$idWebsite = GUICtrlCreateMenuItem(translate($sLang, "&Visit website"), $idHelpmenu)
+	$idCheckUpdates = GUICtrlCreateMenuItem(translate($sLang, "Check for updates"), $idHelpmenu)
 	$idAboutItem = GUICtrlCreateMenuItem(translate($sLang, "About"), $idHelpmenu)
 	$idInterLabel = GUICtrlCreateLabel(translate($sLang, "Write operation"), 10, 10, 160, 90)
 	GUICtrlSetColor(-1, 0x000000)
@@ -166,6 +168,8 @@ Func Main()
 			case $idWebsite
 				ShellExecute("http://mateocedillo.260mb.net/")
 				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
+			case $idCheckUpdates
+				_calc_check_update()
 			Case $idAbout, $idAboutItem
 				MsgBox(48, translate($sLang, "About"), translate($sLang, "An easy, simple and interactive calculator where you can do operations, formulas, conversions and more. This program has been developed by Mateo Cedillo. Creation of the GUI by Valeria Parra."))
 			Case $GUI_EVENT_CLOSE, $idMenuExit

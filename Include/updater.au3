@@ -4,6 +4,7 @@
 ;Including scripts
 #include "_zip.au3"
 #include <AutoItConstants.au3>
+#include <Misc.au3>
 #include "reader.au3"
 #include "translator.au3"
 #include-once
@@ -43,23 +44,21 @@ Func checkupdate($sCurrentVersion, $sGitHubURL, $bSylent = False)
 	If $oHTTP.Status <> 200 Then Return SetError(3, 0, "")
 	Local $sResponse = $oHTTP.ResponseText
 	; changes here:
-	local $sLatestver = StringRegExp($sResponse, "V\d\.\d")
-	MsgBox(0, "", $sLatestver)
+	local $sLatestver = StringRegExp($sResponse, "v\d\.\d+[a-zA-Z]?\d*", 3)[0]
 	If @error Then Return SetError(4, 0, "")
+	$iComparison = _VersionCompare($sLatestver, $sCurrentVersion) 
 		Select
 			case $sLatestver = ""
 				if not $bSylent then MSGBox(16, translate($sLanguage, "Error"), translate($sLanguage, "Unable to connect to the server. The server went down or you don't have an internet connection."))
-			Case $sLatestver = 0
+			Case $sLatestver = "0"
 				if not $bSylent then MsgBox(16, translate($sLanguage, "Error"), translate($sLanguage, "version could not be checked."))
-			Case $sLatestver < $sCurrentVersion
-				MsgBox(0, translate($sLanguage, "warning"), translate($sLanguage, "the version we have looked for is lower than the one you have.") &" " &$sLatestver &".")
-				$bUpdatable = True
-			Case $sLatestver > $sCurrentVersion
-				MsgBox(48, translate($sLanguage, "update available!"), translate($sLanguage, "You have the version") &" " &$sCurrentVersion &" " &translate($sLanguage, "And is available the") &" " &$sLatestver &".")
-				$bUpdatable = True
-			Case $sLatestver >= $sCurrentVersion
-				if not $bSylent then MsgBox(48, translate($sLanguage, "you are up to date"), translate($sLanguage, "no update at the moment."))
 		EndSelect
+		if $iComparison = -1 or $iComparison = 1 then
+			MsgBox(48, translate($sLanguage, "update available!"), translate($sLanguage, "You have the version") &" " &$sCurrentVersion &" " &translate($sLanguage, "And is available the") &" " &$sLatestver &".")
+			$bUpdatable = True
+		elseIf $iComparison = 0 then
+			if not $bSylent then MsgBox(48, translate($sLanguage, "you are up to date"), translate($sLanguage, "no update at the moment."))
+		EndIf
 	local $aReturn = [$bUpdatable, $sLatestver, $sResponse]
 	return $aReturn
 EndFunc   ;==>checkupdate

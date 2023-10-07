@@ -1,9 +1,9 @@
 ; configuration utils:
+#include "checkupdate.au3"
 #include <ComboConstants.au3>
 #include "globals.au3"
 #include "language_manager.au3"
 #include "..\translator.au3"
-#include "update.au3"
 #include "update_source.au3"
 #include "..\updater.au3"
 #include-once
@@ -28,6 +28,12 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	; check for language:
 	$sLang = IniRead($sConfigPath, "General settings", "language", "")
 	If $sLang = "" Then Selector()
+	; Check for source code update:
+	$sUpdateSource = IniRead($sConfigPath, "General settings", "Check source updates", "")
+	If $sUpdateSource = "" Then
+		IniWrite($sConfigPath, "General settings", "Check source updates", "Yes")
+		$sUpdateSource = "Yes"
+	EndIf
 	; Check for update:
 	$sCheckForUpdate = IniRead($sConfigPath, "General settings", "Check updates", "")
 	If $sCheckForUpdate = "" Then
@@ -53,38 +59,25 @@ Func _config_start($sConfigFolder, $sConfigPath)
 		$sFormulaAutocompletion = "Yes"
 	EndIf
 	; check last commit:
-	if not @compiled or $sCommitGot = "" then
-		$sCommitGot = string(_calc_commit())
-		$sCommit = string(IniRead($sConfigPath, "Update", "Last commit", ""))
-		if $sCommit = "" then
-			$sCommit = $sCommitGot
-			IniWrite($sConfigPath, "Update", "Last commit", $sCommit)
-		elseIf $sCommit <> $sCommitGot then
-			if not $sCommitGot == "" then
-				MsgBox(64, translate($sLang, "New repository update"), translate($sLang, "A new update of the calculator was found. Press OK to apply it."))
-				IniWrite($sConfigPath, "Update", "Last commit", $sCommitGot)
-				_download_repo()
-			endIf ; got commit empti because the internet connection.
-		EndIf ; commit is empti or different
-	EndIf ; compiled
+	if $sUpdateSource = "Yes" then
+		if not @compiled or $sCommitGot = "" then
+			$sCommitGot = string(_calc_commit())
+			$sCommit = string(IniRead($sConfigPath, "Update", "Last commit", ""))
+			if $sCommit = "" then
+				$sCommit = $sCommitGot
+				IniWrite($sConfigPath, "Update", "Last commit", $sCommit)
+			elseIf $sCommit <> $sCommitGot then
+				if not $sCommitGot == "" then
+					MsgBox(64, translate($sLang, "New repository update"), translate($sLang, "A new update of the calculator was found. Press OK to apply it."))
+					IniWrite($sConfigPath, "Update", "Last commit", $sCommitGot)
+					_download_repo()
+				endIf ; got commit empti because the internet connection.
+			EndIf ; commit is empti or different
+		EndIf ; @compiled
+	EndIf ; Check source code updates
 	; The configs has been sabed if they are empti. Now, check for update if is neccessary:
 	if $sCheckForUpdate = "Yes" then
-		$aUpdateHandler = checkupdate(@ScriptFullPath, "rmcpantoja/universal-calculator", True)
-		if @error then
-			ConsoleWrite("Warning: check update receibed an error. Code: " & @error)
-			Return SetError(1, 0, "")
-		EndIf
-		$bUpdate = $aUpdateHandler[0]
-		$sVersionGot = $aUpdateHandler[1]
-		$sJson = $aUpdateHandler[2]
-		if $bUpdate then
-			_perform_Update($sJson, "https://github.com/rmcpantoja/Universal-calculator")
-			if @error then
-				MsgBox(16, "Error", "Couldn't download files for this update.")
-				return SetError(2, 0, "")
-			EndIf
-			_DoUpdate(@ScriptFullPath, "https://github.com/rmcpantoja/Universal-calculator/releases/download/" &$sVersionGot &"/universal_calculator.zip", @ScriptDir &"\universal_calculator_update.zip")
-		EndIf
+		_calc_check_update(True)
 	EndIf
 	Return 1
 EndFunc   ;==>_config_start
