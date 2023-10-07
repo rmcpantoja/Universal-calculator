@@ -55,7 +55,7 @@ Func checkupdate($sCurrentVersion, $sGitHubURL, $bSylent = False)
 				MsgBox(0, translate($sLanguage, "warning"), translate($sLanguage, "the version we have looked for is lower than the one you have.") &" " &$sLatestver &".")
 				$bUpdatable = True
 			Case $sLatestver > $sCurrentVersion
-				MsgBox(48, translate($sLanguage, "update available!"), translate($sLanguage, "You have the version") &" " &$sExeVersion &" " &translate($sLanguage, "And is available the") &" " &$sLatestver &".")
+				MsgBox(48, translate($sLanguage, "update available!"), translate($sLanguage, "You have the version") &" " &$sCurrentVersion &" " &translate($sLanguage, "And is available the") &" " &$sLatestver &".")
 				$bUpdatable = True
 			Case $sLatestver >= $sCurrentVersion
 				if not $bSylent then MsgBox(48, translate($sLanguage, "you are up to date"), translate($sLanguage, "no update at the moment."))
