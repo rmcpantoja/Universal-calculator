@@ -45,7 +45,7 @@ Func Main()
 	$iTaskTxt = GUICtrlCreateMenuItem(translate($sLang, "Generate a text file"), $idTasks)
 	$idHelpmenu = GUICtrlCreateMenu(translate($sLang, "&Help"))
 	$idChanges = GUICtrlCreateMenuItem(translate($sLang, "Changes"), $idHelpmenu)
-	$idUserManual = GUICtrlCreateMenuItem(translate($sLang, "&User manual"), $idHelpmenu)
+	$idUserManual = GUICtrlCreateMenuItem(translate($sLang, "User manual"), $idHelpmenu)
 	$idErrorReporting = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions"), $idHelpmenu)
 	$idGitHub = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions (gitHub)"), $idHelpmenu)
 	$idWebsite = GUICtrlCreateMenuItem(translate($sLang, "&Visit website"), $idHelpmenu)
@@ -188,10 +188,12 @@ EndFunc   ;==>Main
 ; ===============================================================================================================================
 Func _ReadDoc($sLang, $sTipe)
 	local $hGui
-	local $sContent, $sDocumentationPath = @ScriptDir & "\documentation\" & $sLang
+	local $sContent, $sDocumentationPath = @ScriptDir & "\documentation\" & $sLang, $sGuiName
 	if $sTipe = "Changes" then
 		$sDoc = $sDocumentationPath & "\changes.txt"
+		$sGuiName = Translate($sLang, "Changes")
 	ElseIf $sTipe = "Manual" then
+		$sGuiName = Translate($sLang, "User manual")
 		$sDoc = $sDocumentationPath & "\manual.txt"
 	else
 		return SetError(1, 0, "")
@@ -202,7 +204,7 @@ Func _ReadDoc($sLang, $sTipe)
 		return SetError(2, 0, "")
 	EndIf
 	$sContent = FileRead($hFile)
-	$hChangesGui = GUICreate(translate($sLang, "Changes"))
+	$hChangesGui = GUICreate($sGuiName)
 	$idEdit = GUICtrlCreateEdit($sContent, 5, 5, 390, 360, BitOR($WS_VSCROLL, $WS_HSCROLL, $ES_READONLY))
 	$idExit = GUICtrlCreateButton(translate($sLang, "&Close"), 100, 370, 150, 30)
 	GUISetState(@SW_SHOW)

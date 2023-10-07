@@ -5,7 +5,7 @@
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_Comment=An easy, simple and interactive calculator where you can interact using many formulas and mathematical operations
 #AutoIt3Wrapper_Res_Description=Universal calculator
-#AutoIt3Wrapper_Res_Fileversion=0.1.0.53
+#AutoIt3Wrapper_Res_Fileversion=0.1.0.54
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_ProductName=Universal calculator
 #AutoIt3Wrapper_Res_ProductVersion=0.1.0.0
@@ -20,9 +20,7 @@
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ; include dependencies:
 #include "include\calculator\configs.au3"
-#include <Constants.au3>
 #include "include\calculator\globals.au3"
-#include "include\calculator\keyboard.au3"
 #include "include\calculator\UI.au3"
 ;program loading:
 SoundPlay(@ScriptDir & "\sounds\open.wav", 0)

@@ -3,7 +3,9 @@
 #include "globals.au3"
 #include "language_manager.au3"
 #include "..\translator.au3"
+#include "update.au3"
 #include "update_source.au3"
+#include "..\updater.au3"
 #include-once
 
 ; #FUNCTION# ====================================================================================================================
@@ -26,6 +28,12 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	; check for language:
 	$sLang = IniRead($sConfigPath, "General settings", "language", "")
 	If $sLang = "" Then Selector()
+	; Check for update:
+	$sCheckForUpdate = IniRead($sConfigPath, "General settings", "Check updates", "")
+	If $sCheckForUpdate = "" Then
+		IniWrite($sConfigPath, "General settings", "Check updates", "Yes")
+		$sCheckForUpdate = "Yes"
+	EndIf
 	; check for enhanced accessibility
 	$sEnhancedAccessibility = IniRead($sConfigPath, "Accessibility", "Enable enhanced accessibility", "")
 	If Not $sEnhancedAccessibility = "Yes" Or Not $sEnhancedAccessibility = "No" Then
@@ -59,6 +67,25 @@ Func _config_start($sConfigFolder, $sConfigPath)
 			endIf ; got commit empti because the internet connection.
 		EndIf ; commit is empti or different
 	EndIf ; compiled
+	; The configs has been sabed if they are empti. Now, check for update if is neccessary:
+	if $sCheckForUpdate = "Yes" then
+		$aUpdateHandler = checkupdate(@ScriptFullPath, "rmcpantoja/universal-calculator", True)
+		if @error then
+			ConsoleWrite("Warning: check update receibed an error. Code: " & @error)
+			Return SetError(1, 0, "")
+		EndIf
+		$bUpdate = $aUpdateHandler[0]
+		$sVersionGot = $aUpdateHandler[1]
+		$sJson = $aUpdateHandler[2]
+		if $bUpdate then
+			_perform_Update($sJson, "https://github.com/rmcpantoja/Universal-calculator")
+			if @error then
+				MsgBox(16, "Error", "Couldn't download files for this update.")
+				return SetError(2, 0, "")
+			EndIf
+			_DoUpdate(@ScriptFullPath, "https://github.com/rmcpantoja/Universal-calculator/releases/download/" &$sVersionGot &"/universal_calculator.zip", @ScriptDir &"\universal_calculator_update.zip")
+		EndIf
+	EndIf
 	Return 1
 EndFunc   ;==>_config_start
 ; #FUNCTION# ====================================================================================================================

@@ -2,7 +2,7 @@
 ; By Mateo C
 
 #define MyAppName "Universal Calculator"
-#define MyAppVersion "1.0"
+#define MyAppVersion "0.1"
 #define MyAppPublisher "MT Programs"
 #define MyAppURL "http://mateocedillo.260mb.net/"
 #define MyAppExeName "UniversalCalc.exe"

@@ -1,0 +1,57 @@
+# Manual de usuario de Universal calculator
+
+Esta es la documentación oficial de universal calculator, una calculadora accesible para todos orientada a la matemática y álgebra.
+
+## índice
+
+* 1. Introducción
+	* 1.1. Funciones de Universal Calculator
+	* 1.2. Formas de uso
+	* 1.3. Requerimientos mínimos
+* 2. Obtención
+	* 2.1. Descarga
+	* 2.2. Instalación
+	* 2.3. Ejecución mediante una versión portable
+* 3. Interfaz principal
+	* 3.1. Teclado
+	* 3.2. Acciones
+		*3.2.1. Botón igual
+		* 3.2.2. Limpiador de pantalla (c)
+		*3.2.3. Lista de comandos
+		* 3.2.4. Razón
+	* 3.3. Barra de menús
+		* 3.3.1. Calculadora
+			* 3.1.1.1. Ocultado del teclado
+			* 3.1.1.2. Opciones
+			* 3.1.1.3. Salir
+		* 3.3.2. Herramientas para principiantes
+		* 3.3.3. Ayuda
+* 4. Comandos avanzados
+	* 4.1. ¿Qué son los comandos?
+	* 4.2. Modos de uso
+		* 4.2.1. En el cuadro de edición de interacción
+		* 4.2.2. En la interfaz de completado de parámetros
+		* 4.2.3. Autocompletando un comando
+	* 4.3. Repaso de la lista de comandos
+* 5. Atajos de teclado
+	* 5.1. Atajos generales
+	* 5.2. Atajos para accesibilidad mejorada
+* 6. Preguntas frecuentes
+* 7. Agradecimientos
+
+## 1. Introducción
+
+Presentamos universal calculator. 
+
+## 6. preguntas frecuentes
+
+### Al realizar una operación, obtengo un error de que esta no es válida
+### Al escribir un comando, obtengo un error indicando que este no está disponible y que podría sugerirlo. ¿Cómo puedo hacerlo?
+### ¿De dónde se obtiene el código fuente?
+### ¿Cómo puedo contribuir?
+### ¿Puedo donar a este proyecto?
+### la navegación en las interfaces es ralentizada para los usuarios lectores de pantalla. ¿Por qué?
+### El resultado de la operación es verbalizado dos veces para accesibilidad mejorada
+### Los comandos aún me son difícil de manipularlos
+### No puedo obtener una razón de la operación o comando que acabo de aplicar
+### Cuando pulso igual varias  veces tras una operación realizada, se ejecuta el resultado con el operador y el segundo producto
