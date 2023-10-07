@@ -2,7 +2,7 @@
 ;This UDF was created by Mateo Cedillo
 #include-once
 Global $trslt_Ver = "1.1.2"
-global $lngPath = @ScriptDir & "\lng"
+Global $lngPath = @ScriptDir & "\lng"
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: GetLanguageName
 ; Description ...: Get the name of a specific language and returns in a string
@@ -17,7 +17,7 @@ global $lngPath = @ScriptDir & "\lng"
 ; Example .......: Yes
 ; ===============================================================================================================================
 Func GetLanguageName($sFile)
-	$nlgname = IniRead($lngPath &"\" & $sFile & ".lang", "Language info", "Name", "")
+	$nlgname = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Name", "")
 	If $nlgname = "" Then
 		MsgBox(16, "language engine error", "The language name is not valid")
 		Return 0
@@ -39,9 +39,9 @@ EndFunc   ;==>GetLanguageName
 ; Example .......: Yes
 ; ===============================================================================================================================
 Func GetLanguageCode($sFile)
-	$nlgcode = IniRead($lngPath &"\" & $sFile & ".lang", "Language info", "Code", "")
+	$nlgcode = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Code", "")
 	If $nlgcode = "" Then
-		msgBox(16, "Language engine error", "can't get language code")
+		MsgBox(16, "Language engine error", "can't get language code")
 		Return 0
 	Else
 		Return $nlgcode
@@ -61,9 +61,9 @@ EndFunc   ;==>GetLanguageCode
 ; Example .......: No
 ; ===============================================================================================================================
 Func GetLanguageAuthors($sFile)
-	$nlgauthors = IniRead($lngPath &"\" & $sFile & ".lang", "Language info", "Author", "")
+	$nlgauthors = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Author", "")
 	If $nlgauthors = "" Then
-		msgBox(16, "Language engine error", "can't get language AUTHORS.")
+		MsgBox(16, "Language engine error", "can't get language AUTHORS.")
 		Return 0
 	Else
 		Return $nlgauthors
@@ -83,9 +83,9 @@ EndFunc   ;==>GetLanguageAuthors
 ; Example .......: No
 ; ===============================================================================================================================
 Func GetLanguageCopyright($sFile)
-	$nlgcpr = IniRead($lngPath &"\" & $sFile & ".lang", "Language info", "Copyright", "")
+	$nlgcpr = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Copyright", "")
 	If $nlgcpr = "" Then
-		msgBox(16, "Language engine error", "can't get language Copyright")
+		MsgBox(16, "Language engine error", "can't get language Copyright")
 		Return 0
 	Else
 		Return $nlgcpr
@@ -105,11 +105,11 @@ EndFunc   ;==>GetLanguageCopyright
 ; Example .......: No
 ; ===============================================================================================================================
 Func GetLanguageVersion($sFile)
-	$nlgversion = IniRead($lngPath &"\" & $sFile & ".lang", "Language info", "Version", "")
+	$nlgversion = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Version", "")
 	If $nlgversion = "" Then
 		MsgBox(16, "language engine error", "can't get language version")
 		Return 0
-	ElseIf NOT IsNumber($nlgversion) Then
+	ElseIf Not IsNumber($nlgversion) Then
 		MsgBox(16, "language engine error", "The language version is not valid")
 		Return -1
 	Else
@@ -131,7 +131,7 @@ EndFunc   ;==>GetLanguageVersion
 ; Example .......: Yes
 ; ===============================================================================================================================
 Func translate($sLanguageName, $sString)
-	$strings = IniRead($lngPath &"\" & $sLanguageName & ".lang", "Strings", $sString, "")
+	$strings = IniRead($lngPath & "\" & $sLanguageName & ".lang", "Strings", $sString, "")
 	If $strings = "" Then
 		If Not $sString = "" Then
 			Return $sString

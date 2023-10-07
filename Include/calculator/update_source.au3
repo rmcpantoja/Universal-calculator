@@ -34,7 +34,7 @@ Func _GetLastCommit($sOwner, $sRepo)
 	Local $aCommits = StringRegExp($sResponse, '\{"sha":"(.*?)",', 3)
 	If @error Then Return SetError(4, 0, "error")
 	Return $aCommits[0]
-EndFunc
+EndFunc   ;==>_GetLastCommit
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _download_Github_repo
@@ -53,7 +53,7 @@ EndFunc
 ; ===============================================================================================================================
 Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
 	Local $iRet = InetGet($sRepoURL, $sDestinationFolder & "\" & $sFileName, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
-	If $iRet == 0 Then return SetError(1, 0, "")
+	If $iRet == 0 Then Return SetError(1, 0, "")
 	ProgressOn(translate($sLang, "Downloading"), translate($sLang, "Downloading latest repo updates..."), "0%")
 	While InetGetInfo($iRet, $INET_DOWNLOADCOMPLETE) = 0
 		$iBytesRead = InetGetInfo($iRet, $INET_DOWNLOADREAD)
@@ -65,13 +65,13 @@ Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
 	ProgressSet(100, translate($sLang, "Done!"))
 	Sleep(1000)
 	ProgressOff()
-	if not FileExists($sDestinationFolder & "\" & $sFileName) then return SetError(2, 0, "")
-	_Zip_UnzipAll($sDestinationFolder &"\" &$sFileName, @ScriptDir, 20)
-	if @error then Return SetError(3, 0, "")
+	If Not FileExists($sDestinationFolder & "\" & $sFileName) Then Return SetError(2, 0, "")
+	_Zip_UnzipAll($sDestinationFolder & "\" & $sFileName, @ScriptDir, 20)
+	If @error Then Return SetError(3, 0, "")
 	; move dirs:
-	DirMove(@ScriptDir &"\Universal-calculator-main\*", @ScriptDir, 1)
+	DirMove(@ScriptDir & "\Universal-calculator-main\*", @ScriptDir, 1)
 	; move files:
-	FileMove(@ScriptDir &"\Universal-calculator-main\*", @ScriptDir, 9)
-	FileDelete($sDestinationFolder & "\" &$sFileName)
-	return True
-EndFunc
+	FileMove(@ScriptDir & "\Universal-calculator-main\*", @ScriptDir, 9)
+	FileDelete($sDestinationFolder & "\" & $sFileName)
+	Return True
+EndFunc   ;==>_download_Github_repo

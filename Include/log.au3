@@ -1,7 +1,7 @@
 #include-once
 #include <fileConstants.au3>
-local $hLogFile
-$sLogPath = @ScriptDir &"\logs"
+Local $hLogFile
+$sLogPath = @ScriptDir & "\logs"
 $SSave = ""
 
 ; #FUNCTION# ====================================================================================================================
@@ -17,16 +17,16 @@ $SSave = ""
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-func log_start()
+Func log_start()
 	Local $logfile
-	$SSave = IniRead(@ScriptDir &"\config\config.st", "General settings", "Save Logs", "")
+	$SSave = IniRead(@ScriptDir & "\config\config.st", "General settings", "Save Logs", "")
 	Select
 		Case $SSave = ""
-			IniWrite(@ScriptDir &"\config\config.st", "General settings", "Save Logs", "Yes")
+			IniWrite(@ScriptDir & "\config\config.st", "General settings", "Save Logs", "Yes")
 			$SSave = "Yes"
 	EndSelect
-	if $SSave = "Yes" then $hLogFile = FileOpen($sLogPath & "\" & @YEAR & @MON & @MDAY & ".log", $FC_OVERWRITE + $FC_CREATEPATH)
-EndFunc
+	If $SSave = "Yes" Then $hLogFile = FileOpen($sLogPath & "\" & @YEAR & @MON & @MDAY & ".log", $FC_OVERWRITE + $FC_CREATEPATH)
+EndFunc   ;==>log_start
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: writeinlog
 ; Description ...: write a text or information to the log
@@ -41,7 +41,7 @@ EndFunc
 ; Example .......: No
 ; ===============================================================================================================================
 Func writeinlog($text)
-	If $sSave = "yes" Then
+	If $SSave = "yes" Then
 		FileWrite($hLogFile, @YEAR & "-" & @MON & "-" & @MDAY & " " & @HOUR & ":" & @MIN & ": " & $text & @CRLF)
 	EndIf
 EndFunc   ;==>writeinlog

@@ -11,10 +11,10 @@
 ;                  $indicator           - [optional] A integer value. Default is "OF".
 ; Return values .: None
 ; Author ........: Mateo Cedillo
-; Modified ......: 
-; Remarks .......: 
-; Related .......: 
-; Link ..........: 
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
 Func reader_create_menu($description, $options, $announcePos = "1", $indicator = "OF")
@@ -50,7 +50,7 @@ Func reader_create_menu($description, $options, $announcePos = "1", $indicator =
 			ContinueLoop
 		EndIf
 		If $menu_key = "enter" Then
-			SoundPlay(@scriptDir &"\sounds/selected.ogg", 0)
+			SoundPlay(@ScriptDir & "\sounds/selected.ogg", 0)
 			If $selection > 0 Then
 				$menu = ""
 				Return $selection
@@ -60,14 +60,14 @@ Func reader_create_menu($description, $options, $announcePos = "1", $indicator =
 			$selection = $selection - 1
 			If $selection < 1 Then
 				$selection = $menu_length
-				SoundPlay(@scriptdir &"\sounds/scrollTop.ogg", 0)
+				SoundPlay(@ScriptDir & "\sounds/scrollTop.ogg", 0)
 			EndIf
 			$file_to_open = $items[$selection]
-			SoundPlay(@scriptdir &"\sounds/bound.ogg", 0)
+			SoundPlay(@ScriptDir & "\sounds/bound.ogg", 0)
 			If $announcePos = "1" Then
-				speaking($file_to_open & ", " & $selection & " " & $indicator & " " & $menu_length, true)
+				speaking($file_to_open & ", " & $selection & " " & $indicator & " " & $menu_length, True)
 			Else
-				speaking($file_to_open, true)
+				speaking($file_to_open, True)
 			EndIf
 		EndIf
 		If $menu_key = "down arrow" Then
@@ -75,14 +75,14 @@ Func reader_create_menu($description, $options, $announcePos = "1", $indicator =
 			$limit = $menu_length + 1
 			If $selection = $limit Then
 				$selection = 1
-				SoundPlay(@scriptdir &"\sounds/scrollTop.ogg", 0)
+				SoundPlay(@ScriptDir & "\sounds/scrollTop.ogg", 0)
 			EndIf
 			$file_to_open = $items[$selection]
-			SoundPlay(@scriptdir &"\sounds/bound.ogg", 0)
+			SoundPlay(@ScriptDir & "\sounds/bound.ogg", 0)
 			If $announcePos = "1" Then
-				speaking($file_to_open & ", " & $selection & " " & $indicator & " " & $menu_length, true)
+				speaking($file_to_open & ", " & $selection & " " & $indicator & " " & $menu_length, True)
 			Else
-				speaking($file_to_open, true)
+				speaking($file_to_open, True)
 			EndIf
 		EndIf
 		Sleep(10)

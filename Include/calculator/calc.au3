@@ -36,12 +36,12 @@
 Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	$sOperation = GUICtrlRead($idInter)
 	; recently, I discovered that "execute" can run script functions too, so:
-	if StringInStr($sOperation, '("') or StringInStr($sOperation, "('") or StringInStr($sOperation, '($') then
+	If StringInStr($sOperation, '("') Or StringInStr($sOperation, "('") Or StringInStr($sOperation, '($') Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
-	; Fix division by 0:
-	elseIf _String_EndsWith($sOperation, "/0") or StringInStr($sOperation, "/0") then
+		; Fix division by 0:
+	ElseIf _String_EndsWith($sOperation, "/0") Or StringInStr($sOperation, "/0") Then
 		MsgBox(16, Translate($sLang, "Math error"), Translate($sLang, "Couldn't divide by 0."))
-	elseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
+	ElseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
 	ElseIf _IsFocused($hGUI, $idFORMULAS) Then
 		; if we have focused the control in the list of commands, what to do:
@@ -86,8 +86,8 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An error occurred while doing this operation. Please check that the syntax is correct."))
 			Else
 				GUICtrlSetData($idInter, $nResult)
-				if $sEnhancedAccessibility = "Yes" then
-					if $sSpeak_result = "yes" then
+				If $sEnhancedAccessibility = "Yes" Then
+					If $sSpeak_result = "yes" Then
 						Speaking($nResult, True)
 					EndIf
 				EndIf
@@ -123,12 +123,12 @@ Func _interact($sOperation, $idInter)
 	; We make support for commands or formulas available:
 	Select
 		Case $aSplitCMD[1] = "abs"
-			If _CheckComandParams($aNumbers, 1) Then $nResult = abs($aNumbers[1])
-		Case $aSplitCMD[1] = "av"	
+			If _CheckComandParams($aNumbers, 1) Then $nResult = Abs($aNumbers[1])
+		Case $aSplitCMD[1] = "av"
 			_ArrayDelete($aNumbers, 0)
-			if uBound($aNumbers) > 1 and $aNumbers[0] > 0 then
+			If UBound($aNumbers) > 1 And $aNumbers[0] > 0 Then
 				$nResult = _average($aNumbers)
-			else
+			Else
 				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "There are no parametters or average:number has only one parametter"))
 			EndIf
 		Case $aSplitCMD[1] = "deg"
@@ -204,7 +204,7 @@ Func _interact($sOperation, $idInter)
 				EndSwitch
 			EndIf
 		Case $aSplitCMD[1] = "rand"
-			If _CheckComandParams($aNumbers, 2) Then $nResult = random($aNumbers[1], $aNumbers[2], 1)
+			If _CheckComandParams($aNumbers, 2) Then $nResult = Random($aNumbers[1], $aNumbers[2], 1)
 		Case $aSplitCMD[1] = "root"
 			If _CheckComandParams($aNumbers, 2) Then $nResult = _Raiz2($aNumbers[1], $aNumbers[2])
 			Switch $aNumbers[1]
@@ -243,9 +243,9 @@ Func _interact($sOperation, $idInter)
 	EndSelect
 	If Not @error Then
 		GUICtrlSetData($idInter, $nResult)
-		if _IsFocused($hGUI, $idInter) then GUICtrlSetState($idInter, $GUI_Focus)
-		if $sEnhancedAccessibility = "Yes" then
-			if $sSpeak_result = "Yes" then
+		If _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
+		If $sEnhancedAccessibility = "Yes" Then
+			If $sSpeak_result = "Yes" Then
 				Speaking($nResult, True)
 			EndIf
 		EndIf

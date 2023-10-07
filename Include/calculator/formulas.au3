@@ -1,7 +1,7 @@
 #include "..\translator.au3"
 #include-once
 ; help table:
-global $aInfoFormulas = [ _
+Global $aInfoFormulas = [ _
 		"Absolute number|Gets the absolute value of an expression", _
 		"Average|gets the total average of several set numbers", _
 		"Radians to Degrees|Converts a given number of radians to degrees", _
@@ -37,11 +37,11 @@ global $aInfoFormulas = [ _
 		"Time|Gets the time of a speed and distance", _
 		"Speed|Gets the speed of a given distance and time", _
 		"Percentage|Gets the percent of a minimum and maximum value" _
-]
+		]
 ; form table:
-global $aCommandTable = [ _
+Global $aCommandTable = [ _
 		["abs", 1], _
-		["av", null], _
+		["av", Null], _
 		["deg", 1], _
 		["max", 2], _
 		["min", 2], _
@@ -75,7 +75,7 @@ global $aCommandTable = [ _
 		["time", 2], _
 		["vel", 2], _
 		["per", 2 _
-]]
+		]]
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _get_formule_table
 ; Description ...: Gets the default formula table, useful for working with parameters.

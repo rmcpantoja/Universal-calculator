@@ -19,7 +19,7 @@
 Func _String_startsWith($sString, $sStart)
 	If Not IsString($sString) Then Return SetError(1, 0, "")
 	Return $sStart = StringLeft($sString, StringLen($sStart))
-EndFunc   ;==>_String_startswith
+EndFunc   ;==>_String_startsWith
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _String_EndsWith
 ; Description ...: Checks if the string ends with a specific criteria, similar to the function in Python.
@@ -37,4 +37,4 @@ EndFunc   ;==>_String_startswith
 Func _String_EndsWith($sString, $sEnd)
 	If Not IsString($sString) Then Return SetError(1, 0, "")
 	Return $sEnd = StringRight($sString, StringLen($sEnd))
-EndFunc   ;==>_String_Endswith
+EndFunc   ;==>_String_EndsWith

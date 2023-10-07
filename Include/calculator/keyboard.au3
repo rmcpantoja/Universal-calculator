@@ -20,7 +20,7 @@ Local $aCalculatorKeys[15][2] = [ _
 		["/", "{NUMPADDIV}"], _
 		[".", "{NUMPADDOT}"], _
 		["+", "{NUMPADADD}"] _
-]
+		]
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IsChecked
@@ -96,7 +96,7 @@ Func _HideKey($aKeyControls, $idHideKeyControl, ByRef $bHideKeyboard)
 			GUICtrlSetState($aNums[$I], $GUI_hide)
 		Next
 		$bHideKeyboard = True
-		GUICtrlSetState($idHideKeyControl, $GUI_checked)
+		GUICtrlSetState($idHideKeyControl, $GUI_CHECKED)
 		If $sEnhancedAccessibility = "Yes" Then speaking(Translate($sLang, "Keyboard hidden"))
 	Else
 		; here we do the opposite, we show it.
@@ -164,9 +164,9 @@ EndFunc   ;==>_convert_key_from_keymap
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-func _scriftkey_options()
-	return _accessibility_Options($sConfigFolder, $sConfigPath)
-EndFunc
+Func _scriftkey_options()
+	Return _accessibility_Options($sConfigFolder, $sConfigPath)
+EndFunc   ;==>_scriftkey_options
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _ClearScreen

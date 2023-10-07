@@ -13,7 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _ErrFunc($oError)
-	local $sMessageType
+	Local $sMessageType
 	; Do anything here.
 	;if $sType == "internet" then
 	;	$sMessageType = "Well, it seems that you have problems with your internet connection, useful for checking for updates to both the program and the source code, so you will work offline for now."

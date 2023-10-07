@@ -662,7 +662,7 @@ Func _Zip_UnzipAll($sZipFile, $sDestPath, $iFlag = 20)
 	EndIf
 EndFunc   ;==>_Zip_UnzipAll
 
-#region INTERNAL FUNCTIONS
+#Region INTERNAL FUNCTIONS
 ; #FUNCTION# ====================================================================================================
 ; Name...........:  _IsFullPath
 ; Description....:  Determines if a given path is a fully qualified path (well, roughly...)
@@ -927,4 +927,4 @@ Func _Zip_TempDirName($sZipFile)
 	Until Not FileExists($sTemp) ; this folder will be created during extraction
 	Return $sTemp
 EndFunc   ;==>_Zip_TempDirName
-#endregion INTERNAL FUNCTIONS
+#EndRegion INTERNAL FUNCTIONS

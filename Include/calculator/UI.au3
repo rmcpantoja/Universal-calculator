@@ -1,6 +1,7 @@
 #include <array.au3>
 #include <ButtonConstants.au3>
 #include "calc.au3"
+#include "checkupdate.au3"
 #include "configs.au3"
 #include <EditConstants.au3>
 #include "formulas.au3"
@@ -14,7 +15,6 @@
 #include <StaticConstants.au3>
 #include "..\mymath\Task_creator.au3"
 #include "..\translator.au3"
-#include "update.au3"
 #include <WindowsConstants.au3>
 #include-once
 Global $aFlista = _SearchParam(Null, Default, True)
@@ -35,7 +35,7 @@ _ArrayColDelete($aFlista, 1, True)
 Func Main()
 	; Creating GUI and its controls:
 	;Note! No GUI acceleration is guaranteed for now, because I'm using the default and common message loop that everyone uses. In fact, I have already reported this in the NVDA code. Maybe a solution will be found: https://github.com/nvaccess/nvda/issues/13833
-	$hGUI = GUICreate("Universal calculator " & $sProgramVer, 400, 350, 290, 257)
+	$hGui = GUICreate("Universal calculator " & $sProgramVer, 400, 350, 290, 257)
 	$idMenu = GUICtrlCreateMenu(translate($sLang, "&Calculator"))
 	$idHideKey = GUICtrlCreateMenuItem(translate($sLang, "hide keyboard") & @TAB & "CTRL+shift+k", $idMenu)
 	GUICtrlSetState(-1, $GUI_Unchecked)
@@ -56,7 +56,7 @@ Func Main()
 	GUICtrlSetColor(-1, 0x000000)
 	$idInter = GUICtrlCreateInput("", 170, 0, 220, 110)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Write your operation here, then press the equal button to get the result."))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Write your operation here, then press the equal button to get the result."))
 	; creating the array of the on-screen keyboard, this is going to be manipulated.
 	$aNums[0] = GUICtrlCreateButton("0", 140, 280, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
@@ -68,7 +68,7 @@ Func Main()
 	GUICtrlSetColor(-1, 0x000000)
 	$aNums[4] = GUICtrlCreateButton("-", 250, 240, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "substract"))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "substract"))
 	$aNums[5] = GUICtrlCreateButton("4", 130, 200, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
 	$aNums[6] = GUICtrlCreateButton("5", 170, 200, 30, 30)
@@ -77,7 +77,7 @@ Func Main()
 	GUICtrlSetColor(-1, 0x000000)
 	$aNums[8] = GUICtrlCreateButton("*", 250, 200, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "multiply"))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "multiply"))
 	$aNums[9] = GUICtrlCreateButton("7", 130, 160, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
 	$aNums[10] = GUICtrlCreateButton("8", 170, 160, 30, 30)
@@ -86,47 +86,47 @@ Func Main()
 	GUICtrlSetColor(-1, 0x000000)
 	$aNums[12] = GUICtrlCreateButton("/", 250, 160, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "divide"))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "divide"))
 	$aNums[13] = GUICtrlCreateButton(".", 170, 280, 30, 30, BitOR($SS_CENTER, 0, 0))
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Decimal point"))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Decimal point"))
 	$aNums[14] = GUICtrlCreateButton("+", 260, 280, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "add"))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "add"))
 	$aNums[15] = GUICtrlCreateButton("%", 130, 130, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "percentage"))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "percentage"))
 	$aNums[16] = GUICtrlCreateButton("(", 160, 130, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Open parentheses"))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Open parentheses"))
 	$aNums[17] = GUICtrlCreateButton(")", 200, 130, 30, 30)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Close parentheses"))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Close parentheses"))
 	$idEqual = GUICtrlCreateButton("&=", 220, 280, 30, 30, BitOR($SS_CENTER, 0, 0))
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Gets the result of your operation."))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Gets the result of your operation."))
 	$idClearScreen = GUICtrlCreateButton("C", 240, 130, 30, 30)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Clears the screen."))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Clears the screen."))
 	$idCommandsLb = GUICtrlCreateLabel(Translate($sLang, "&Commands"), 280, 170, 80, 30)
 	GUICtrlSetColor(-1, 0x000000)
 	$idFORMULAS = GUICtrlCreateListView(translate($sLang, "Name|Description|Command"), 10, 110, 90, 149, $LVS_SORTASCENDING)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Here you can choose even more formulas that this calculator has to offer to you."))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Here you can choose even more formulas that this calculator has to offer to you."))
 	$idOptions = GUICtrlCreateButton(translate($sLang, "&Options"), 40, 260, 60, 70)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Configure the program to your preference."))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Configure the program to your preference."))
 	$idGetReason = GUICtrlCreateButton(translate($sLang, "&Reason"), 280, 110, 40, 50, -1)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Gets the reason of why this operation does is equal to the other."))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Gets the reason of why this operation does is equal to the other."))
 	$idAbout = GUICtrlCreateButton(translate($sLang, "&About"), 280, 210, 80, 50)
 	GUICtrlSetColor(-1, 0x000000)
-	if $sShowTips = "Yes" then GUICtrlSetTip(-1, translate($sLang, "Get info. about the program."))
+	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Get info. about the program."))
 	; we are going to add the information to the list of commands, functions or formulas:
 	For $I = 0 To UBound($aInfoFormulas) - 1
 		GUICtrlCreateListViewItem(Translate($sLang, $aInfoFormulas[$I]) & "|" & $aFlista[$I], $idFORMULAS)
 	Next
 	; setting key accelerators:
-	Local $aAccelKeys[17][2] 
-	For $I = 0 To UBound($aNums) -4
+	Local $aAccelKeys[17][2]
+	For $I = 0 To UBound($aNums) - 4
 		$aAccelKeys[$I][0] = _convert_key_from_keymap($I)
 		$aAccelKeys[$I][1] = $aNums[$I]
 	Next
@@ -150,25 +150,25 @@ Func Main()
 			Case $idClearScreen
 				_ClearScreen($idInter)
 			Case $idEqual
-				_calc($hGUI, $idFORMULAS, $idInter, $idEqual)
+				_calc($hGui, $idFORMULAS, $idInter, $idEqual)
 			Case $idOptions
 				_Options($sConfigFolder, $sConfigPath)
 			Case $idGetReason
 				_GetReason($idInter, $sOperation)
-			case $idChanges
+			Case $idChanges
 				_ReadDoc($sLang, "Changes")
-			case $idUserManual
+			Case $idUserManual
 				_ReadDoc($sLang, "Manual")
-			CASE $idErrorReporting
+			Case $idErrorReporting
 				ShellExecute("https://docs.google.com/forms/d/e/1FAIpQLSdDW6LqMKGHjUdKmHkAZdAlgSDilHaWQG9VZjwLz0CJSXKqHA/viewform?usp=sf_link")
 				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
 			Case $idGitHub
 				ShellExecute("https://github.com/rmcpantoja/universal-calculator/issues/new")
 				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
-			case $idWebsite
+			Case $idWebsite
 				ShellExecute("http://mateocedillo.260mb.net/")
 				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
-			case $idCheckUpdates
+			Case $idCheckUpdates
 				_calc_check_update()
 			Case $idAbout, $idAboutItem
 				MsgBox(48, translate($sLang, "About"), translate($sLang, "An easy, simple and interactive calculator where you can do operations, formulas, conversions and more. This program has been developed by Mateo Cedillo. Creation of the GUI by Valeria Parra."))
@@ -191,21 +191,21 @@ EndFunc   ;==>Main
 ; Example .......: No
 ; ===============================================================================================================================
 Func _ReadDoc($sLang, $sTipe)
-	local $hGui
-	local $sContent, $sDocumentationPath = @ScriptDir & "\documentation\" & $sLang, $sGuiName
-	if $sTipe = "Changes" then
+	Local $hGui
+	Local $sContent, $sDocumentationPath = @ScriptDir & "\documentation\" & $sLang, $sGuiName
+	If $sTipe = "Changes" Then
 		$sDoc = $sDocumentationPath & "\changes.txt"
 		$sGuiName = Translate($sLang, "Changes")
-	ElseIf $sTipe = "Manual" then
+	ElseIf $sTipe = "Manual" Then
 		$sGuiName = Translate($sLang, "User manual")
 		$sDoc = $sDocumentationPath & "\manual.txt"
-	else
-		return SetError(1, 0, "")
+	Else
+		Return SetError(1, 0, "")
 	EndIf
-	local $hFile = FileOpen($sDoc, $FO_READ)
-	If $hFile = -1 then
+	Local $hFile = FileOpen($sDoc, $FO_READ)
+	If $hFile = -1 Then
 		MsgBox(16, translate($sLang, "error"), translate($sLang, "An error occurred when reading the file."))
-		return SetError(2, 0, "")
+		Return SetError(2, 0, "")
 	EndIf
 	$sContent = FileRead($hFile)
 	$hChangesGui = GUICreate($sGuiName)
@@ -220,7 +220,7 @@ Func _ReadDoc($sLang, $sTipe)
 		EndSwitch
 	WEnd
 	GUIDelete($hChangesGui)
-EndFunc   ;==>ReadChanges2
+EndFunc   ;==>_ReadDoc
 
 Func Generate_task()
-EndFunc
+EndFunc   ;==>Generate_task

@@ -36,7 +36,7 @@ Func Selector()
 		$sCollect = $aLangFiles[$I]
 		$sCurrentCode = StringLeft($sCollect, 2)
 		$sCodes &= GetLanguageName($sCurrentCode) & ", " & GetLanguageCode($sCurrentCode) & "|"
-		$aLangCodes[$I-1] = GetLanguageCode($sCurrentCode)
+		$aLangCodes[$I - 1] = GetLanguageCode($sCurrentCode)
 	Next
 	$langcount = StringSplit($sCodes, "|")
 	Global $Choose = GUICtrlCreateCombo("", 100, 50, 200, 30, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))

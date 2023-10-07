@@ -43,7 +43,7 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	; check for enhanced accessibility
 	$sEnhancedAccessibility = IniRead($sConfigPath, "Accessibility", "Enable enhanced accessibility", "")
 	If Not $sEnhancedAccessibility = "Yes" Or Not $sEnhancedAccessibility = "No" Then
-		$sEnhancedAccessibility = _configure_accessibility($sConfigPath)
+		$sEnhancedAccessibility = _Configure_Accessibility($sConfigPath)
 	EndIf
 	; Check formula autocompletion:
 	$sFormulaAutocompletion = IniRead($sConfigPath, "Calculator", "formula autocompletion mode", "")
@@ -59,24 +59,24 @@ Func _config_start($sConfigFolder, $sConfigPath)
 		$sFormulaAutocompletion = "Yes"
 	EndIf
 	; check last commit:
-	if $sUpdateSource = "Yes" then
-		if not @compiled or $sCommitGot = "" then
-			$sCommitGot = string(_calc_commit())
-			$sCommit = string(IniRead($sConfigPath, "Update", "Last commit", ""))
-			if $sCommit = "" then
+	If $sUpdateSource = "Yes" Then
+		If Not @Compiled Or $sCommitGot = "" Then
+			$sCommitGot = String(_calc_commit())
+			$sCommit = String(IniRead($sConfigPath, "Update", "Last commit", ""))
+			If $sCommit = "" Then
 				$sCommit = $sCommitGot
 				IniWrite($sConfigPath, "Update", "Last commit", $sCommit)
-			elseIf $sCommit <> $sCommitGot then
-				if not $sCommitGot == "" then
+			ElseIf $sCommit <> $sCommitGot Then
+				If Not $sCommitGot == "" Then
 					MsgBox(64, translate($sLang, "New repository update"), translate($sLang, "A new update of the calculator was found. Press OK to apply it."))
 					IniWrite($sConfigPath, "Update", "Last commit", $sCommitGot)
 					_download_repo()
-				endIf ; got commit empti because the internet connection.
+				EndIf ; got commit empti because the internet connection.
 			EndIf ; commit is empti or different
 		EndIf ; @compiled
 	EndIf ; Check source code updates
 	; The configs has been sabed if they are empti. Now, check for update if is neccessary:
-	if $sCheckForUpdate = "Yes" then
+	If $sCheckForUpdate = "Yes" Then
 		_calc_check_update(True)
 	EndIf
 	Return 1
@@ -95,7 +95,7 @@ EndFunc   ;==>_config_start
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-func _accessibility_config_start($sConfigFolder, $sConfigPath)
+Func _accessibility_config_start($sConfigFolder, $sConfigPath)
 	If Not FileExists($sConfigFolder) Then DirCreate($sConfigFolder)
 	; beep progress bars:
 	$sEnableProgresses = IniRead($sConfigPath, "Accessibility", "Beep for progress bars", "")
@@ -115,8 +115,8 @@ func _accessibility_config_start($sConfigFolder, $sConfigPath)
 		IniWrite($sConfigPath, "Accessibility", "Say result when pressing equal", "no")
 		$sSpeak_result = "no"
 	EndIf
-	return 1
-EndFunc
+	Return 1
+EndFunc   ;==>_accessibility_config_start
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _ConfigureAccessibility
 ; Description ...: Function that questions to the user if he want enhanced accessibility.
@@ -130,9 +130,9 @@ EndFunc
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-func _Configure_Accessibility($sConfigPath)
-	local $iAccessMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
-	local $sEnhancedAccessibility
+Func _Configure_Accessibility($sConfigPath)
+	Local $iAccessMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
+	Local $sEnhancedAccessibility
 	If $iAccessMSG = 6 Then
 		IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "Yes")
 		$sEnhancedAccessibility = "Yes"
@@ -140,8 +140,8 @@ func _Configure_Accessibility($sConfigPath)
 		IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "No")
 		$sEnhancedAccessibility = "No"
 	EndIf
-	return $sEnhancedAccessibility
-EndFunc
+	Return $sEnhancedAccessibility
+EndFunc   ;==>_Configure_Accessibility
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _calc_commit
 ; Description ...: Gets the last commit of the universal calculator project.
@@ -155,18 +155,18 @@ EndFunc
 ; Link ..........:
 ; Example .......: Yes
 ; ===============================================================================================================================
-func _calc_commit()
+Func _calc_commit()
 	$sCalcCommit = _GetLastCommit("rmcpantoja", "universal-calculator")
-	if @error then
-		switch @error
-			case 1
+	If @error Then
+		Switch @error
+			Case 1
 				; skip for now:
-			case 2
+			Case 2
 				MsgBox(16, translate($sLang, "Error"), translate($sLang, "The last commit could not be determined."))
-		endSwitch
+		EndSwitch
 	EndIf ; errors
-	return $sCalcCommit
-EndFunc
+	Return $sCalcCommit
+EndFunc   ;==>_calc_commit
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _download_repo
 ; Description ...: Function that downloads the latest universal calculator source code.
@@ -180,20 +180,20 @@ EndFunc
 ; Link ..........:
 ; Example .......: Yes
 ; ===============================================================================================================================
-func _download_repo()
+Func _download_repo()
 	$bDownloaded = _download_Github_repo("https://github.com/rmcpantoja/Universal-calculator/archive/main.zip", "calc.zip", @ScriptDir)
-	if @error then
-		switch @error
-			case 1
+	If @error Then
+		Switch @error
+			Case 1
 				MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot connect to the server."))
-			case 2
+			Case 2
 				MsgBox(16, translate($sLang, "Error"), translate($sLang, "Could not download file :("))
-			case 3
+			Case 3
 				MsgBox(16, translate($sLang, "Error"), translate($sLang, "The zip containing the repository could not be processed."))
 		EndSwitch
-	else
+	Else
 		MsgBox(64, translate($sLang, "Success!"), translate($sLang, "Universal calculator updated successfully. Press OK to exit, then run the new version."))
 		;return $bDownloaded
-		exit
+		Exit
 	EndIf ; errors
-EndFunc
+EndFunc   ;==>_download_repo
