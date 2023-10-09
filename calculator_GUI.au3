@@ -1,4 +1,4 @@
-; Program created by Mateo Cedillo, GUI creation by Valeria Parra feat: AutoBuilder 0.9f Prototype and GuiBuilderPlus v1.0.0-beta - 2022-07-12
+; Program created by Mateo Cedillo, GUI creation by Valeria Parra and Xx_Nessu_xX feat: AutoBuilder 0.9f Prototype and GuiBuilderPlus v1.0.0-beta - 2022-07-12
 ; set directives for compilation:
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Compile_Both=N

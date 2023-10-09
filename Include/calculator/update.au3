@@ -31,7 +31,7 @@ Func _perform_update($sJson, $sRepo, $sUpdaterDest = @ScriptDir & "\updater.exe"
 	$sRepo = StringReplace($sRepo, "://", "...")
 	$sRepo = StringReplace($sRepo, "/", ".")
 	$sRepo = StringReplace($sRepo, "-", ".")
-	$aRegex = StringRegExp($sJson, $sRepo & '.releases.download.v\d\.\d.updater.exe', 3)
+	$aRegex = StringRegExp($sJson, $sRepo & '.releases.download.v\d\.\d+[a-zA-Z]?\d*.updater.exe', 3)
 	If @error Then Return SetError(2, 0, "")
 	$sLastURL = $aRegex[0]
 	$hInet = InetGet($sLastURL, $sUpdaterDest, 1, 0)
