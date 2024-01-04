@@ -77,7 +77,7 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	EndIf ; Check source code updates
 	; The configs has been sabed if they are empti. Now, check for update if is neccessary:
 	If $sCheckForUpdate = "Yes" Then
-		if @compiled then _calc_check_update(True)
+		If @Compiled Then _calc_check_update(True)
 	EndIf
 	Return 1
 EndFunc   ;==>_config_start
