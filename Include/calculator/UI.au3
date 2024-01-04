@@ -173,18 +173,20 @@ Func Main()
 		GUICtrlCreateListViewItem(Translate($sLang, $aInfoFormulas[$I]) & "|" & $aFlista[$I], $idFORMULAS)
 	Next
 	; setting key accelerators:
-	Local $aAccelKeys[18][2]
+	Local $aAccelKeys[19][2]
 	For $I = 0 To UBound($aNums) - 4
 		$aAccelKeys[$I][0] = _convert_key_from_keymap($I)
 		$aAccelKeys[$I][1] = $aNums[$I]
 	Next
 	$aAccelKeys[15][0] = "^+k"
 	$aAccelKeys[15][1] = $idHideKey
-	;$aAccelKeys[16][0] = "^{bs}"
-	;$aAccelKeys[16][1] = $idClearScreen
-	;$aAccelKeys[17][0] = "!{o}"
-	;$aAccelKeys[17][1] = $idOptions
-	;GUISetAccelerators($aAccelKeys)
+	$aAccelKeys[16][0] = "^{bs}"
+	$aAccelKeys[16][1] = $idClearScreen
+	$aAccelKeys[17][0] = "!{o}"
+	$aAccelKeys[17][1] = $idOptions
+	$aAccelKeys[18][0] = "{ENTER}"
+	$aAccelKeys[18][1] = $idEqual
+	GUISetAccelerators($aAccelKeys)
 	; show GUI:
 	GUISetState(@SW_SHOW)
 	While 1
