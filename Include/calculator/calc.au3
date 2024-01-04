@@ -243,7 +243,7 @@ Func _interact($sOperation, $idInter)
 	EndSelect
 	If Not @error Then
 		GUICtrlSetData($idInter, $nResult)
-		If _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
+		If not _IsFocused($hGUI, $idInter) Then GUICtrlSetState($idInter, $GUI_Focus)
 		If $sEnhancedAccessibility = "Yes" Then
 			If $sSpeak_result = "Yes" Then
 				Speaking($nResult, True)

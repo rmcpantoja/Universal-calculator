@@ -182,7 +182,7 @@ EndFunc   ;==>_scriftkey_options
 ; Example .......: No
 ; ===============================================================================================================================
 Func _ClearScreen($idScreenControl)
-	If GUICtrlRead($idScreenControl) = "" And UBound($aStoreOperators) = 0 Then
+	If GUICtrlRead($idScreenControl) = "" or UBound($aStoreOperators) = 0 Then
 		If $sEnhancedAccessibility = "Yes" Then
 			Speaking(Translate($sLang, "there's nothing to clean"))
 		Else

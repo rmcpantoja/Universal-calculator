@@ -53,6 +53,7 @@ Func Main()
 	$idGitHub = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions (gitHub)"), $idHelpmenu)
 	$idWebsite = GUICtrlCreateMenuItem(translate($sLang, "&Visit website"), $idHelpmenu)
 	$idCheckUpdates = GUICtrlCreateMenuItem(translate($sLang, "Check for updates"), $idHelpmenu)
+	if not @compiled then GuiCtrlSetState(-1, $GUI_DISABLE)
 	$idAboutItem = GUICtrlCreateMenuItem(translate($sLang, "About"), $idHelpmenu)
 	$idInterLabel = GUICtrlCreateLabel(translate($sLang, "Write operation"), 10, 10, 370, 20, BitOR($SS_CENTERIMAGE, $SS_CENTER))
 	GUICtrlSetFont(-1, 10)
@@ -179,11 +180,11 @@ Func Main()
 	Next
 	$aAccelKeys[15][0] = "^+k"
 	$aAccelKeys[15][1] = $idHideKey
-	$aAccelKeys[16][0] = "^{bs}"
-	$aAccelKeys[16][1] = $idClearScreen
-	$aAccelKeys[17][0] = "!{o}"
-	$aAccelKeys[17][1] = $idOptions
-	GUISetAccelerators($aAccelKeys)
+	;$aAccelKeys[16][0] = "^{bs}"
+	;$aAccelKeys[16][1] = $idClearScreen
+	;$aAccelKeys[17][0] = "!{o}"
+	;$aAccelKeys[17][1] = $idOptions
+	;GUISetAccelerators($aAccelKeys)
 	; show GUI:
 	GUISetState(@SW_SHOW)
 	While 1

@@ -1,0 +1,19 @@
+Tarea matemática
+La tarea tiene: 13 diferentes operaciones en total. En esta tarea te he dado 3 tipos que son: 2 sumas,  y 6 restas. y 5 multiplicaciones.
+Resuelva las siguientes operaciones:
+315+233 = 548
+8271+1450 =9721
+8648-2542 = 6106
+717-512 = 205
+75-34 = 41
+818-289 = 
+48+35 =93
+747+284 = 1031
+852*83 = 
+144*11 = 
+455-84 = 371
+460*28 = 
+419*58 = 
+29-21 = 8
+12*1 = 12
+223-111 = 112
