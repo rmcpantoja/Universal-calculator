@@ -32,11 +32,13 @@ Func Selector()
 		MsgBox(16, "Fatal error", "We cannot find the language files. Please download the program again...")
 		Exit
 	EndIf
+	$aLangCodes[0] = "en"
+	$sCodes = "English, en|"
 	For $I = 1 To $aLangFiles[0]
 		$sCollect = $aLangFiles[$I]
 		$sCurrentCode = StringLeft($sCollect, 2)
 		$sCodes &= GetLanguageName($sCurrentCode) & ", " & GetLanguageCode($sCurrentCode) & "|"
-		$aLangCodes[$I - 1] = GetLanguageCode($sCurrentCode)
+		$aLangCodes[$I] = GetLanguageCode($sCurrentCode)
 	Next
 	$langcount = StringSplit($sCodes, "|")
 	Global $Choose = GUICtrlCreateCombo("", 100, 50, 200, 30, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))

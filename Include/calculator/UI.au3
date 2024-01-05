@@ -294,26 +294,26 @@ EndFunc   ;==>_ReadDoc
 ; ===============================================================================================================================
 Func num2words_UI()
 	Local $sTo_convert, $sWords
-	$hGui = GUICreate("Convert number to words")
+	$hGui = GUICreate(translate($sLang, "Convert number to words"))
 	; todo: multiple languages.
-	$idLavelInput = GUICtrlCreateLabel("Enter your number input", 10, 10, 150, 20)
+	$idLavelInput = GUICtrlCreateLabel(translate($sLang, "Enter your number input"), 10, 10, 150, 20)
 	$idInput = GUICtrlCreateInput("", 80, 10, 200, 20)
-	$idResultlavel = GUICtrlCreateLabel("Result", 150, 10, 120, 20)
+	$idResultlavel = GUICtrlCreateLabel(translate($sLang, "Result"), 150, 10, 120, 20)
 	GUICtrlSetState(-1, $GUI_HIDE)
 	$idResultBox = GUICtrlCreateEdit("", 150, 80, 200, 20, BitOR($ES_READONLY, $ES_RIGHT), $WS_EX_STATICEDGE)
 	GUICtrlSetState(-1, $GUI_HIDE)
-	$idClear = GUICtrlCreateButton("Clear", 150, 150, 200, 20)
+	$idClear = GUICtrlCreateButton(translate($sLang, "Clear"), 150, 150, 200, 20)
 	GUICtrlSetState(-1, $GUI_HIDE)
-	$idConvert = GUICtrlCreateButton("Convert", 220, 10, 150, 20)
+	$idConvert = GUICtrlCreateButton(translate($sLang, "Convert"), 220, 10, 150, 20)
 	; todo: Currencies and conversion modes:
-	$idCancelBTN = GUICtrlCreateButton("Cancel", 220, 80, 150, 20)
+	$idCancelBTN = GUICtrlCreateButton(translate($sLang, "Cancel"), 220, 80, 150, 20)
 	GUISetState(@SW_SHOW)
 	While 1
 		Switch GUIGetMsg()
 			Case $idConvert
 				$sTo_convert = GUICtrlRead($idInput)
 				If Not $sTo_convert Or $sTo_convert == "" Then
-					MsgBox(16, "Error", "there's nothing to convert")
+					MsgBox(16, translate($sLang, "Error"), translate($sLang, "There's nothing to convert"))
 					Return SetError(1, 0, "")
 				EndIf
 				$sWords = NumberToWords($sTo_convert)

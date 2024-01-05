@@ -1,8 +1,9 @@
 ;UDF to translate your applications into different languages.
 ;This UDF was created by Mateo Cedillo
 #include-once
-Global $trslt_Ver = "1.1.2"
+Global $trslt_Ver = "1.2.0"
 Global $lngPath = @ScriptDir & "\lng"
+Global $sBase_Language = "en"
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: GetLanguageName
 ; Description ...: Get the name of a specific language and returns in a string
@@ -117,6 +118,24 @@ Func GetLanguageVersion($sFile)
 	EndIf
 EndFunc   ;==>GetLanguageVersion
 ; #FUNCTION# ====================================================================================================================
+; Name ..........: set_base_language
+; Description ...:
+; Syntax ........: set_base_language($sValue)
+; Parameters ....: $sValue              - a string value.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func set_base_language($sValue)
+	If FileExists($lngPath & "\" & $sValue & ".lang") Then Return SetError(1, 0, "")
+	$sBase_Language = $sValue
+	Return True
+EndFunc   ;==>set_base_language
+; #FUNCTION# ====================================================================================================================
 ; Name ..........: translate
 ; Description ...: this is the base function that allows you to translate strings, this is stored in lng\language.lang following the structure.
 ; Syntax ........: translate($sLanguageName, $sString)
@@ -131,6 +150,11 @@ EndFunc   ;==>GetLanguageVersion
 ; Example .......: Yes
 ; ===============================================================================================================================
 Func translate($sLanguageName, $sString)
+	If $sLanguageName = $sBase_Language And FileExists($lngPath & "\" & $sLanguageName & ".lang") Then
+		MsgBox(16, "Language engine Error", "There must not be a language file with the base language.")
+		Return -1
+	EndIf
+	If $sLanguageName = $sBase_Language Then Return $sString
 	$strings = IniRead($lngPath & "\" & $sLanguageName & ".lang", "Strings", $sString, "")
 	If $strings = "" Then
 		If Not $sString = "" Then
