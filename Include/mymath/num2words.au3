@@ -1,7 +1,7 @@
 #include <MsgBoxConstants.au3>
 #include <StringConstants.au3>
 #include-once
-Global $nNumber, $bIncludeAnd, $sNumber
+;Global $nNumber, $bIncludeAnd, $sNumber
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: NumberToWords
@@ -43,8 +43,8 @@ Func NumberToWords($nNumber, $bIncludeAnd = True)
 		EndSwitch
 		If $bIncludeAnd And mod($nNumber, 1000) Then $sNumber &= "y "
 		$nNumber = mod($nNumber, 1000)
+		$bTilde = False
 		switch $nNumber
-			$bTilde = False
 			case 100 ; número propio.
 				$sNumber &= "cien "
 			case 101 to 199 ; aquí se tendrá que convertir ciento.
