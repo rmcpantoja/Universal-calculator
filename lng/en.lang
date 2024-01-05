@@ -10,10 +10,10 @@ This new Enhanced Accessibility functionality is designed for the visually impai
 &Calculator=&Calculator
 hide keyboard=hide keyboard
 Exit=Exit
-&Tools for Beginners=
-Automatic task generation=
-Generate and interact with the interface=
-Generate a text file=
+&Tools=&Tools
+Automatic task generation=Automatic task generation
+Generate and interact with the interface=Generate and interact with the interface
+Generate a text file=Generate a text file
 Write operation=Write operation
 Write your operation here, then press the equal button to get the result.=Write your operation here, then press the equal button to get the result.
 add=add

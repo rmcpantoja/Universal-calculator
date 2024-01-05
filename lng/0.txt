@@ -10,7 +10,7 @@ This new Enhanced Accessibility functionality is designed for the visually impai
 &Calculator=
 hide keyboard=
 Exit=
-&Tools for Beginners=
+&Tools=
 Automatic task generation=
 Generate and interact with the interface=
 Generate a text file=

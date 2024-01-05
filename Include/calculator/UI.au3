@@ -9,6 +9,7 @@
 #include <GuiConstantsEx.au3>
 #include "keyboard.au3"
 #include <ListViewConstants.au3>
+#include "..\mymath\num2words.au3"
 #include "options.au3"
 #include "params.au3"
 #include "reasons.au3"
@@ -42,10 +43,11 @@ Func Main()
 	GUICtrlSetState(-1, $GUI_Unchecked)
 	$idOptions = GUICtrlCreateMenuItem(translate($sLang, "&Options") & @TAB & "ALT+o", $idMenu)
 	$idMenuExit = GUICtrlCreateMenuItem(translate($sLang, "Exit"), $idMenu)
-	$idBeginners = GUICtrlCreateMenu(translate($sLang, "&Tools for Beginners"))
+	$idBeginners = GUICtrlCreateMenu(translate($sLang, "&Tools"))
 	$idTasks = GUICtrlCreateMenu(translate($sLang, "Automatic task generation"), $idBeginners)
 	$iTaskGUI = GUICtrlCreateMenuItem(translate($sLang, "Generate and interact with the interface"), $idTasks)
 	$iTaskTxt = GUICtrlCreateMenuItem(translate($sLang, "Generate a text file"), $idTasks)
+	$idN2w = GUICtrlCreateMenuItem(translate($sLang, "Numbers to words"), $idBeginners)
 	$idHelpmenu = GUICtrlCreateMenu(translate($sLang, "&Help"))
 	$idChanges = GUICtrlCreateMenuItem(translate($sLang, "Changes"), $idHelpmenu)
 	$idUserManual = GUICtrlCreateMenuItem(translate($sLang, "User manual"), $idHelpmenu)
@@ -190,8 +192,8 @@ Func Main()
 	; show GUI:
 	GUISetState(@SW_SHOW)
 	While 1
-		$idMsg = GUIGetMsg()
-		Switch $idMsg
+		Switch GUIGetMsg()
+			; Calculator functions:
 			; setting switch for keyboard keys:
 			Case $aNums[0] To $aNums[17]
 				For $I = 0 To UBound($aNums)
@@ -203,10 +205,14 @@ Func Main()
 				_ClearScreen($idInter)
 			Case $idEqual
 				_calc($hGui, $idFORMULAS, $idInter, $idEqual)
-			Case $idOptions
-				_Options($sConfigFolder, $sConfigPath)
 			Case $idGetReason
 				_GetReason($idInter, $sOperation)
+			; Customization functions:
+			Case $idOptions
+				_Options($sConfigFolder, $sConfigPath)
+			; Conversion and tools:
+			case $idN2w
+				num2words_UI()
 			Case $idChanges
 				_ReadDoc($sLang, "Changes")
 			Case $idUserManual
@@ -273,6 +279,60 @@ Func _ReadDoc($sLang, $sTipe)
 	WEnd
 	GUIDelete($hChangesGui)
 EndFunc   ;==>_ReadDoc
+; #FUNCTION# ====================================================================================================================
+; Name ..........: num2words_UI
+; Description ...: Graphical User Interphace for num2words support.
+; Syntax ........: num2words_UI()
+; Parameters ....: None
+; Return values .: Set @error to 1 if text field is empty.
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func num2words_UI()
+	Local $sTo_convert, $sWords
+	$hGui = GUICreate("Convert number to words")
+	; todo: multiple languages.
+	$idLavelInput = GUICtrlCreateLabel("Enter your number input", 10, 10, 150, 20)
+	$idInput = GUICtrlCreateInput("", 80, 10, 200, 20)
+	$idResultlavel = GUICtrlCreateLabel("Result", 150, 10, 120, 20)
+	GUICtrlSetState(-1, $GUI_HIDE)
+	$idResultBox = GUICtrlCreateEdit("", 150, 80, 200, 20, BitOR($ES_READONLY, $ES_RIGHT), $WS_EX_STATICEDGE)
+	GUICtrlSetState(-1, $GUI_HIDE)
+	$idClear = GUICtrlCreateButton("Clear", 150, 150, 200, 20)
+	GUICtrlSetState(-1, $GUI_HIDE)
+	$idConvert = GUICtrlCreateButton("Convert", 220, 10, 150, 20)
+	; todo: Currencies and conversion modes:
+	$idCancelBTN = GUICtrlCreateButton("Cancel", 220, 80, 150, 20)
+	GUISetState(@SW_SHOW)
+	While 1
+		Switch GUIGetMsg()
+			Case $idConvert
+				$sTo_convert = GUICtrlRead($idInput)
+				If Not $sTo_convert Or $sTo_convert == "" Then
+					MsgBox(16, "Error", "there's nothing to convert")
+					Return SetError(1, 0, "")
+				EndIf
+				$sWords = NumberToWords($sTo_convert)
+				GUICtrlSetData($idResultBox, $sWords)
+				GUICtrlSetState($idResultBox, $GUI_SHOW)
+				GUICtrlSetState($idResultBox, $GUI_Focus)
+				; Showing also clear button:
+				GUICtrlSetState($idClear, $GUI_SHOW)
+			Case $idClear
+				GUICtrlSetData($idResultBox, "")
+				GUICtrlSetState($idResultBox, $GUI_HIDE)
+				GUICtrlSetState($idClear, $GUI_HIDE)
+				GUICtrlSetState($idInput, $GUI_Focus)
+			Case $idCancelBTN, $GUI_EVENT_CLOSE
+				GUIDelete($hGui)
+				ExitLoop
+		EndSwitch
+	WEnd
+EndFunc   ;==>num2words_UI
 
 Func Generate_task()
 EndFunc   ;==>Generate_task

@@ -2,7 +2,21 @@
 #include <StringConstants.au3>
 #include-once
 Global $nNumber, $bIncludeAnd, $sNumber
-MsgBox(0, "Result", NumberToWords(23456, False))
+
+; #FUNCTION# ====================================================================================================================
+; Name ..........: NumberToWords
+; Description ...:
+; Syntax ........: NumberToWords($nNumber[, $bIncludeAnd = True])
+; Parameters ....: $nNumber             - a general number value.
+;                  $bIncludeAnd         - [optional] a boolean value. Default is True.
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
 Func NumberToWords($nNumber, $bIncludeAnd = True)
 	Local $aOnes = StringSplit("cero,uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve", ",")
 	local $aTildes = StringSplit("dós,trés,cuatro,cinco,séis,siete,ocho,nueve", ",")
