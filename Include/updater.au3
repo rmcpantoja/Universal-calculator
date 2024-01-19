@@ -10,8 +10,20 @@
 #include-once
 Global $sLanguage = IniRead(@ScriptDir & "\config\config.st", "General settings", "language", "En")
 _updater()
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _updater
+; Description ...: Command line updater
+; Syntax ........: _updater()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
 Func _updater()
-	; Command line updater:
 	If UBound($CmdLine) - 1 > 2 Then
 		_Updater_Update($CmdLine[1], $CmdLine[2], $CmdLine[3])
 	EndIf
@@ -85,11 +97,11 @@ Func _GetDisplaySize($iTotalDownloaded, Const $iPlaces)
 EndFunc   ;==>_GetDisplaySize
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _Updater_Update
-; Description ...: updater
+; Description ...: performs an update to an app.
 ; Syntax ........: _Updater_Update($S_executable, $S_URLinstallable, $S_URLPortable)
-; Parameters ....: $S_executable        - A string value.
-;                  $S_URLinstallable    - A string value.
-;                  $S_URLPortable       - A string value.
+; Parameters ....: $S_executable        - The process to kill if the app is running.
+;                  $S_URLinstallable    - The direct URL to installable version.
+;                  $S_URLPortable       - Direct URL to the portable version (zip).
 ; Return values .: None
 ; Author ........: Mateo Cedillo
 ; Modified ......:
@@ -130,7 +142,6 @@ Func _Updater_Update($sExecutable, $sURL, $sFileDestionation)
 		MsgBox(16, "Error", "Couldn't extract update! Error code: " & @error & @CRLF & "Please contact with the project mantainers.")
 		Exit
 	EndIf
-	Sleep(1000)
 	FileDelete(@ScriptDir & "\" & $sFileDestionation)
 	ProgressOff()
 	Return Run($sExecutable)

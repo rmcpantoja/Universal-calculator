@@ -1,4 +1,4 @@
-;Universal Calculator installed
+;Universal Calculator installer
 ; By Mateo C
 
 #define MyAppName "Universal Calculator"

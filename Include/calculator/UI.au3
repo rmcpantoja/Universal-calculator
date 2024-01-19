@@ -267,7 +267,7 @@ Func _ReadDoc($sLang, $sTipe)
 	EndIf
 	$sContent = FileRead($hFile)
 	$hChangesGui = GUICreate($sGuiName)
-	$idEdit = GUICtrlCreateEdit($sContent, 5, 5, 390, 360, BitOR($WS_VSCROLL, $WS_HSCROLL, $ES_READONLY))
+	$idEdit = GUICtrlCreateEdit($sContent, 5, 5, 390, 360, BitOR($WS_VSCROLL, $WS_HSCROLL, $WS_TABSTOP, $ES_READONLY))
 	$idExit = GUICtrlCreateButton(translate($sLang, "&Close"), 100, 370, 150, 30)
 	GUISetState(@SW_SHOW)
 	While 1
@@ -316,7 +316,7 @@ Func num2words_UI()
 					MsgBox(16, translate($sLang, "Error"), translate($sLang, "There's nothing to convert"))
 					Return SetError(1, 0, "")
 				EndIf
-				$sWords = NumberToWords($sTo_convert)
+				$sWords = NumberToWords($sTo_convert, False)
 				GUICtrlSetData($idResultBox, $sWords)
 				GUICtrlSetState($idResultBox, $GUI_SHOW)
 				GUICtrlSetState($idResultBox, $GUI_Focus)

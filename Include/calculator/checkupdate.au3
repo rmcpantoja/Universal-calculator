@@ -6,11 +6,11 @@
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _calc_check_update
-; Description ...:
+; Description ...: Check for updates through Universal Calculator repo.
 ; Syntax ........: _calc_check_update([$bSilent = False])
-; Parameters ....: $bSilent             - [optional] a boolean value. Default is False.
+; Parameters ....: $bSilent             - [optional] a boolean value that indicates sylent mode. Default is False (no displaying messages, but returning states instead).
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:

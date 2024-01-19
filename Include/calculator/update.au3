@@ -4,7 +4,7 @@
  Author:         Mateo Cedillo
 
  Script Function:
-	Template AutoIt script.
+	Updater.au3 wrapper
 
 #ce ----------------------------------------------------------------------------
 
@@ -13,13 +13,13 @@
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _perform_update
-; Description ...:
+; Description ...: Performs an update for Universal Calculator.
 ; Syntax ........: _perform_update($sJson, $sRepo[, $sUpdaterDest = @ScriptDir & "\updater.exe"])
-; Parameters ....: $sJson               - a string value.
-;                  $sRepo               - a string value.
-;                  $sUpdaterDest        - [optional] a string value. Default is @ScriptDir & "\updater.exe".
+; Parameters ....: $sJson               - The json input related to the release API in the GitHub repo.
+;                  $sRepo               - The URL of the GitHub repo.
+;                  $sUpdaterDest        - [optional] The path to download the updater for the program. Default is @ScriptDir & "\updater.exe".
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -40,14 +40,14 @@ Func _perform_update($sJson, $sRepo, $sUpdaterDest = @ScriptDir & "\updater.exe"
 EndFunc   ;==>_perform_update
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _DoUpdate
-; Description ...:
+; Description ...: Runs the prebiously downloaded updated with _perform_update.
 ; Syntax ........: _DoUpdate($sExecutable, $sURL, $sDest[, $sUpdaterDest = @ScriptDir & "\updater.exe"])
-; Parameters ....: $sExecutable         - a string value.
-;                  $sURL                - a string value.
-;                  $sDest               - a string value.
-;                  $sUpdaterDest        - [optional] a string value. Default is @ScriptDir & "\updater.exe".
+; Parameters ....: $sExecutable         - The current executable.
+;                  $sURL                - The direct URL to download update files.
+;                  $sDest               - Path to extract updated files.
+;                  $sUpdaterDest        - [optional] The path of updater.exe prebiously downloaded. Default is @ScriptDir & "\updater.exe".
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:

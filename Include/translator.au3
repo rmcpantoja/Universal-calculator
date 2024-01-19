@@ -1,7 +1,7 @@
 ;UDF to translate your applications into different languages.
 ;This UDF was created by Mateo Cedillo
 #include-once
-Global $trslt_Ver = "1.2.0"
+Global $trslt_Ver = "1.2.1"
 Global $lngPath = @ScriptDir & "\lng"
 Global $sBase_Language = "en"
 ; #FUNCTION# ====================================================================================================================
@@ -18,6 +18,16 @@ Global $sBase_Language = "en"
 ; Example .......: Yes
 ; ===============================================================================================================================
 Func GetLanguageName($sFile)
+	if not FileExists($lngPath & "\" & $sFile & ".lang") then
+		switch $sBase_Language
+			case "en"
+				return "English"
+			case "es"
+				return "Español"
+			case else
+				return SetError(1, 0, "")
+		EndSwitch
+	EndIf
 	$nlgname = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Name", "")
 	If $nlgname = "" Then
 		MsgBox(16, "language engine error", "The language name is not valid")
@@ -40,6 +50,16 @@ EndFunc   ;==>GetLanguageName
 ; Example .......: Yes
 ; ===============================================================================================================================
 Func GetLanguageCode($sFile)
+	if not FileExists($lngPath & "\" & $sFile & ".lang") then
+		switch $sBase_Language
+			case "en"
+				return "en"
+			case "es"
+				return "es"
+			case else
+				return SetError(1, 0, "")
+		EndSwitch
+	EndIf
 	$nlgcode = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Code", "")
 	If $nlgcode = "" Then
 		MsgBox(16, "Language engine error", "can't get language code")
@@ -62,6 +82,7 @@ EndFunc   ;==>GetLanguageCode
 ; Example .......: No
 ; ===============================================================================================================================
 Func GetLanguageAuthors($sFile)
+	if not FileExists($lngPath & "\" & $sFile & ".lang") then return "unknown"
 	$nlgauthors = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Author", "")
 	If $nlgauthors = "" Then
 		MsgBox(16, "Language engine error", "can't get language AUTHORS.")
@@ -84,6 +105,7 @@ EndFunc   ;==>GetLanguageAuthors
 ; Example .......: No
 ; ===============================================================================================================================
 Func GetLanguageCopyright($sFile)
+	if not FileExists($lngPath & "\" & $sFile & ".lang") then return "None"
 	$nlgcpr = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Copyright", "")
 	If $nlgcpr = "" Then
 		MsgBox(16, "Language engine error", "can't get language Copyright")
@@ -106,6 +128,7 @@ EndFunc   ;==>GetLanguageCopyright
 ; Example .......: No
 ; ===============================================================================================================================
 Func GetLanguageVersion($sFile)
+	if not FileExists($lngPath & "\" & $sFile & ".lang") then return 0.0
 	$nlgversion = IniRead($lngPath & "\" & $sFile & ".lang", "Language info", "Version", "")
 	If $nlgversion = "" Then
 		MsgBox(16, "language engine error", "can't get language version")

@@ -35,8 +35,9 @@
 ; ===============================================================================================================================
 Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	$sOperation = GUICtrlRead($idInter)
-	; recently, I discovered that "execute" can run script functions too, so:
-	If StringInStr($sOperation, '("') Or StringInStr($sOperation, "('") Or StringInStr($sOperation, '($') Then
+	; recently, I discovered that "execute" can run script functions too. Only mathematical functions can be executed here, so:
+	; Todo: I can make my own parser for math and basic operations.
+	If StringInStr($sOperation, '("') Or StringInStr($sOperation, '( "') or StringInStr($sOperation, "('") Or StringInStr($sOperation, "( '") or StringInStr($sOperation, '($') or StringInStr($sOperation, '( $') Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
 		; Fix division by 0:
 	ElseIf _String_EndsWith($sOperation, "/0") Or StringInStr($sOperation, "/0") Then
