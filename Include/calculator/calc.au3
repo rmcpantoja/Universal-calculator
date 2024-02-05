@@ -11,6 +11,7 @@
 #include "..\miscstring.au3"
 #include "..\mymath\percent.au3"
 #include "..\mymath\perimeter.au3"
+#include "..\mymath\peso.au3"
 #include "..\mymath\Progresiones.au3"
 #include "..\mymath\raiz.au3"
 #include "..\advmathudf-au3\Math\Roots.au3"
@@ -39,8 +40,8 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	; Todo: I can make my own parser for math and basic operations.
 	If StringInStr($sOperation, '("') Or StringInStr($sOperation, '( "') or StringInStr($sOperation, "('") Or StringInStr($sOperation, "( '") or StringInStr($sOperation, '($') or StringInStr($sOperation, '( $') Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
-		; Fix division by 0:
 	ElseIf _String_EndsWith($sOperation, "/0") Or StringInStr($sOperation, "/0") Then
+		; Fix division by 0:
 		MsgBox(16, Translate($sLang, "Math error"), Translate($sLang, "Couldn't divide by 0."))
 	ElseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must type an operation or select a command."))
@@ -132,6 +133,8 @@ Func _interact($sOperation, $idInter)
 			Else
 				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "There are no parametters or average:number has only one parametter"))
 			EndIf
+		Case $aSplitCMD[1] = "bmi"
+			If _CheckComandParams($aNumbers, 2) Then $nResult = _IMC($aNumbers[1], $aNumbers[2])
 		Case $aSplitCMD[1] = "deg"
 			If _CheckComandParams($aNumbers, 1) Then $nResult = _Degree($aNumbers[1])
 		Case $aSplitCMD[1] = "max"

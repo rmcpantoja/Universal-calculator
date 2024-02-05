@@ -1,4 +1,3 @@
-• Hacer la barra de menú como siempre, como todos los programas.
 • si se agrega la barra de menú, se podría agregar un soporte que pueda permitir conversiones, por ejemplo de altura, peso, profundidad, etc.
 • Para que podamos conocer el historial, es decir, saber la operación que hayamos escrito antes, se puede añadir un elemento en la barra de menú para el historial de operaciones. Esto, en una versión futura lo tendré.
 • Emplear la librería advanced math e investigar más sobre algunas fórmulas de ella.

@@ -48,6 +48,7 @@ Func Main()
 	$iTaskGUI = GUICtrlCreateMenuItem(translate($sLang, "Generate and interact with the interface"), $idTasks)
 	$iTaskTxt = GUICtrlCreateMenuItem(translate($sLang, "Generate a text file"), $idTasks)
 	$idN2w = GUICtrlCreateMenuItem(translate($sLang, "Numbers to words"), $idBeginners)
+	$idBMI = GUICtrlCreateMenuItem(translate($sLang, "Body Mass Index..."), $idBeginners)
 	$idHelpmenu = GUICtrlCreateMenu(translate($sLang, "&Help"))
 	$idChanges = GUICtrlCreateMenuItem(translate($sLang, "Changes"), $idHelpmenu)
 	$idUserManual = GUICtrlCreateMenuItem(translate($sLang, "User manual"), $idHelpmenu)
@@ -63,6 +64,7 @@ Func Main()
 	GUICtrlSetBkColor(-1, 0x828282)
 	$idInter = GUICtrlCreateInput("", 10, 30, 370, 60)
 	GUICtrlSetColor(-1, 0x000000)
+	GUICtrlSetLimit(-1, 50)
 	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Write your operation here, then press the equal button to get the result."))
 	; creating the array of the on-screen keyboard, this is going to be manipulated.
 	$aNums[0] = GUICtrlCreateButton("0", 187, 281, 30, 30, BitOR($SS_CENTER, $SS_CENTERIMAGE))
@@ -213,6 +215,8 @@ Func Main()
 			; Conversion and tools:
 			case $idN2w
 				num2words_UI()
+			case $idBMI
+				BMI_UI()
 			Case $idChanges
 				_ReadDoc($sLang, "Changes")
 			Case $idUserManual
@@ -333,6 +337,47 @@ Func num2words_UI()
 		EndSwitch
 	WEnd
 EndFunc   ;==>num2words_UI
+
+; #FUNCTION# ====================================================================================================================
+; Name ..........: BMI_UI
+; Description ...:
+; Syntax ........: BMI_UI()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Your Name
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+func BMI_UI()
+	local $hGui
+	local $idEstatura, $idPeso, $idEdad, $idCondicion, $idResult, $idCancel
+	$hGui = GuiCreate("Body Mass Index")
+	GuiCtrlCreateLabel("What's your hight?", 10, 10, 150, 20)
+	$idEstatura = GuiCtrlCreateInput("", 70, 10, 200, 20)
+	GuiCtrlCreateLabel("What's your weigth? (in meters)", 10, 80, 150, 20)
+	$idPeso = GuiCtrlCreateInput("", 80, 80, 200, 20)
+	GuiCtrlCreateLabel("Age", 150, 10, 150, 20)
+	$idEdad = GuiCtrlCreateInput("18", 150, 80, 200, 10)
+	GUICtrlCreateUpdown($idEdad)
+	$idCondicion = GuiCtrlCreateGroup("Condition", 220, 10, 10, 200)
+	GuiCtrlCreateRadio("Pregnancy", 250, 40, 100, 20)
+	GuiCtrlCreateRadio("Diabetes", 250, 60, 110, 50)
+	GuiCtrlCreateRadio("Other", 250, 80, 110, 50)
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+	$idResult = GuiCtrlCreateButton("Get results", 400, 80, 180, 20)
+	$idCancel = GuiCtrlCreateButton("Cancel", 400, 160, 180, 20)
+	GuiSetState(@SW_SHOW)
+	while 1
+		switch GuiGetMSG()
+			Case $GUI_EVENT_CLOSE
+				GUIDelete($hGui)
+				ExitLoop
+		EndSwitch
+	WEnd
+EndFunc
 
 Func Generate_task()
 EndFunc   ;==>Generate_task

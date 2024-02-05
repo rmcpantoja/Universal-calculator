@@ -30,13 +30,13 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	If $sLang = "" Then Selector()
 	; Check for source code update:
 	$sUpdateSource = IniRead($sConfigPath, "General settings", "Check source updates", "")
-	If $sUpdateSource = "" Then
+	If $sUpdateSource = "" and not @compiled Then
 		IniWrite($sConfigPath, "General settings", "Check source updates", "Yes")
 		$sUpdateSource = "Yes"
 	EndIf
 	; Check for update:
 	$sCheckForUpdate = IniRead($sConfigPath, "General settings", "Check updates", "")
-	If $sCheckForUpdate = "" Then
+	If $sCheckForUpdate = "" and @compiled Then
 		IniWrite($sConfigPath, "General settings", "Check updates", "Yes")
 		$sCheckForUpdate = "Yes"
 	EndIf

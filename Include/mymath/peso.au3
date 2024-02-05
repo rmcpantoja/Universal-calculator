@@ -14,7 +14,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _Libras_A_Quilos($nLibras)
-	If not StringIsAlNum($nLibras) Or not IsNumber($nLibras) or not IsInt($nLibras) Then return SetError(1, 0, "")
+	If Not StringIsAlNum($nLibras) Or Not IsNumber($nLibras) Or Not IsInt($nLibras) Then Return SetError(1, 0, "")
 	Return $nLibras / 2.2
 EndFunc   ;==>_Libras_A_Quilos
 ; #FUNCTION# ====================================================================================================================
@@ -31,7 +31,7 @@ EndFunc   ;==>_Libras_A_Quilos
 ; Example .......: No
 ; ===============================================================================================================================
 Func _Quilos_A_Libras($nQuilos)
-	If not StringIsAlNum($nQuilos) Or not IsNumber($nQuilos) or not IsInt($nQuilos) Then Return SetError(1, 0, "")
+	If Not StringIsAlNum($nQuilos) Or Not IsNumber($nQuilos) Or Not IsInt($nQuilos) Then Return SetError(1, 0, "")
 	Return $nQuilos * 2.2
 EndFunc   ;==>_Quilos_A_Libras
 ; #FUNCTION# ====================================================================================================================
@@ -48,7 +48,7 @@ EndFunc   ;==>_Quilos_A_Libras
 ; Example .......: No
 ; ===============================================================================================================================
 Func _estatura_Centimetros_A_KG($nCentimetros)
-	If not StringIsAlNum($nCentimetros) Or not IsNumber($nCentimetros) or not IsInt($nCentimetros) Then Return SetError(1, 0, "")
+	If Not StringIsAlNum($nCentimetros) Or Not IsNumber($nCentimetros) Or Not IsInt($nCentimetros) Then Return SetError(1, 0, "")
 	Return $nCentimetros - 100
 EndFunc   ;==>_estatura_Centimetros_A_KG
 ; #FUNCTION# ====================================================================================================================
@@ -65,15 +65,15 @@ EndFunc   ;==>_estatura_Centimetros_A_KG
 ; Example .......: No
 ; ===============================================================================================================================
 Func _estatura_KG_a_Centimetros($nKg)
-	If not StringIsAlNum($nKg) Or not IsNumber($nKg) or not IsInt($nKg) Then return setError(1, 0, "")
+	If Not StringIsAlNum($nKg) Or Not IsNumber($nKg) Or Not IsInt($nKg) Then Return SetError(1, 0, "")
 	Return $nKg + 100
 EndFunc   ;==>_estatura_KG_a_Centimetros
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IMC
 ; Description ...: Masa Corporal
-; Syntax ........: _IMC($nk, $estaturametros)
-; Parameters ....: $nk                  - número de quilos.
-;                  $estaturametros      - el número de metros.
+; Syntax ........: _IMC($nKilos, $nEstatura)
+; Parameters ....: $nKilos                  - número de quilos.
+;                  $nEstatura      - La estatura (en metros).
 ; Return values .: El resultado de Masa Corporal
 ; Author ........: Mateo Cedillo
 ; Modified ......:
@@ -82,14 +82,43 @@ EndFunc   ;==>_estatura_KG_a_Centimetros
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func _IMC($nk, $estaturametros)
-	If StringIsAlNum($nk) Or StringIsFloat($nk) And StringIsAlNum($estaturametros) Or StringIsFloat($estaturametros) Then
-		$formula = $nk / $estaturametros
-		Return $formula / $estaturametros
+Func _IMC($nKilos, $nEstatura)
+	If StringIsAlNum($nKilos) Or StringIsFloat($nKilos) And StringIsAlNum($nEstatura) Or StringIsFloat($nEstatura) Then
+		$nFormula = $nKilos / $nEstatura
+		Return $nFormula / $nEstatura
 	Else
 		Return 0
 	EndIf
 EndFunc   ;==>_IMC
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _IMC_get_status
+; Description ...: Obtiene las estadísticas de tu IMC.
+; Syntax ........: _IMC_get_status($nIMC)
+; Parameters ....: $nIMC                - El IMC obtenido con _IMC.
+; Return values .: El estado del IMC.
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func _IMC_get_status($nIMC)
+	Switch $nIMC
+		Case < 18.49
+			Return "low"
+		Case 18.5 To 24.99
+			Return "normal"
+		Case 25 To 29.99
+			Return "high"
+		Case 30 To 34.99
+			Return "higher"
+		Case 35 To 39.99
+			Return "higuest"
+		Case > 40
+			Return "ultra"
+	EndSwitch
+EndFunc   ;==>_IMC_get_status
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _IMC_en_Libras
 ; Description ...: aplica Masa Corporal en libras.
@@ -106,9 +135,9 @@ EndFunc   ;==>_IMC
 ; ===============================================================================================================================
 Func _IMC_en_Libras($nl, $estaturametros)
 	If StringIsAlNum($nl) Or StringIsFloat($nl) And StringIsAlNum($estaturametros) Or StringIsFloat($estaturametros) Then
-		$formula = LibrasAQuilos($nl) / $estaturametros
+		$formula = _Libras_A_Quilos($nl) / $estaturametros
 		Return $formula / $estaturametros
 	Else
 		Return 0
 	EndIf
-EndFunc   ;==>_IMC_a_Libras
+EndFunc   ;==>_IMC_en_Libras
