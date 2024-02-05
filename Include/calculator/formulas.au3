@@ -4,7 +4,7 @@
 Global $aInfoFormulas = [ _
 		"Absolute number|Gets the absolute value of an expression", _
 		"Average|gets the total average of several set numbers", _
-		"Body Mass Index|Gets the Body Mass Index based on the weigth and cents", _
+		"Body Mass Index|Gets the Body Mass Index based on a hight and a weigth", _
 		"Radians to Degrees|Converts a given number of radians to degrees", _
 		"Maximum number|Between two numbers, check which is the maximum", _
 		"Minimum number|Between two numbers, check which is the minimum", _

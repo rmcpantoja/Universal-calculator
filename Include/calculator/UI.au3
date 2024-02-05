@@ -353,16 +353,16 @@ EndFunc   ;==>num2words_UI
 ; ===============================================================================================================================
 func BMI_UI()
 	local $hGui
-	local $idEstatura, $idPeso, $idEdad, $idCondicion, $idResult, $idCancel
+	local $idHight, $idWeight, $idAge, $idCondition, $idResult, $idCancel
 	$hGui = GuiCreate("Body Mass Index")
-	GuiCtrlCreateLabel("What's your hight?", 10, 10, 150, 20)
-	$idEstatura = GuiCtrlCreateInput("", 70, 10, 200, 20)
-	GuiCtrlCreateLabel("What's your weigth? (in meters)", 10, 80, 150, 20)
-	$idPeso = GuiCtrlCreateInput("", 80, 80, 200, 20)
+	GuiCtrlCreateLabel("What's your hight? (in meters)", 10, 10, 150, 20)
+	$idHight = GuiCtrlCreateInput("", 70, 10, 200, 20)
+	GuiCtrlCreateLabel("What's your weigth? (in kilos)", 10, 80, 150, 20)
+	$idWeight = GuiCtrlCreateInput("", 80, 80, 200, 20)
 	GuiCtrlCreateLabel("Age", 150, 10, 150, 20)
-	$idEdad = GuiCtrlCreateInput("18", 150, 80, 200, 10)
+	$idAge = GuiCtrlCreateInput("18", 150, 80, 200, 10)
 	GUICtrlCreateUpdown($idEdad)
-	$idCondicion = GuiCtrlCreateGroup("Condition", 220, 10, 10, 200)
+	$idCondition = GuiCtrlCreateGroup("Condition", 220, 10, 10, 200)
 	GuiCtrlCreateRadio("Pregnancy", 250, 40, 100, 20)
 	GuiCtrlCreateRadio("Diabetes", 250, 60, 110, 50)
 	GuiCtrlCreateRadio("Other", 250, 80, 110, 50)
