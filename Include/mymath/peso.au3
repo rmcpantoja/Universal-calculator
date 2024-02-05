@@ -105,7 +105,7 @@ EndFunc   ;==>_IMC
 ; ===============================================================================================================================
 Func _IMC_get_status($nIMC)
 	Switch $nIMC
-		Case < 18.49
+		Case 8 to 18.49
 			Return "low"
 		Case 18.5 To 24.99
 			Return "normal"
@@ -115,8 +115,10 @@ Func _IMC_get_status($nIMC)
 			Return "higher"
 		Case 35 To 39.99
 			Return "higuest"
-		Case > 40
+		Case 40 to 60
 			Return "ultra"
+		case else
+			return SetError(1, 0, "")
 	EndSwitch
 EndFunc   ;==>_IMC_get_status
 ; #FUNCTION# ====================================================================================================================
