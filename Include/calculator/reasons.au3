@@ -19,11 +19,12 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _GetReason($idInter, $sOperation)
+	ConsoleWrite(number($sOperation) &@CRLF)
 	If GUICtrlRead($idInter) = "" Then
 		MsgBox(16, translate($sLang, "Error"), translate($sLang, "You must write a function command that performs an operation to get a reason."))
 	ElseIf $sOperation = "" Then
 		MsgBox(16, translate($sLang, "Error"), translate($sLang, "You must first get the result of") & " " & GUICtrlRead($idInter) & ", " & translate($sLang, "to get the reason for this."))
-	elseIf $sOperation >= 1e-308 then
+	elseIf stringLen($sOperation) > 308 then
 		; Reason for infinity number (inf):
 		MsgBox(0, "Reason", 'The "inf" means an infinity number. The calculator reaches up to e+308 numbers.')
 	ElseIf StringInStr($sOperation, "*") Then

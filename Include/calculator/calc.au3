@@ -6,6 +6,7 @@
 #include "gui.au3"
 #include <GuiButton.au3>
 #include "keyboard.au3"
+#include "..\advmathudf-au3\Math\Logarithms.au3"
 #include <Math.au3>
 ;#include "..\advmathudf-au3\Math.au3"
 #include "..\miscstring.au3"
@@ -159,6 +160,8 @@ Func _interact($sOperation, $idInter)
 			If _CheckComandParams($aNumbers, 2) Then $nResult = _D_o_X($aNumbers[1], $aNumbers[2])
 		Case $aSplitCMD[1] = "log"
 			If _CheckComandParams($aNumbers, 1) Then $nResult = Log($aNumbers[1])
+		Case $aSplitCMD[1] = "nl"
+			If _CheckComandParams($aNumbers, 2) Then $nResult = LogN($aNumbers[1], $aNumbers[2])
 		Case $aSplitCMD[1] = "ro"
 			If _CheckComandParams($aNumbers, 1) Then $nResult = Round($aNumbers[1])
 		Case $aSplitCMD[1] = "sin"

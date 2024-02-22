@@ -17,6 +17,7 @@ Global $aInfoFormulas = [ _
 		"Cosine|Calculates the cosine of an expression", _
 		"distance|Gets the distance of a given speed or time", _
 		"Logarithm|Calculates the logarithm of an expression", _
+		"Natural Logarithm|Calculates the natural logarithm of an expression", _
 		"round|Rounds a decimal number to the nearest possible", _
 		"Sine|Calculates the sine of an expression", _
 		"tangent|Calculates the tangent of an expression", _
@@ -56,6 +57,7 @@ Global $aCommandTable = [ _
 		["cos", 1], _
 		["dox", 2], _
 		["log", 1], _
+		["nl", 2], _
 		["ro", 1], _
 		["sin", 1], _
 		["tan", 1], _

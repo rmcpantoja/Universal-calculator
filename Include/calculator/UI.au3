@@ -48,7 +48,7 @@ Func Main()
 	$iTaskGUI = GUICtrlCreateMenuItem(translate($sLang, "Generate and interact with the interface"), $idTasks)
 	$iTaskTxt = GUICtrlCreateMenuItem(translate($sLang, "Generate a text file"), $idTasks)
 	$idN2w = GUICtrlCreateMenuItem(translate($sLang, "Numbers to words"), $idBeginners)
-	$idBMI = GUICtrlCreateMenuItem(translate($sLang, "Body Mass Index..."), $idBeginners)
+	$idBMI = GUICtrlCreateMenuItem(translate($sLang, "Body Mass Index"), $idBeginners)
 	$idHelpmenu = GUICtrlCreateMenu(translate($sLang, "&Help"))
 	$idChanges = GUICtrlCreateMenuItem(translate($sLang, "Changes"), $idHelpmenu)
 	$idUserManual = GUICtrlCreateMenuItem(translate($sLang, "User manual"), $idHelpmenu)
@@ -232,6 +232,14 @@ Func Main()
 				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
 			Case $idCheckUpdates
 				_calc_check_update()
+				if @error then
+					switch @error
+						case 1
+							MsgBox(16, translate($sLang, "Error"), translate($sLang, "Couldn't check for updates. Please check your internet connection."))
+						case 2
+							MsgBox(16, translate($sLang, "Error"), translate($sLang, "Couldn't download files for this update."))
+					EndSwitch
+				EndIf
 			Case $idAbout, $idAboutItem
 				MsgBox(48, translate($sLang, "About"), translate($sLang, "An easy, simple and interactive calculator where you can do operations, formulas, conversions and more. This program has been developed by Mateo Cedillo. Creation and design of the Graphical User Interface by Valeria Parra and Xx_Nessu_xX."))
 			Case $GUI_EVENT_CLOSE, $idMenuExit
@@ -354,21 +362,21 @@ EndFunc   ;==>num2words_UI
 func BMI_UI()
 	local $hGui
 	local $idHight, $idWeight, $idAge, $idCondition, $idResult, $idCancel
-	$hGui = GuiCreate("Body Mass Index")
-	GuiCtrlCreateLabel("What's your hight? (in meters)", 10, 10, 150, 20)
+	$hGui = GuiCreate(translate($sLang, "Body Mass Index"))
+	GuiCtrlCreateLabel(translate($sLang, "What's your hight? (in meters)"), 10, 10, 150, 20)
 	$idHight = GuiCtrlCreateInput("", 70, 10, 200, 20)
-	GuiCtrlCreateLabel("What's your weigth? (in kilos)", 10, 80, 150, 20)
+	GuiCtrlCreateLabel(translate($sLang, "What's your weigth? (in kilos)"), 10, 80, 150, 20)
 	$idWeight = GuiCtrlCreateInput("", 80, 80, 200, 20)
-	GuiCtrlCreateLabel("Age", 150, 10, 150, 20)
+	GuiCtrlCreateLabel(translate($sLang, "Age"), 150, 10, 150, 20)
 	$idAge = GuiCtrlCreateInput("18", 150, 80, 200, 10)
 	GUICtrlCreateUpdown($idAge)
-	$idCondition = GuiCtrlCreateGroup("Condition", 220, 10, 10, 200)
-	GuiCtrlCreateRadio("Pregnancy", 250, 40, 100, 20)
-	GuiCtrlCreateRadio("Diabetes", 250, 60, 110, 50)
-	GuiCtrlCreateRadio("Other", 250, 80, 110, 50)
+	$idCondition = GuiCtrlCreateGroup(translate($sLang, "Condition"), 220, 10, 10, 200)
+	GuiCtrlCreateRadio(translate($sLang, "Pregnancy"), 250, 40, 100, 20)
+	GuiCtrlCreateRadio(translate($sLang, "Diabetes"), 250, 60, 110, 50)
+	GuiCtrlCreateRadio(translate($sLang, "Other"), 250, 80, 110, 50)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
-	$idResult = GuiCtrlCreateButton("Get results", 400, 80, 180, 20)
-	$idCancel = GuiCtrlCreateButton("Cancel", 400, 160, 180, 20)
+	$idResult = GuiCtrlCreateButton(translate($sLang, "Get results"), 400, 80, 180, 20)
+	$idCancel = GuiCtrlCreateButton(translate($sLang, "Cancel"), 400, 160, 180, 20)
 	GuiSetState(@SW_SHOW)
 	while 1
 		switch GuiGetMSG()

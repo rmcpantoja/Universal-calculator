@@ -29,7 +29,6 @@ Func _calc_check_update($bSilent = False)
 	If $bUpdate Then
 		_perform_Update($sJson, "https://github.com/rmcpantoja/Universal-calculator")
 		If @error Then
-			MsgBox(16, "Error", "Couldn't download files for this update.")
 			Return SetError(2, 0, "")
 		EndIf
 		_DoUpdate(@ScriptFullPath, "https://github.com/rmcpantoja/Universal-calculator/releases/download/" & $sVersionGot & "/universal_calculator.zip", @ScriptDir & "\universal_calculator_update.zip")
