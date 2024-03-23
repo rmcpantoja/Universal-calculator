@@ -156,7 +156,7 @@ Func _Updater_Update($sExecutable, $sURL, $sFileDestination)
 	WEnd
 	ProgressSet(99, translate($sLanguage, "Installing update."), translate($sLanguage, "Please wait while the program updates"))
 	$sProcess = ProcessExists($sExecutable)
-	If Not $sProcess = 0 Then
+	If $sProcess Then
 		ProcessClose($sExecutable)
 		If @error Then
 			MsgBox(16, _

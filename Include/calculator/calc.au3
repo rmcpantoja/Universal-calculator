@@ -40,12 +40,12 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	; recently, I discovered that "execute" can run script functions too. Only mathematical functions can be executed here, so:
 	; Todo: I can make my own parser for math and basic operations.
 	If _
-			StringInStr($sOperation, '("') Or _
-			StringInStr($sOperation, '( "') Or _
-			StringInStr($sOperation, "('") Or _
-			StringInStr($sOperation, "( '") Or _
-			StringInStr($sOperation, '($') Or _
-			StringInStr($sOperation, '( $') _
+			StringInStr($sOperation, '("') _
+			Or StringInStr($sOperation, '( "') _
+			Or StringInStr($sOperation, "('") _
+			Or StringInStr($sOperation, "( '") _
+			Or StringInStr($sOperation, '($') _
+			Or StringInStr($sOperation, '( $') _
 			Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
 	ElseIf _String_EndsWith($sOperation, "/0") Then

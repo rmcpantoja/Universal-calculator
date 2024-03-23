@@ -272,8 +272,12 @@ Func Main()
 	$aAccelKeys[16][1] = $idClearScreen
 	$aAccelKeys[17][0] = "!{o}"
 	$aAccelKeys[17][1] = $idOptions
-	$aAccelKeys[18][0] = "{ENTER}"
-	$aAccelKeys[18][1] = $idEqual
+	if $sForceEnter = "Yes" then
+		$aAccelKeys[18][0] = "{ENTER}"
+		$aAccelKeys[18][1] = $idEqual
+	else
+	ReDim $aAccelKeys[uBound($aAccelKeys)-1][2]
+	EndIf
 	GUISetAccelerators($aAccelKeys)
 	; show GUI:
 	GUISetState(@SW_SHOW)

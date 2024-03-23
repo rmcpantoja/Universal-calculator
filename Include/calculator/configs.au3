@@ -53,11 +53,17 @@ Func _config_start($sConfigFolder, $sConfigPath)
 		IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "1")
 		$sFormulaAutocompletion = "1"
 	EndIf
+	; Force enter key:
+	$sForceEnter = IniRead($sConfigPath, "Calculator", "Force enter key", "")
+	If $sForceEnter = "" Then
+		IniWrite($sConfigPath, "Calculator", "Force enter key", "Yes")
+		$sForceEnter = "Yes"
+	EndIf
 	; Check tips:
 	$sShowTips = IniRead($sConfigPath, "Calculator", "Show tips", "")
 	If $sShowTips = "" Then
 		IniWrite($sConfigPath, "Calculator", "Show tips", "Yes")
-		$sFormulaAutocompletion = "Yes"
+		$sShowTips = "Yes"
 	EndIf
 	; check last commit:
 	If $sUpdateSource = "Yes" Then

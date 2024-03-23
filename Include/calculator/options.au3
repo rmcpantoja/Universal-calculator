@@ -26,12 +26,13 @@
 Func _Options($sConfigFolder, $sConfigPath)
 	Local $hOptionsGui
 	Local $iDeleteResult
-	Local $idLanguage, $idAccessibility, $idAutocompleteFormula, $idShowTips, $idApply
+	Local $idLanguage, $idAccessibility, $idAutocompleteFormula, $idForceEqualKey, $idShowTips, $idApply
 	Local $sCompleteOption, $sCompleteRead, $sTipsRead
 	;_config_start($sConfigFolder, $sConfigPath)
 	$hOptionsGui = GUICreate(translate($sLang, "Options"))
 	$idLanguage = GUICtrlCreateButton( _
-			translate($sLang, "Change language, currently") & " " & GetLanguageName($sLang), 10, 10, 120, 20 _
+			translate($sLang, "Change language, currently") & " " & GetLanguageName($sLang), _
+			10, 10, 120, 20 _
 			)
 	If $sShowTips = "Yes" Then
 		GUICtrlSetTip(-1, _
@@ -39,7 +40,8 @@ Func _Options($sConfigFolder, $sConfigPath)
 				)
 	EndIf
 	$idAccessibility = GUICtrlCreateButton( _
-			translate($sLang, "Enhanced accessibility enhabled:") & " " & translate($sLang, $sEnhancedAccessibility), 70, 10, 120, 20 _
+			translate($sLang, "Enhanced accessibility enhabled:") & " " & translate($sLang, $sEnhancedAccessibility), _
+			70, 10, 120, 20 _
 			)
 	If $sShowTips = "Yes" Then
 		GUICtrlSetTip( _
@@ -69,6 +71,16 @@ Func _Options($sConfigFolder, $sConfigPath)
 			translate($sLang, "Autocomplete mode") & "|" & translate($sLang, "GUI mode"), _
 			$sCompleteRead _
 			)
+	$idForceEqualKey = GUICtrlCreateCheckbox( _
+			translate($sLang, "Force enter key to do the equal function"), _
+			210, 10, 120, 20 _
+			)
+	If $sForceEnter = "Yes" Then GUICtrlSetState(-1, $GUI_Checked)
+	If $sShowTips = "Yes" Then
+		GUICtrlSetTip(-1, _
+				translate($sLang, "When the equal button is pressed, it will activate the enter key as a shortcut. Please note that if you're a screen reader user and want to use a control, you will need to do so using the spacebar.") _
+				)
+	EndIf
 	$idShowTips = GUICtrlCreateCheckbox( _
 			translate($sLang, "Show tips"), _
 			210, 10, 120, 20 _
@@ -83,7 +95,10 @@ Func _Options($sConfigFolder, $sConfigPath)
 				translate($sLang, "This clears the current configs of the program, so it will be set to the default configs when it's reopened.") _
 				)
 	EndIf
-	$idApply = GUICtrlCreateButton(translate($sLang, "&Apply"), 290, 80, 200, 20)
+	$idApply = GUICtrlCreateButton( _
+			translate($sLang, "&Apply"), _
+			290, 80, 200, 20 _
+	)
 	If $sShowTips = "Yes" Then
 		GUICtrlSetTip(-1, translate($sLang, "Saves the changes that have been made and close this window."))
 	EndIf
@@ -102,6 +117,12 @@ Func _Options($sConfigFolder, $sConfigPath)
 					IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "1")
 				Else
 					IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "2")
+				EndIf
+			case $idForceEqualKey
+				If _IsChecked($idForceEqualKey) Then
+					IniWrite($sConfigPath, "Calculator", "Force enter key", "Yes")
+				Else
+					IniWrite($sConfigPath, "Calculator", "Force enter key", "No")
 				EndIf
 			Case $idShowTips
 				If _IsChecked($idShowTips) Then
