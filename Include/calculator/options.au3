@@ -92,18 +92,10 @@ Func _Options($sConfigFolder, $sConfigPath)
 		Switch GUIGetMsg()
 			Case $idLanguage
 				Selector()
-				MsgBox(48, _
-						translate($sLang, "Information"), _
-						translate($sLang, "Please restart Universal Calculator for the changes to take effect.") _
-						)
-				exitpersonaliced()
+				_restart_dialog()
 			Case $idAccessibility
 				_configure_accessibility($sConfigPath)
-				MsgBox(48, _
-						translate($sLang, "Information"), _
-						translate($sLang, "Please restart Universal Calculator for the changes to take effect.") _
-						)
-				exitpersonaliced()
+				_restart_dialog()
 			Case $idAutocompleteFormula
 				$sCompleteOption = GUICtrlRead($idAutocompleteFormula)
 				If $sCompleteOption = translate($sLang, "GUI mode") Then
@@ -122,11 +114,7 @@ Func _Options($sConfigFolder, $sConfigPath)
 				If @error Then
 					MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot delete configs file."))
 				ElseIf $iDeleteResult = 1 Then
-					MsgBox(48, _
-							translate($sLang, "Information"), _
-							translate($sLang, "Please restart Universal Calculator for the changes to take effect.") _
-							)
-					Exitpersonaliced()
+					_restart_dialog()
 				EndIf
 			Case $GUI_EVENT_CLOSE, $idApply
 				GUIDelete($hOptionsGui)
@@ -134,6 +122,16 @@ Func _Options($sConfigFolder, $sConfigPath)
 		EndSwitch
 	WEnd
 EndFunc   ;==>_Options
+
+func _restart_dialog()
+	local $iAnswer
+	$iAnswer = MsgBox(4, _
+			translate($sLang, "Information"), _
+			translate($sLang, "Please restart Universal Calculator for the changes to take effect. Do you want to restart now?") _
+			)
+	if $iAnswer == 6 then exitpersonaliced()
+EndFunc
+
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _accessibility_Options
 ; Description ...:
