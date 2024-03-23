@@ -55,21 +55,32 @@ Func checkupdate($sCurrentVersion, $sGitHubURL, $bSylent = False)
 	If (@error) Then Return SetError(2, 0, "")
 	If $oHTTP.Status <> 200 Then Return SetError(3, 0, "")
 	Local $sResponse = $oHTTP.ResponseText
-	; changes here:
 	Local $sLatestver = StringRegExp($sResponse, "v\d\.\d+[a-zA-Z]?\d*", 3)[0]
 	If @error Then Return SetError(4, 0, "")
 	$iComparison = _VersionCompare($sLatestver, $sCurrentVersion)
 	Select
 		Case $sLatestver = ""
-			If Not $bSylent Then MsgBox(16, translate($sLanguage, "Error"), translate($sLanguage, "Unable to connect to the server. The server went down or you don't have an internet connection."))
+			If Not $bSylent Then
+				MsgBox(16, _
+						translate($sLanguage, "Error"), _
+						translate($sLanguage, "Unable to connect to the server. The server went down or you don't have an internet connection.") _
+						)
+			EndIf
 		Case $sLatestver = "0"
-			If Not $bSylent Then MsgBox(16, translate($sLanguage, "Error"), translate($sLanguage, "version could not be checked."))
+			If Not $bSylent Then
+				MsgBox(16, translate($sLanguage, "Error"), translate($sLanguage, "version could not be checked."))
+			EndIf
 	EndSelect
 	If $iComparison = -1 Or $iComparison = 1 Then
-		MsgBox(48, translate($sLanguage, "update available!"), translate($sLanguage, "You have the version") & " " & $sCurrentVersion & " " & translate($sLanguage, "And is available the") & " " & $sLatestver & ".")
+		MsgBox(48, _
+				translate($sLanguage, "update available!"), _
+				translate($sLanguage, "You have the version") & " " & $sCurrentVersion & " " & translate($sLanguage, "And is available the") & " " & $sLatestver & "." _
+				)
 		$bUpdatable = True
 	ElseIf $iComparison = 0 Then
-		If Not $bSylent Then MsgBox(48, translate($sLanguage, "you are up to date"), translate($sLanguage, "no update at the moment."))
+		If Not $bSylent Then
+			MsgBox(48, translate($sLanguage, "you are up to date"), translate($sLanguage, "no update at the moment."))
+		EndIf
 	EndIf
 	Local $aReturn = [$bUpdatable, $sLatestver, $sResponse]
 	Return $aReturn
@@ -89,7 +100,7 @@ EndFunc   ;==>checkupdate
 ; Example .......: No
 ; ===============================================================================================================================
 Func _GetDisplaySize($iTotalDownloaded, Const $iPlaces)
-	Local Static $aSize[4] = ["Bytes", "KB", "MB", "GB"]
+	Local Static $aSize[5] = ["Bytes", "KB", "MB", "GB", "TB"]
 	For $i = 0 To 3
 		$iTotalDownloaded /= 1024
 		If (Int($iTotalDownloaded) = 0) Then Return Round($iTotalDownloaded * 1024, $iPlaces) & " " & $aSize[$i]
@@ -110,11 +121,13 @@ EndFunc   ;==>_GetDisplaySize
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func _Updater_Update($sExecutable, $sURL, $sFileDestionation)
-	ProgressOn(translate($sLanguage, "Downloading update."), translate($sLanguage, "Please wait..."), "0%", 100, 100, 16)
+Func _Updater_Update($sExecutable, $sURL, $sFileDestination)
+	ProgressOn( _
+			translate($sLanguage, "Downloading update."), translate($sLanguage, "Please wait..."), "0%", 100, 100, 16 _
+			)
 	WinActivate(translate($sLanguage, "Downloading update."))
 	$iPlaces = 2
-	$hInet = InetGet($sURL, $sFileDestionation, 1, 1)
+	$hInet = InetGet($sURL, $sFileDestination, 1, 1)
 	$URLSize = InetGetSize($sURL)
 	If @error Then MsgBox(16, "Error", "Can't download the update. Make sure you habe internet conection.")
 	While Not InetGetInfo($hInet, 2)
@@ -122,10 +135,23 @@ Func _Updater_Update($sExecutable, $sURL, $sFileDestionation)
 		$Size = InetGetInfo($hInet, 0)
 		$Percentage = Int($Size / $URLSize * 100)
 		$iSize = $URLSize - $Size
-		ProgressSet($Percentage, _GetDisplaySize($iSize, $iPlaces = 2) & " " & translate($sLanguage, "remaining") & $Percentage & " " & translate($sLanguage, "percent completed"))
+		ProgressSet($Percentage, _
+				_GetDisplaySize($iSize, $iPlaces = 2) & " " & translate($sLanguage, "remaining") & $Percentage & " " & translate($sLanguage, "percent completed") _
+				)
 		If _IsPressed($i) Then
-			speaking(translate($sLanguage, "FileSize in bites:") & " " & $URLSize & ". " & translate($sLanguage, "Downloaded:") & " " & $Size & ". " & translate($sLanguage, "Progress:") & " " & $Percentage & "%. " & translate($sLanguage, "Remaining size:") & " " & $iSize)
-			MsgBox(0, "Information", translate($sLanguage, "FileSize in bites:") & " " & $URLSize & ". " & translate($sLanguage, "Downloaded:") & " " & $Size & ". " & translate($sLanguage, "Progress:") & " " & $Percentage & "%. " & translate($sLanguage, "Remaining size:") & " " & $iSize)
+			speaking( _
+					translate($sLanguage, "FileSize in bites:") & " " & $URLSize & ". " & _
+					translate($sLanguage, "Downloaded:") & " " & $Size & ". " & _
+					translate($sLanguage, "Progress:") & " " & $Percentage & "%. " & _
+					translate($sLanguage, "Remaining size:") & " " & $iSize _
+					)
+			MsgBox(0, _
+					"Information", _
+					translate($sLanguage, "FileSize in bites:") & " " & $URLSize & ". " & _
+					translate($sLanguage, "Downloaded:") & " " & $Size & ". " & _
+					translate($sLanguage, "Progress:") & " " & $Percentage & "%. " & _
+					translate($sLanguage, "Remaining size:") & " " & $iSize _
+					)
 		EndIf
 	WEnd
 	ProgressSet(99, translate($sLanguage, "Installing update."), translate($sLanguage, "Please wait while the program updates"))
@@ -133,16 +159,22 @@ Func _Updater_Update($sExecutable, $sURL, $sFileDestionation)
 	If Not $sProcess = 0 Then
 		ProcessClose($sExecutable)
 		If @error Then
-			MsgBox(16, "Updater error", "Can't terminate the process. Error code: " & @error & @CRLF & "Please contact with the project mantainers.")
+			MsgBox(16, _
+					"Updater error", _
+					"Can't terminate the process. Error code: " & @error & @CRLF & "Please contact with the project mantainers." _
+					)
 			Exit
 		EndIf
 	EndIf
-	_Zip_UnzipAll(@ScriptDir & "\" & $sFileDestionation, @ScriptDir, 20)
+	_Zip_UnzipAll($sFileDestination, @ScriptDir, 20)
 	If @error Then
-		MsgBox(16, "Error", "Couldn't extract update! Error code: " & @error & @CRLF & "Please contact with the project mantainers.")
+		MsgBox(16, _
+				"Error", _
+				"Couldn't extract update! Error code: " & @error & @CRLF & "Please contact with the project mantainers." _
+				)
 		Exit
 	EndIf
-	FileDelete(@ScriptDir & "\" & $sFileDestionation)
+	FileDelete(@ScriptDir & "\" & $sFileDestination)
 	ProgressOff()
 	Return Run($sExecutable)
 EndFunc   ;==>_Updater_Update
