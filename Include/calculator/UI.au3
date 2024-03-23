@@ -278,7 +278,8 @@ Func Main()
 	; show GUI:
 	GUISetState(@SW_SHOW)
 	While 1
-		Switch GUIGetMsg()
+		$idMsg = GUIGetMsg()
+		Switch $idMsg
 			; Calculator functions:
 			; setting switch for keyboard keys:
 			Case $aNums[0] To $aNums[17]
