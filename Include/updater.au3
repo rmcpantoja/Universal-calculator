@@ -1,3 +1,15 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Res_Comment=An easy updater for your application
+#AutoIt3Wrapper_Res_Description=rmcupdater
+#AutoIt3Wrapper_Res_Fileversion=1.0.0.0
+#AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
+#AutoIt3Wrapper_Res_ProductName=rmcupdater
+
+#AutoIt3Wrapper_Res_ProductVersion=1.0.0.0
+#AutoIt3Wrapper_Res_CompanyName=MT Programs
+#AutoIt3Wrapper_Res_LegalCopyright=© 2018-2024 MT Programs, All rights reserved
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+
 ;Auto Actualizador (Auto updater)
 ;Created by Mateo Cedillo.
 ;Script:

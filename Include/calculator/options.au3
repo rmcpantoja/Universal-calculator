@@ -83,7 +83,7 @@ Func _Options($sConfigFolder, $sConfigPath)
 	EndIf
 	$idShowTips = GUICtrlCreateCheckbox( _
 			translate($sLang, "Show tips"), _
-			210, 10, 120, 20 _
+			210, 90, 120, 20 _
 			)
 	If $sShowTips = "Yes" Then GUICtrlSetState(-1, $GUI_Checked)
 	$idDeleteconfig = GUICtrlCreateButton( _
