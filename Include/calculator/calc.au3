@@ -39,9 +39,16 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 	$sOperation = GUICtrlRead($idInter)
 	; recently, I discovered that "execute" can run script functions too. Only mathematical functions can be executed here, so:
 	; Todo: I can make my own parser for math and basic operations.
-	If StringInStr($sOperation, '("') Or StringInStr($sOperation, '( "') or StringInStr($sOperation, "('") Or StringInStr($sOperation, "( '") or StringInStr($sOperation, '($') or StringInStr($sOperation, '( $') Then
+	If _
+			StringInStr($sOperation, '("') Or _
+			StringInStr($sOperation, '( "') Or _
+			StringInStr($sOperation, "('") Or _
+			StringInStr($sOperation, "( '") Or _
+			StringInStr($sOperation, '($') Or _
+			StringInStr($sOperation, '( $') _
+			Then
 		MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You can not do this."))
-	ElseIf _String_EndsWith($sOperation, "/0") Or StringInStr($sOperation, "/0") Then
+	ElseIf _String_EndsWith($sOperation, "/0") Then
 		; Fix division by 0:
 		MsgBox(16, Translate($sLang, "Math error"), Translate($sLang, "Couldn't divide by 0."))
 	ElseIf $sOperation = "" And Not _IsFocused($hGUI, $idFORMULAS) Then
@@ -56,17 +63,29 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 		If @error Then
 			Switch @error
 				Case 1
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The list doesn't require with the necessary columns to interact."))
+					MsgBox(16, _
+							Translate($sLang, "Error"), _
+							Translate($sLang, "The list doesn't require with the necessary columns to interact.") _
+							)
 				Case 2
 					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You have not selected any formula from the list."))
 				Case 3
 					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The specified parameter table is incorrect."))
 				Case 4
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An attempt has been made to look for this formula in the formula table, however, it cannot be found."))
+					MsgBox(16, _
+							Translate($sLang, "Error"), _
+							Translate($sLang, "An attempt has been made to look for this formula in the formula table, however, it cannot be found.") _
+							)
 				Case 5
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The application window of this formula has been closed and it could not be applied."))
+					MsgBox(16, _
+							Translate($sLang, "Error"), _
+							Translate($sLang, "The application window of this formula has been closed and it could not be applied.") _
+							)
 				Case 6
-					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You must fill in all the parameters to proceed to apply this formula. For now, this function has not been applied."))
+					MsgBox(16, _
+							Translate($sLang, "Error"), _
+							Translate($sLang, "You must fill in all the parameters to proceed to apply this formula. For now, this function has not been applied.") _
+							)
 			EndSwitch
 		Else
 			; Adds the command in the field, if it is not focused it does so and clicks the same button automatically to get the result.
@@ -86,7 +105,10 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 			EndIf
 			$nResult = Execute($sOperation)
 			If @error Then
-				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An error occurred while doing this operation. Please check that the syntax is correct."))
+				MsgBox(16, _
+						Translate($sLang, "Error"), _
+						Translate($sLang, "An error occurred while doing this operation. Please check that the syntax is correct.") _
+						)
 			Else
 				GUICtrlSetData($idInter, $nResult)
 				If $sEnhancedAccessibility = "Yes" Then
@@ -132,7 +154,10 @@ Func _interact($sOperation, $idInter)
 			If UBound($aNumbers) > 1 And $aNumbers[0] > 0 Then
 				$nResult = _average($aNumbers)
 			Else
-				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "There are no parametters or average:number has only one parametter"))
+				MsgBox(16, _
+						Translate($sLang, "Error"), _
+						Translate($sLang, "There are no parametters or average:number has only one parametter") _
+						)
 			EndIf
 		Case $aSplitCMD[1] = "bmi"
 			If _CheckComandParams($aNumbers, 2) Then $nResult = _IMC($aNumbers[1], $aNumbers[2])
@@ -246,7 +271,10 @@ Func _interact($sOperation, $idInter)
 				$nResult = $aPercentArray[1]
 			EndIf
 		Case Else
-			MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "The command") & " " & $aSplitCMD[1] & " " & Translate($sLang, "does not exist. If you think it is a function that allows you to perform a mathematical formula, please tell me so I can add it."))
+			MsgBox(16, _
+					Translate($sLang, "Error"), _
+					Translate($sLang, "The command") & " " & $aSplitCMD[1] & " " & Translate($sLang, "does not exist. If you think it is a function that allows you to perform a mathematical formula, please tell me so I can add it.") _
+					)
 	EndSelect
 	If Not @error Then
 		GUICtrlSetData($idInter, $nResult)
@@ -259,11 +287,20 @@ Func _interact($sOperation, $idInter)
 	Else
 		Switch @error
 			Case 1
-				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "An error occurred while doing this operation. One or more numbers required to run are missing. Please review it and run this formula again when you have fixed the items. Structure:") & " " & $sOperation)
+				MsgBox(16, _
+						Translate($sLang, "Error"), _
+						Translate($sLang, "An error occurred while doing this operation. One or more numbers required to run are missing. Please review it and run this formula again when you have fixed the items. Structure:") & " " & $sOperation _
+						)
 			Case 2
-				MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "There's more than one parameter here. Please remove the extra parameters and try again. operation:") & " " & $sOperation)
+				MsgBox(16, _
+						Translate($sLang, "Error"), _
+						Translate($sLang, "There's more than one parameter here. Please remove the extra parameters and try again. operation:") & " " & $sOperation _
+						)
 			Case 3
-				MsgBox(16, Translate($sLang, "syntax error"), Translate($sLang, "The parameter") & " " & @extended & ", " & $aNumbers[@extended] & ", " & Translate($sLang, "has no numbers."))
+				MsgBox(16, _
+						Translate($sLang, "syntax error"), _
+						Translate($sLang, "The parameter") & " " & @extended & ", " & $aNumbers[@extended] & ", " & Translate($sLang, "has no numbers.") _
+						)
 		EndSwitch
 	EndIf
 EndFunc   ;==>_interact

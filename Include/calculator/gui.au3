@@ -38,18 +38,37 @@ Func CreateParams(ByRef $idListView)
 		EndSwitch
 	Else
 		$hCommandGUI = GUICreate(translate($sLang, "Applying formula") & ": " & $aArray[1])
-		$label1 = GUICtrlCreateLabel(translate($sLang, "Enter the needed parameters of this formula, then press apply to get the final result. If you need help with parameters of each formula, please read the guide"), 0, 10, 200, 20)
+		$label1 = GUICtrlCreateLabel( _
+				translate($sLang, "Enter the needed parameters of this formula, then press apply to get the final result. If you need help with parameters of each formula, please read the guide"), _
+				0, 10, 200, 20 _
+				)
 		If $sCommandToSearch = "av" Then
-			$iLabels[0] = GUICtrlCreateLabel(translate($sLang, "Please separate your values with space"), 80, 10, 100, 20)
-			$idInputs[0] = GUICtrlCreateInput("", 80, 80, 100, 20)
+			$iLabels[0] = GUICtrlCreateLabel( _
+					translate($sLang, "Please separate your values with space"), _
+					80, 10, 100, 20 _
+					)
+			$idInputs[0] = GUICtrlCreateInput( _
+					"", 80, 80, 100, 20 _
+					)
 		Else
 			For $I = 0 To $iNumParam - 1
-				$iLabels[$I] = GUICtrlCreateLabel(translate($sLang, "parameter") & " " & $I + 1, 80 * $I, 10, 100, 20)
-				$idInputs[$I] = GUICtrlCreateInput("", 80, 80 * $I, 100, 20)
+				$iLabels[$I] = GUICtrlCreateLabel( _
+						translate($sLang, "parameter") & " " & $I + 1, _
+						80 * $I, 10, 100, 20 _
+						)
+				$idInputs[$I] = GUICtrlCreateInput( _
+						"", 80, 80 * $I, 100, 20 _
+						)
 			Next
 		EndIf
-		$idApply = GUICtrlCreateButton(translate($sLang, "&Apply"), 300, 300, 100, 20)
-		$idClosebtn = GUICtrlCreateButton(translate($sLang, "&Close"), 300, 380, 100, 20)
+		$idApply = GUICtrlCreateButton( _
+				translate($sLang, "&Apply"), _
+				300, 300, 100, 20 _
+				)
+		$idClosebtn = GUICtrlCreateButton( _
+				translate($sLang, "&Close"), _
+				300, 380, 100, 20 _
+				)
 		Local $aAccel[][2] = [["{enter}", $idApply]]
 		GUISetAccelerators($aAccel)
 		GUISetState(@SW_SHOW)

@@ -25,7 +25,10 @@ Func Selector()
 	Global $sCurrentCode = "", $sRead = "", $sCollect = "", $sCodes = ""
 	$hLangGUI = GUICreate("Language Selection")
 	$iOldOpt = Opt("GUIOnEventMode", 1)
-	GUICtrlCreateLabel("Select language:", -1, 0)
+	GUICtrlCreateLabel( _
+			"Select language:", _
+			-1, 0 _
+			)
 	GUISetBkColor(0x00E0FFFF)
 	$aLangFiles = _FileListToArrayRec(@ScriptDir & "\lng", "*.lang", 1, 0, 2)
 	If @error Then
@@ -41,12 +44,20 @@ Func Selector()
 		$aLangCodes[$I] = GetLanguageCode($sCurrentCode)
 	Next
 	$langcount = StringSplit($sCodes, "|")
-	Global $Choose = GUICtrlCreateCombo("", 100, 50, 200, 30, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+	Global $idChoose = GUICtrlCreateCombo( _
+			"", 100, 50, 200, 30, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL) _
+			)
 	GUICtrlSetOnEvent(-1, "LangSelect")
-	GUICtrlSetData($Choose, $sCodes, IniRead($sConfigPath, "General settings", "language", ""))
-	Global $idBtn_OK = GUICtrlCreateButton("OK", 155, 50, 70, 30)
+	GUICtrlSetData($idChoose, $sCodes, IniRead($sConfigPath, "General settings", "language", ""))
+	Global $idBtn_OK = GUICtrlCreateButton( _
+			"OK", _
+			155, 50, 70, 30 _
+			)
 	GUICtrlSetOnEvent(-1, "save")
-	Global $idBtn_Close = GUICtrlCreateButton("Close", 180, 50, 70, 30)
+	Global $idBtn_Close = GUICtrlCreateButton( _
+			"Close", _
+			180, 50, 70, 30 _
+			)
 	GUICtrlSetOnEvent(-1, "exitpersonaliced")
 	GUISetState(@SW_SHOW)
 	While 1
@@ -69,8 +80,13 @@ EndFunc   ;==>Selector
 ; Example .......: No
 ; ===============================================================================================================================
 Func LangSelect()
-	$sRead = GUICtrlRead($Choose)
-	If Not $sRead = "" Then Global $queidiomaes = StringSplit($sRead, ",")
+	$sRead = GUICtrlRead($idChoose)
+	If Not $sRead = "" Then
+		Global $aSplittedLanguage = StringSplit($sRead, ",") ; Example: spanish, es.
+	Else
+		Global $aSplittedLanguage = Null
+	EndIf
+	Return $aSplittedLanguage
 EndFunc   ;==>LangSelect
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: save
@@ -90,7 +106,9 @@ Func save()
 		MsgBox(16, "Error", "no language selected.")
 	Else
 		$bSelected = True
-		IniWrite($sConfigPath, "General settings", "language", StringStripWS($queidiomaes[2], $STR_STRIPLEADING))
+		IniWrite($sConfigPath, _
+				"General settings", "language", StringStripWS($aSplittedLanguage[2], $STR_STRIPLEADING) _
+				)
 		$sLang = IniRead($sConfigPath, "General settings", "language", "")
 	EndIf
 EndFunc   ;==>save

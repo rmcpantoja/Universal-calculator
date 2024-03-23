@@ -74,7 +74,9 @@ Func _addSymbol($hGui, $idSymbolButton, $sEnhancedAccessibility, $bSpeak_numbers
 	$sText = ControlGetText($hGui, "", "Edit1")
 	; we place said number or symbol to the field:
 	ControlSetText($hGui, "", "Edit1", $sText & ControlGetText($hGui, "", $idSymbolButton))
-	If $sEnhancedAccessibility = "yes" And $bSpeak_numbers Then speaking(ControlGetText($hGui, "", $idSymbolButton), True)
+	If $sEnhancedAccessibility = "yes" And $bSpeak_numbers Then
+		speaking(ControlGetText($hGui, "", $idSymbolButton), True)
+	EndIf
 EndFunc   ;==>_addSymbol
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _HideKey
@@ -153,11 +155,11 @@ EndFunc   ;==>_convert_key_from_keymap
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _scriftkey_options
-; Description ...:
+; Description ...: A function that runs the accessibility options for an hotkey call.
 ; Syntax ........: _scriftkey_options()
 ; Parameters ....: None
 ; Return values .: None
-; Author ........: Your Name
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
@@ -182,7 +184,7 @@ EndFunc   ;==>_scriftkey_options
 ; Example .......: No
 ; ===============================================================================================================================
 Func _ClearScreen($idScreenControl)
-	If GUICtrlRead($idScreenControl) = "" or UBound($aStoreOperators) = 0 Then
+	If GUICtrlRead($idScreenControl) = "" Or UBound($aStoreOperators) = 0 Then
 		If $sEnhancedAccessibility = "Yes" Then
 			Speaking(Translate($sLang, "there's nothing to clean"))
 		Else

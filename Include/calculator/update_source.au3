@@ -52,9 +52,13 @@ EndFunc   ;==>_GetLastCommit
 ; Example .......: Yes
 ; ===============================================================================================================================
 Func _download_Github_repo($sRepoURL, $sFileName, $sDestinationFolder)
-	Local $iRet = InetGet($sRepoURL, $sDestinationFolder & "\" & $sFileName, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND)
+	Local $iRet = InetGet( _
+			$sRepoURL, $sDestinationFolder & "\" & $sFileName, $INET_FORCERELOAD, $INET_DOWNLOADBACKGROUND _
+			)
 	If $iRet == 0 Then Return SetError(1, 0, "")
-	ProgressOn(translate($sLang, "Downloading"), translate($sLang, "Downloading latest repo updates..."), "0%")
+	ProgressOn( _
+			translate($sLang, "Downloading"), translate($sLang, "Downloading latest repo updates..."), "0%" _
+			)
 	While InetGetInfo($iRet, $INET_DOWNLOADCOMPLETE) = 0
 		$iBytesRead = InetGetInfo($iRet, $INET_DOWNLOADREAD)
 		$iTotalBytes = InetGetInfo($iRet, $INET_DOWNLOADSIZE)

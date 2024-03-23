@@ -48,7 +48,8 @@ Func _config_start($sConfigFolder, $sConfigPath)
 	; Check formula autocompletion:
 	$sFormulaAutocompletion = IniRead($sConfigPath, "Calculator", "formula autocompletion mode", "")
 	If Not $sFormulaAutocompletion = "1" Or Not $sFormulaAutocompletion = "2" Then
-		; Let's set the first default mode. This first mode makes that, when selecting a formula from the list, a GUI appears to complete the parameters to interact with it and get the final result.
+		; Let's set the first default mode. This first mode makes that, when selecting a formula from the list,
+		; a GUI appears to complete the parameters to interact with it and get the final result.
 		IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "1")
 		$sFormulaAutocompletion = "1"
 	EndIf

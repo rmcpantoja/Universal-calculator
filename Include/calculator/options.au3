@@ -26,39 +26,83 @@
 Func _Options($sConfigFolder, $sConfigPath)
 	Local $hOptionsGui
 	Local $iDeleteResult
-	Local $idLanguage, $idAccessibility, $idAutocompleteFormula, $idShuwTips, $idApply
+	Local $idLanguage, $idAccessibility, $idAutocompleteFormula, $idShowTips, $idApply
 	Local $sCompleteOption, $sCompleteRead, $sTipsRead
 	;_config_start($sConfigFolder, $sConfigPath)
 	$hOptionsGui = GUICreate(translate($sLang, "Options"))
-	$idLanguage = GUICtrlCreateButton(translate($sLang, "Change language, currently") & " " & GetLanguageName($sLang), 10, 10, 120, 20)
-	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Allows the user to change the language of the program. More languages can be added by suggesting the author and reading the translation guide doc to contribute."))
-	$idAccessibility = GUICtrlCreateButton(translate($sLang, "Enhanced accessibility enhabled:") & " " & translate($sLang, $sEnhancedAccessibility), 70, 10, 120, 20)
-	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Allows the user to toggle Enhanced Accessibility. The enhanced accessibility feature is focused on improving the experience for people with visual impairments."))
-	GUICtrlCreateLabel(translate($sLang, "Choose autocompletion mode:"), 130, 10, 120, 20)
-	$idAutocompleteFormula = GUICtrlCreateCombo("", 130, 70, 120, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Changes the way you want to fill in the formulas, either by using a GUI to set the parameters or if you want to fill in the parameters manually in the interaction field, for this the respective command will be added first."))
+	$idLanguage = GUICtrlCreateButton( _
+			translate($sLang, "Change language, currently") & " " & GetLanguageName($sLang), 10, 10, 120, 20 _
+			)
+	If $sShowTips = "Yes" Then
+		GUICtrlSetTip(-1, _
+				translate($sLang, "Allows the user to change the language of the program. More languages can be added by suggesting the author and reading the translation guide doc to contribute.") _
+				)
+	EndIf
+	$idAccessibility = GUICtrlCreateButton( _
+			translate($sLang, "Enhanced accessibility enhabled:") & " " & translate($sLang, $sEnhancedAccessibility), 70, 10, 120, 20 _
+			)
+	If $sShowTips = "Yes" Then
+		GUICtrlSetTip( _
+				-1, _
+				translate($sLang, "Allows the user to toggle Enhanced Accessibility. The enhanced accessibility feature is focused on improving the experience for people with visual impairments.") _
+				)
+	EndIf
+	GUICtrlCreateLabel( _
+			translate($sLang, "Choose autocompletion mode:"), _
+			130, 10, 120, 20 _
+			)
+	$idAutocompleteFormula = GUICtrlCreateCombo( _
+			"", 130, 70, 120, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL) _
+			)
+	If $sShowTips = "Yes" Then
+		GUICtrlSetTip(-1, _
+				translate($sLang, "Changes the way you want to fill in the formulas, either by using a GUI to set the parameters or if you want to fill in the parameters manually in the interaction field, for this the respective command will be added first.") _
+				)
+	EndIf
 	If $sFormulaAutocompletion = "1" Then
 		$sCompleteRead = translate($sLang, "GUI mode")
 	Else
 		$sCompleteRead = translate($sLang, "Autocomplete mode")
 	EndIf
-	GUICtrlSetData($idAutocompleteFormula, translate($sLang, "Autocomplete mode") & "|" & translate($sLang, "GUI mode"), $sCompleteRead)
-	$idShowTips = GUICtrlCreateCheckbox(translate($sLang, "Show tips"), 210, 10, 120, 20)
+	GUICtrlSetData( _
+			$idAutocompleteFormula, _
+			translate($sLang, "Autocomplete mode") & "|" & translate($sLang, "GUI mode"), _
+			$sCompleteRead _
+			)
+	$idShowTips = GUICtrlCreateCheckbox( _
+			translate($sLang, "Show tips"), _
+			210, 10, 120, 20 _
+			)
 	If $sShowTips = "Yes" Then GUICtrlSetState(-1, $GUI_Checked)
-	$idDeleteconfig = GUICtrlCreateButton(translate($sLang, "Clear settings"), 290, 210, 200, 20)
-	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "This clears the current configs of the program, so it will be set to the default configs when it's reopened."))
+	$idDeleteconfig = GUICtrlCreateButton( _
+			translate($sLang, "Clear settings"), _
+			290, 210, 200, 20 _
+			)
+	If $sShowTips = "Yes" Then
+		GUICtrlSetTip(-1, _
+				translate($sLang, "This clears the current configs of the program, so it will be set to the default configs when it's reopened.") _
+				)
+	EndIf
 	$idApply = GUICtrlCreateButton(translate($sLang, "&Apply"), 290, 80, 200, 20)
-	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Saves the changes that have been made and close this window."))
+	If $sShowTips = "Yes" Then
+		GUICtrlSetTip(-1, translate($sLang, "Saves the changes that have been made and close this window."))
+	EndIf
 	GUISetState(@SW_SHOW)
 	While 1
 		Switch GUIGetMsg()
 			Case $idLanguage
 				Selector()
-				MsgBox(48, translate($sLang, "Information"), translate($sLang, "Please restart Universal Calculator for the changes to take effect."))
+				MsgBox(48, _
+						translate($sLang, "Information"), _
+						translate($sLang, "Please restart Universal Calculator for the changes to take effect.") _
+						)
 				exitpersonaliced()
 			Case $idAccessibility
 				_configure_accessibility($sConfigPath)
-				MsgBox(48, translate($sLang, "Information"), translate($sLang, "Please restart Universal Calculator for the changes to take effect."))
+				MsgBox(48, _
+						translate($sLang, "Information"), _
+						translate($sLang, "Please restart Universal Calculator for the changes to take effect.") _
+						)
 				exitpersonaliced()
 			Case $idAutocompleteFormula
 				$sCompleteOption = GUICtrlRead($idAutocompleteFormula)
@@ -78,7 +122,10 @@ Func _Options($sConfigFolder, $sConfigPath)
 				If @error Then
 					MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot delete configs file."))
 				ElseIf $iDeleteResult = 1 Then
-					MsgBox(48, translate($sLang, "Information"), translate($sLang, "Please restart Universal Calculator for the changes to take effect."))
+					MsgBox(48, _
+							translate($sLang, "Information"), _
+							translate($sLang, "Please restart Universal Calculator for the changes to take effect.") _
+							)
 					Exitpersonaliced()
 				EndIf
 			Case $GUI_EVENT_CLOSE, $idApply

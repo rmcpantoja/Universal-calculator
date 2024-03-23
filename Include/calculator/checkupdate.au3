@@ -31,6 +31,10 @@ Func _calc_check_update($bSilent = False)
 		If @error Then
 			Return SetError(2, 0, "")
 		EndIf
-		_DoUpdate(@ScriptFullPath, "https://github.com/rmcpantoja/Universal-calculator/releases/download/" & $sVersionGot & "/universal_calculator.zip", @ScriptDir & "\universal_calculator_update.zip")
+		_DoUpdate( _
+				@ScriptFullPath, _
+				"https://github.com/rmcpantoja/Universal-calculator/releases/download/" & $sVersionGot & "/universal_calculator.zip", _
+				@ScriptDir & "\universal_calculator_update.zip" _
+				)
 	EndIf
 EndFunc   ;==>_calc_check_update

@@ -3,11 +3,11 @@
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _multi_get_reason
-; Description ...:
+; Description ...: Obtiene la razón para una multiplicación.
 ; Syntax ........: _multi_get_reason($sMult)
-; Parameters ....: $sMult               - a string value.
-; Return values .: None
-; Author ........: Your Name
+; Parameters ....: $sMult               - La multiplicación.
+; Return values .: La razón de la multiplicación en una cadena.
+; Author ........: Mateo Cedillo
 ; Modified ......:
 ; Remarks .......:
 ; Related .......:
