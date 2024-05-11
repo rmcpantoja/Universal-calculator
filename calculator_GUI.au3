@@ -3,7 +3,7 @@
 ;#AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_Res_Comment=An easy, simple and interactive calculator where you can interact using many formulas and mathematical operations
 #AutoIt3Wrapper_Res_Description=Universal calculator
-#AutoIt3Wrapper_Res_Fileversion=0.1.0.65
+#AutoIt3Wrapper_Res_Fileversion=0.1.0.66
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_ProductName=Universal calculator
 #AutoIt3Wrapper_Res_ProductVersion=0.1.0.0
@@ -21,8 +21,11 @@
 ; include dependencies:
 #include "include\calculator\configs.au3"
 #include "include\calculator\globals.au3"
+OnAutoItExitRegister("_exitpersonaliced")
 #include "include\calculator\UI.au3"
+#Include <Misc.au3>
 ;program loading:
+_Singleton('UniversalCalculator')
 SoundPlay(@ScriptDir & "\sounds\open.wav", 0)
 ; check for configs:
 _config_start($sConfigFolder, $sConfigPath)

@@ -72,7 +72,7 @@ Func Main()
 			"", 10, 30, 370, 60 _
 			)
 	GUICtrlSetColor(-1, 0x000000)
-	GUICtrlSetLimit(-1, 50)
+	GUICtrlSetLimit(-1, 75)
 	If $sShowTips = "Yes" Then GUICtrlSetTip(-1, translate($sLang, "Write your operation here, then press the equal button to get the result."))
 	; creating the array of the on-screen keyboard, this is going to be manipulated.
 	$aNums[0] = GUICtrlCreateButton( _
@@ -336,7 +336,7 @@ Func Main()
 						translate($sLang, "An easy, simple and interactive calculator where you can do operations, formulas, conversions and more. This program has been developed by Mateo Cedillo. Creation and design of the Graphical User Interface by Valeria Parra and Xx_Nessu_xX.") _
 						)
 			Case $GUI_EVENT_CLOSE, $idMenuExit
-				ExitPersonaliced()
+				ExitLoop
 		EndSwitch
 	WEnd
 EndFunc   ;==>Main

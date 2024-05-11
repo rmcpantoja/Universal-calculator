@@ -25,9 +25,9 @@ global $aScriptkeys[][2] = [["+{f2}", "_switch_read_keys"], _
 global $sSpeak_result, $sReadPosition
 ; global functions:
 ; #FUNCTION# ====================================================================================================================
-; Name ..........: exitpersonaliced
+; Name ..........: _exitpersonaliced
 ; Description ...: Custom exit function
-; Syntax ........: exitpersonaliced()
+; Syntax ........: _exitpersonaliced()
 ; Parameters ....: None
 ; Return values .: None
 ; Author ........: Mateo Cedillo
@@ -37,9 +37,9 @@ global $sSpeak_result, $sReadPosition
 ; Link ..........:
 ; Example .......: No
 ; ===============================================================================================================================
-Func exitpersonaliced()
+Func _exitpersonaliced()
 	SoundPlay(@ScriptDir & "\sounds/close.wav", 0)
 	_nvdaControllerClient_free()
 	Sleep(1000)
 	Exit
-EndFunc   ;==>exitpersonaliced
+EndFunc   ;==>_exitpersonaliced

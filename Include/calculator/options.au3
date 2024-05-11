@@ -6,6 +6,7 @@
 ;#include "keyboard.au3"
 #include "language_manager.au3"
 #include "..\menu_nvda.au3"
+#Include "..\Restart.au3"
 #include "..\translator.au3"
 #include-once
 ;_options()
@@ -150,7 +151,7 @@ func _restart_dialog()
 			translate($sLang, "Information"), _
 			translate($sLang, "Please restart Universal Calculator for the changes to take effect. Do you want to restart now?") _
 			)
-	if $iAnswer == 6 then exitpersonaliced()
+	if $iAnswer == 6 then _ScriptRestart()
 EndFunc
 
 ; #FUNCTION# ====================================================================================================================
