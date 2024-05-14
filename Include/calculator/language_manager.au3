@@ -58,7 +58,7 @@ Func Selector()
 			"Close", _
 			180, 50, 70, 30 _
 			)
-	GUICtrlSetOnEvent(-1, "exitpersonaliced")
+	GUICtrlSetOnEvent(-1, "_exitpersonaliced")
 	GUISetState(@SW_SHOW)
 	While 1
 		If $bSelected Then ExitLoop
