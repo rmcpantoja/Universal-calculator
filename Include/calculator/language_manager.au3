@@ -19,7 +19,7 @@
 ; ===============================================================================================================================
 Func Selector()
 	Global $aLangFiles, $aLangCodes[]
-	Global $bSelected = False
+	Global $bSelected = False, $bReturn = False
 	Global $hLangGUI
 	Global $iOldOpt, $iSearch = 0
 	Global $sCurrentCode = "", $sRead = "", $sCollect = "", $sCodes = ""
@@ -61,10 +61,14 @@ Func Selector()
 	GUICtrlSetOnEvent(-1, "_exitpersonaliced")
 	GUISetState(@SW_SHOW)
 	While 1
-		If $bSelected Then ExitLoop
+		If $bSelected Then
+			$bReturn = True
+			ExitLoop
+		EndIf
 	WEnd
 	GUIDelete($hLangGUI)
 	Opt("GUIOnEventMode", $iOldOpt)
+	return $bReturn
 EndFunc   ;==>Selector
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: select

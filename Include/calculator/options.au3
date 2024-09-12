@@ -25,8 +25,8 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _Options($sConfigFolder, $sConfigPath)
+	local $bDeleteResult, $bRestartRequired = False
 	Local $hOptionsGui
-	Local $iDeleteResult
 	Local $idLanguage, $idAccessibility, $idAutocompleteFormula, $idForceEqualKey, $idShowTips, $idApply
 	Local $sCompleteOption, $sCompleteRead, $sTipsRead
 	;_config_start($sConfigFolder, $sConfigPath)
@@ -107,11 +107,9 @@ Func _Options($sConfigFolder, $sConfigPath)
 	While 1
 		Switch GUIGetMsg()
 			Case $idLanguage
-				Selector()
-				_restart_dialog()
+				$bRestartRequired = Selector()
 			Case $idAccessibility
-				_configure_accessibility($sConfigPath)
-				_restart_dialog()
+				if Not $sEnhancedAccessibility = _configure_accessibility($sConfigPath) then $bRestartRequired = True
 			Case $idAutocompleteFormula
 				$sCompleteOption = GUICtrlRead($idAutocompleteFormula)
 				If $sCompleteOption = translate($sLang, "GUI mode") Then
@@ -132,14 +130,15 @@ Func _Options($sConfigFolder, $sConfigPath)
 					IniWrite($sConfigPath, "Calculator", "Show tips", "No")
 				EndIf
 			Case $idDeleteconfig
-				$iDeleteResult = _DeleteSettings($sConfigPath)
+				$bDeleteResult = _DeleteSettings($sConfigPath)
 				If @error Then
 					MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot delete configs file."))
-				ElseIf $iDeleteResult = 1 Then
-					_restart_dialog()
+				ElseIf $bDeleteResult Then
+					$bRestartRequired = True
 				EndIf
 			Case $GUI_EVENT_CLOSE, $idApply
 				GUIDelete($hOptionsGui)
+				if $bRestartRequired then _restart_dialog()
 				ExitLoop
 		EndSwitch
 	WEnd
@@ -151,7 +150,11 @@ func _restart_dialog()
 			translate($sLang, "Information"), _
 			translate($sLang, "Please restart Universal Calculator for the changes to take effect. Do you want to restart now?") _
 			)
-	if $iAnswer == 6 then _ScriptRestart()
+	if $iAnswer == 6 then
+		_ScriptRestart()
+	else
+		return False
+	EndIf
 EndFunc
 
 ; #FUNCTION# ====================================================================================================================
@@ -227,9 +230,9 @@ Func _DeleteSettings($sConfigPath)
 		If $iDeleteResult = 0 Then
 			Return SetError(1, 0, "")
 		Else
-			Return 1
+			Return True
 		EndIf
 	Else ; if selected no:
-		Return 2
+		Return False
 	EndIf
 EndFunc   ;==>_DeleteSettings
