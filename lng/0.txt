@@ -205,3 +205,4 @@ Body Mass Index|Gets the Body Mass Index based on a hight and a weigth=
 Natural Logarithm|Calculates the natural logarithm of an expression=
 Force enter key to do the equal function=
 When the equal button is pressed, it will activate the enter key as a shortcut. Please note that if you're a screen reader user and want to use a control, you will need to do so using the spacebar.=
+Numbers to words=
