@@ -10,7 +10,7 @@ global $nResult
 Global $sOperation = "", $sProcess = "", $sRaiseType = "", $sRootType = ""
 ; program globals:
 global $oCloseSND, $oOpenSND
-Global $sProgramVer = "v0.1a6"
+Global $sProgramVer = "v0.1b1"
 ; UI globals:
 Global $bHideKeyboard = False
 Global $hGUI, $idInter, $idClearScreen, $idFORMULAS, $idOptions, $idGetReason, $idInterLabel, $idCommandsLb, $idAbout, $idEqual, $idMSG, $idHideKey
