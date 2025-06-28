@@ -65,7 +65,7 @@ Func _calc($hGUI, $idFORMULAS, $idInter, $idEqual)
 				Case 1
 					MsgBox(16, _
 							Translate($sLang, "Error"), _
-							Translate($sLang, "The list doesn't require with the necessary columns to interact.") _
+							Translate($sLang, "The list doesn't have enough columns to perform this operation.") _
 							)
 				Case 2
 					MsgBox(16, Translate($sLang, "Error"), Translate($sLang, "You have not selected any formula from the list."))
@@ -273,7 +273,7 @@ Func _interact($sOperation, $idInter)
 		Case Else
 			MsgBox(16, _
 					Translate($sLang, "Error"), _
-					Translate($sLang, "The command") & " " & $aSplitCMD[1] & " " & Translate($sLang, "does not exist. If you think it is a function that allows you to perform a mathematical formula, please tell me so I can add it.") _
+					Translate($sLang, "The command") & " " & $aSplitCMD[1] & " " & Translate($sLang, "does not exist. If you think it is a function that allows you to perform a mathematical formula, please tell us so we can add it.") _
 					)
 	EndSelect
 	If Not @error Then

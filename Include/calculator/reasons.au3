@@ -90,7 +90,7 @@ Func _GetReason($idInter, $sOperation)
 				MsgBox( _
 						16, _
 						translate($sLang, "Error"), _
-						translate($sLang, "Can't get the reason for") & " " & $aSplitCMD[1] & " " & Translate($sLang, "here. This command is not supported enough to get a reason. If you think there is an alternative, please tell me.") _
+						translate($sLang, "Can't get the reason for") & " " & $aSplitCMD[1] & " " & Translate($sLang, "here. This command is not supported enough to get a reason. If you think there is an alternative, please tell us.") _
 						)
 		EndSwitch
 	EndIf

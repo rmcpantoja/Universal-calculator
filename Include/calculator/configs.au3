@@ -138,7 +138,7 @@ EndFunc   ;==>_accessibility_config_start
 ; Example .......: No
 ; ===============================================================================================================================
 Func _Configure_Accessibility($sConfigPath)
-	Local $iAccessMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This new Enhanced Accessibility functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Activate?"))
+	Local $iAccessMSG = MsgBox(4, Translate($sLang, "Enable enhanced accessibility?"), Translate($sLang, "This functionality is designed for the visually impaired, in which most of the program interface can be used by voice and keyboard shortcuts. Would you like to enable it?"))
 	Local $sEnhancedAccessibility
 	If $iAccessMSG = 6 Then
 		IniWrite($sConfigPath, "accessibility", "Enable enhanced accessibility", "Yes")
