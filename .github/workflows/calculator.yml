@@ -7,9 +7,9 @@ jobs:
     runs-on: Windows-latest
 ##    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Cache tools
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache
         with:
           path: |
@@ -34,7 +34,7 @@ jobs:
       - name: Move executable
         run: |
           Move-Item D:/a/Universal-calculator/compiled/UniversalCalc.exe D:/a/Universal-calculator/Universal-calculator/
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: calculator
           path: |
@@ -52,7 +52,7 @@ jobs:
           Start-Process "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "setup.iss" -NoNewWindow -Wait
           Start-Process "${env:ProgramFiles(x86)}\AutoIt3\AutoIt3.exe" "`"${env:ProgramFiles(x86)}\AutoIt3\SciTE\AutoIt3Wrapper\AutoIt3Wrapper.au3`" /NoStatus /prod /in include\updater.au3" -NoNewWindow -Wait
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |

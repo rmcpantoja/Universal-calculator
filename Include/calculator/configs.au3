@@ -82,7 +82,7 @@ Func _config_start($sConfigFolder, $sConfigPath)
 			EndIf ; commit is empti or different
 		EndIf ; @compiled
 	EndIf ; Check source code updates
-	; The configs has been sabed if they are empti. Now, check for update if is neccessary:
+	; The configs have been saved if they were empty. Now, check for update if necessary:
 	If $sCheckForUpdate = "Yes" Then
 		If @Compiled Then _calc_check_update(True)
 	EndIf

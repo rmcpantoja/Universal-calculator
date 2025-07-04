@@ -10,7 +10,7 @@ global $nResult
 Global $sOperation = "", $sProcess = "", $sRaiseType = "", $sRootType = ""
 ; program globals:
 global $oCloseSND, $oOpenSND
-Global $sProgramVer = "v0.1b1"
+Global $sProgramVer = "v0.1b2"
 ; UI globals:
 Global $bHideKeyboard = False
 Global $hGUI, $idInter, $idClearScreen, $idFORMULAS, $idOptions, $idGetReason, $idInterLabel, $idCommandsLb, $idAbout, $idEqual, $idMSG, $idHideKey
@@ -19,6 +19,8 @@ global $sConfigFolder = @ScriptDir &"\config"
 global $sConfigPath = $sConfigFolder &"\config.st"
 ; related to configs:
 global $sEnableProgresses, $sEnhancedAccessibility, $sFormulaAutocompletion, $sShowTips, $sForceEnter, $sCommit, $sCommitGot = "", $sCheckForUpdate, $sUpdateSource, $sLang = "en"
+; Related to donation:
+global $sDonationUrl = "http://paypal.me/rmcpantoja"
 ; related to accessibility configs:
 global $aScriptkeys[][2] = [["+{f2}", "_switch_read_keys"], _
 	["^+o", "_scriftkey_options"]]

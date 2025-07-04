@@ -58,6 +58,7 @@ Func Main()
 	$idErrorReporting = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions"), $idHelpmenu)
 	$idGitHub = GUICtrlCreateMenuItem(translate($sLang, "Errors and suggestions (gitHub)"), $idHelpmenu)
 	$idWebsite = GUICtrlCreateMenuItem(translate($sLang, "&Visit website"), $idHelpmenu)
+	$idDonate = GUICtrlCreateMenuItem(translate($sLang, "&Donate"), $idHelpmenu)
 	$idCheckUpdates = GUICtrlCreateMenuItem(translate($sLang, "Check for updates"), $idHelpmenu)
 	If Not @Compiled Then GUICtrlSetState(-1, $GUI_DISABLE)
 	$idAboutItem = GUICtrlCreateMenuItem(translate($sLang, "About"), $idHelpmenu)
@@ -260,8 +261,8 @@ Func Main()
 	Local $aAccelKeys[19][2]
 	For $I = 0 To UBound($aNums) - 4
 		$aAccelKeys[$I][0] = _convert_key_from_keymap($I)
-		if @error then
-			MsgBox(16, "Error", "Can't convert keymap. Error code:" &@error)
+		If @error Then
+			MsgBox(16, "Error", "Can't convert keymap. Error code:" & @error)
 			ExitLoop
 		EndIf
 		$aAccelKeys[$I][1] = $aNums[$I]
@@ -272,11 +273,11 @@ Func Main()
 	$aAccelKeys[16][1] = $idClearScreen
 	$aAccelKeys[17][0] = "!{o}"
 	$aAccelKeys[17][1] = $idOptions
-	if $sForceEnter = "Yes" then
+	If $sForceEnter = "Yes" Then
 		$aAccelKeys[18][0] = "{ENTER}"
 		$aAccelKeys[18][1] = $idEqual
-	else
-	ReDim $aAccelKeys[uBound($aAccelKeys)-1][2]
+	Else
+		ReDim $aAccelKeys[UBound($aAccelKeys) - 1][2]
 	EndIf
 	GUISetAccelerators($aAccelKeys)
 	; show GUI:
@@ -311,14 +312,13 @@ Func Main()
 			Case $idUserManual
 				_ReadDoc($sLang, "Manual")
 			Case $idErrorReporting
-				ShellExecute("https://docs.google.com/forms/d/e/1FAIpQLSdDW6LqMKGHjUdKmHkAZdAlgSDilHaWQG9VZjwLz0CJSXKqHA/viewform?usp=sf_link")
-				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
+				run_browser("https://docs.google.com/forms/d/e/1FAIpQLSdDW6LqMKGHjUdKmHkAZdAlgSDilHaWQG9VZjwLz0CJSXKqHA/viewform?usp=sf_link")
 			Case $idGitHub
-				ShellExecute("https://github.com/rmcpantoja/universal-calculator/issues/new")
-				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
+				run_browser("https://github.com/rmcpantoja/universal-calculator/issues/new")
 			Case $idWebsite
-				ShellExecute("http://mateocedillo.260mb.net/")
-				If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
+				run_browser("http://mateocedillo.260mb.net/")
+			Case $idDonate
+				run_browser($sDonationUrl)
 			Case $idCheckUpdates
 				_calc_check_update()
 				If @error Then
@@ -384,6 +384,27 @@ Func _ReadDoc($sLang, $sTipe)
 	WEnd
 	GUIDelete($hChangesGui)
 EndFunc   ;==>_ReadDoc
+
+; #FUNCTION# ====================================================================================================================
+; Name ..........: run_browser
+; Description ...: opens a given URL using the system's association for http entries. If not, shows the error message.
+; Syntax ........: run_browser($sURL)
+; Parameters ....: $sURL                - a string value containing the URL to open.
+; Return values .: The handler of ShellExecute
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func run_browser($sURL)
+	If Not _String_startsWith($sURL, "http") Then Return SetError(1, 0, "")
+	$xRet = ShellExecute($sURL)
+	If @error Then MsgBox(16, translate($sLang, "Error"), translate($sLang, "Cannot run browser. It is likely that you have to add an association."))
+	Return $xRet
+EndFunc   ;==>run_browser
+
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: num2words_UI
 ; Description ...: Graphical User Interphace for num2words support.

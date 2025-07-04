@@ -6,7 +6,7 @@
 ;#include "keyboard.au3"
 #include "language_manager.au3"
 #include "..\menu_nvda.au3"
-#Include "..\Restart.au3"
+#include "..\Restart.au3"
 #include "..\translator.au3"
 #include-once
 ;_options()
@@ -25,7 +25,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func _Options($sConfigFolder, $sConfigPath)
-	local $bDeleteResult, $bRestartRequired = False
+	Local $bDeleteResult, $bRestartRequired = False
 	Local $hOptionsGui
 	Local $idLanguage, $idAccessibility, $idAutocompleteFormula, $idForceEqualKey, $idShowTips, $idApply
 	Local $sCompleteOption, $sCompleteRead, $sTipsRead
@@ -99,7 +99,7 @@ Func _Options($sConfigFolder, $sConfigPath)
 	$idApply = GUICtrlCreateButton( _
 			translate($sLang, "&Apply"), _
 			290, 80, 200, 20 _
-	)
+			)
 	If $sShowTips = "Yes" Then
 		GUICtrlSetTip(-1, translate($sLang, "Saves the changes that have been made and close this window."))
 	EndIf
@@ -109,7 +109,7 @@ Func _Options($sConfigFolder, $sConfigPath)
 			Case $idLanguage
 				$bRestartRequired = Selector()
 			Case $idAccessibility
-				if Not $sEnhancedAccessibility = _configure_accessibility($sConfigPath) then $bRestartRequired = True
+				If Not $sEnhancedAccessibility = _configure_accessibility($sConfigPath) Then $bRestartRequired = True
 			Case $idAutocompleteFormula
 				$sCompleteOption = GUICtrlRead($idAutocompleteFormula)
 				If $sCompleteOption = translate($sLang, "GUI mode") Then
@@ -117,7 +117,7 @@ Func _Options($sConfigFolder, $sConfigPath)
 				Else
 					IniWrite($sConfigPath, "Calculator", "formula autocompletion mode", "2")
 				EndIf
-			case $idForceEqualKey
+			Case $idForceEqualKey
 				If _IsChecked($idForceEqualKey) Then
 					IniWrite($sConfigPath, "Calculator", "Force enter key", "Yes")
 				Else
@@ -138,24 +138,37 @@ Func _Options($sConfigFolder, $sConfigPath)
 				EndIf
 			Case $GUI_EVENT_CLOSE, $idApply
 				GUIDelete($hOptionsGui)
-				if $bRestartRequired then _restart_dialog()
+				If $bRestartRequired Then _restart_dialog()
 				ExitLoop
 		EndSwitch
 	WEnd
 EndFunc   ;==>_Options
 
-func _restart_dialog()
-	local $iAnswer
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _restart_dialog
+; Description ...: The modal to show when a restart is required.
+; Syntax ........: _restart_dialog()
+; Parameters ....: None
+; Return values .: None
+; Author ........: Mateo Cedillo
+; Modified ......:
+; Remarks .......:
+; Related .......:
+; Link ..........:
+; Example .......: No
+; ===============================================================================================================================
+Func _restart_dialog()
+	Local $iAnswer
 	$iAnswer = MsgBox(4, _
 			translate($sLang, "Information"), _
 			translate($sLang, "Please restart Universal Calculator for the changes to take effect. Do you want to restart now?") _
 			)
-	if $iAnswer == 6 then
+	If $iAnswer == 6 Then
 		_ScriptRestart()
-	else
-		return False
+	Else
+		Return False
 	EndIf
-EndFunc
+EndFunc   ;==>_restart_dialog
 
 ; #FUNCTION# ====================================================================================================================
 ; Name ..........: _accessibility_Options

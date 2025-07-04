@@ -2,6 +2,7 @@
 #include "globals.au3"
 #include "..\updater.au3"
 #include "update.au3"
+;#include "UI.au3"
 #include-once
 
 ; #FUNCTION# ====================================================================================================================
@@ -27,6 +28,8 @@ Func _calc_check_update($bSilent = False)
 	$sVersionGot = $aUpdateHandler[1]
 	$sJson = $aUpdateHandler[2]
 	If $bUpdate Then
+		$iDonate = MSGBox(4, Translate($sLang, "Please support us"), translate($sLang, "Due to the effort on this project, we appreciate a donation from you. At least few pennies or hugs makes a big difference. Do you want to do it?"))
+		if $iDonate == 6 then run_browser($sDonationUrl)
 		_perform_Update($sJson, "https://github.com/rmcpantoja/Universal-calculator")
 		If @error Then
 			Return SetError(2, 0, "")
